@@ -1,0 +1,83 @@
+cs:
+  app_name: Justiční čekatelé
+  app_abbrev: Justiční čekatelé
+
+  label_publish_and_invite: Zveřejnit termín
+  label_invited_candidates: Pozvaní kandidáti
+  label_disapprove: Vyzvat k doplnění
+  label_evaluate: Vyhodnotit
+  label_finalize_candidate: Potvrdit a odeslat
+  label_allow_less_candidates: Povolit méně kandidátů
+  label_send_apology: Odeslat omluvenku
+  label_edit_candidate: Úprava profilu
+  label_excuses: Omluvenky
+  notice_excuse_sent: Omluvenka zaslána
+  success_evaluation: Vyhodnocení uloženo
+  text_finalize_candidate_confirm: Tato akce je nezvratná. Tímto váš profil odešlete ke kontrole Ministerstvu spravedlnosti ČR.
+  warning_not_enough_candidates: Nedostatek kandidátů
+
+  models: &my_models
+    candidate:
+      one: Kandidát
+      other: Kandidáti
+    entry_test:
+      one: Vstupní test
+      other: Vstupní testy
+    interview:
+      one: Pohovor
+      other: Pohovory
+
+  label_attendees:
+    one: účastník
+    few: účastníci
+    other: účastníků
+
+  model_attributes: &my_attributes
+    candidate:
+      state: Stav
+      states:
+        incomplete: Nevyplněný
+        validation: Čeká na schválení
+        rejected: Zamítnutý
+        for_entry_test: Čeká na vstupní test
+        waiting: Čeká na pohovor
+      updated_at: Poslední aktualizace
+      university: Vysoká škola
+      universities:
+        muni: Právnická fakulta Masarykovy univerzity
+        cuni: Právnická fakulta Univerzity Karlovy
+        zcu: Právnická fakulta Západočeské univerzity
+        upol: Právnická fakulta Univerzity Palackého
+    candidate_entry_test:
+      arrivals:
+        invited: Pozvaný/á
+        arrived: Dorazí
+        apology: Omlouvá se
+        excused: Omluven
+        absent: Nedorazil/a
+    entry_test:
+      capacity: Kapacita
+      place: Místo
+      places:
+        kromeriz: Kroměříž
+        praha: Praha
+
+  model_help_messages: &my_help_messages
+    claim:
+      file_uid: S.Z. případu prvostupňového soudu, ze kterého vznikl nárok
+
+
+  models_errors: &my_model_errors
+    profile:
+      too_many_authors: Příliš mnoho autorů
+
+  activerecord:
+    models:
+      <<: *my_models
+    attributes:
+      <<: *my_attributes
+    help:
+      <<: *my_help_messages
+    errors:
+      models:
+        <<: *my_model_errors

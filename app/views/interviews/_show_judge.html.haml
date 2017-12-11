@@ -1,0 +1,17 @@
+%table.table
+  %thead
+    %tr
+      %th= EgovUtils::User.human_attribute_name('fullname')
+  %tbody
+    - interview.candidate_interviews.where(state: 'invited').each do |i_candidate|
+      %tr
+        %td= i_candidate.candidate.user.fullname
+
+%table.table
+  %thead
+    %tr
+      %th= EgovUtils::User.human_attribute_name('fullname')
+  %tbody
+    - interview.candidate_interviews.excuses.each do |i_candidate|
+      %tr
+        %td= i_candidate.candidate.user.fullname

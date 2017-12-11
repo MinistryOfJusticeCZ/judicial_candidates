@@ -1,0 +1,19 @@
+body {
+  background-color: $secondary;
+}
+
+nav.navbar {
+  background-color: white;
+}
+
+#card_layout {
+  background-color: $card-bg;
+  background-clip: border-box;
+  border: $card-border-width solid $card-border-color;
+  @include border-radius($card-border-radius);
+  box-shadow: $card-shadow;
+  padding: $card-spacer-x;
+}
+
+@import 'attributes';
+@import 'cards';

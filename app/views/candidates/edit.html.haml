@@ -1,0 +1,7 @@
+- content_for :heading do
+  %h2= t('label_edit_candidate')
+
+= bootstrap_form_for(@candidate) do |f|
+  = render 'candidates/form', form: f, candidate: @candidate
+  .form-actions
+    = f.submit

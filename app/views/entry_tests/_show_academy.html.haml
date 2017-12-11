@@ -1,0 +1,46 @@
+- if entry_test.unconfirmed?
+  = form_tag(entry_test_candidate_entry_tests_path(entry_test)) do
+    = check_box_tag('allow_less_candidates')
+    = label_tag('allow_less_candidates', t('label_allow_less_candidates'))
+    = submit_tag(t('label_publish_and_invite'), class: 'btn btn-primary')
+- else
+  .card
+    .card-body
+      %h4= t('label_invited_candidates')
+      = form_tag(evaluate_entry_test_path(entry_test)) do
+        %table.table
+          %thead
+            %tr
+              %th= EgovUtils::User.human_attribute_name('fullname')
+              - if entry_test.passed?
+                %th= CandidateEntryTest.human_attribute_name('absent')
+                %th= CandidateEntryTest.human_attribute_name('points')
+          %tbody
+            - entry_test.candidate_entry_tests.comming.preload(candidate: :user).each do |candidate_test|
+              %tr
+                %td= candidate_test.candidate.user.fullname
+                - if entry_test.passed?
+                  %td
+                    = hidden_field_tag("entry_test[candidate_entry_tests_attributes][#{candidate_test.id}][id]", candidate_test.id)
+                    = check_box_tag("entry_test[candidate_entry_tests_attributes][#{candidate_test.id}][arrival]", 'absent', candidate_test.absent?, class: 'test-absent-checkbox', disabled: entry_test.evaluated?)
+                  %td.test-points= number_field_tag("entry_test[candidate_entry_tests_attributes][#{candidate_test.id}][points]", candidate_test.points, class: 'test-points-field', disabled: entry_test.evaluated?)
+        - unless entry_test.evaluated?
+          = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
+      :javascript
+        $(function(){
+          $('.test-absent-checkbox').on('change', function(evt){
+            $(this).closest('tr').find('.test-points :input').prop('disabled', $(this).is(':checked'))
+          });
+        });
+
+  .card
+    .card-body
+      %h4= t('label_excuses')
+      %table.table
+        %thead
+          %tr
+            %th= EgovUtils::User.human_attribute_name('fullname')
+        %tbody
+          - entry_test.candidate_entry_tests.apologized.preload(candidate: :user).each do |candidate_test|
+            %tr
+              %td= candidate_test.candidate.user.fullname

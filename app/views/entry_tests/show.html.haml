@@ -1,0 +1,11 @@
+.attribute
+  .label= EntryTest.human_attribute_name('time')
+  .value= @entry_test.time
+.attribute
+  .label= EntryTest.human_attribute_name('place')
+  .value= @entry_test.place
+.attribute
+  .label= EntryTest.human_attribute_name('capacity')
+  .value= @entry_test.capacity
+
+= role_based_render('entry_tests/show', entry_test: @entry_test)

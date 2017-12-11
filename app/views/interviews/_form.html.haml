@@ -1,0 +1,41 @@
+.interview-attributes{style: 'position: relative;'}
+  = form.datetime_field(:time)
+  = form.select2(:region_court_id, Organization.region_courts.collect{|o| [o.name, o.id] }, {}, class: 'region-court-select')
+  .address
+    = check_box_tag('another_address', '1', !!interview.address_id, id: 'another_address_check')
+    = label_tag('another_address_check', t('label_another_holding_place'))
+    .address-attributes.hidden
+      = form.fields_for(:address, interview.address || EgovUtils::Address.new) do |fields|
+        = render 'egov_utils/addresses/form', form: fields, address: fields.object
+  #boundary
+    = form.number_field(:boundary, class: 'boundary-field')
+    .candidates-count
+
+:javascript
+  $(function(){
+    var $address_check_box = $('#another_address_check');
+    var $container = $address_check_box.closest('.address').find('.address-attributes');
+
+    function toggle_new_form(toggle_state) {
+      $container.toggle(toggle_state)
+      $container.find(':input').prop('disabled', !toggle_state)
+    }
+
+    toggle_new_form($address_check_box.is(':checked'))
+
+    $address_check_box.on('change', function(evt){
+      toggle_new_form($address_check_box.is(':checked'))
+    });
+
+    function get_candidates_count(points_boundary, region_court) {
+      $.ajax('#{candidates_path('format' => 'json', '_type' => 'count')}', {
+          method: 'GET',
+          data: {'f': {'state': 'waiting', 'organization_id': '=|'+region_court.toString(), 'candidate_entry_tests-points': '>=|'+points_boundary.toString()}}
+        }).done( function( data ){
+          $('#boundary .candidates-count').text(data.count);
+        });
+    }
+    $('#boundary .boundary-field').on('change', function(evt) {
+      get_candidates_count($(this).val(), $('.interview-attributes .region-court-select').val());
+    });
+  });

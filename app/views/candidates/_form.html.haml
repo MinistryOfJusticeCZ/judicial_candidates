@@ -1,0 +1,33 @@
+.row
+  = form.fields_for(:user) do |fields|
+    .col-12.col-sm-6= fields.text_field(:fullname, disabled: true)
+    .col-12.col-sm-6= fields.text_field(:mail, disabled: true)
+  .col-12.col-sm-6= form.date_field(:birth_date, data: {'date-view-mode' => 'decades', 'date-min-date' => Date.new(1920, 1, 1).to_s, 'date-max-date' => Date.today.to_s, 'date-use-current' => false, 'date-view-date' => Date.new(1950, 1, 1).to_s })
+  .col-12.col-sm-6= form.text_field(:phone)
+  .col-12.col-sm-6= form.select(:university, enum_values_for_select(candidate.class, :university))
+  .col-12.col-sm-6= form.text_field(:graduation_year)
+  .col-12
+    = form.check_box(:higher_title, id: 'candidate_higher_title')
+    = form.text_field(:higher_title, skip_label: true, id: 'candidate_higher_title_field')
+  .col-12
+    =# image_tag(candidate.diploma.url) if candidate.diploma
+    = form.custom_file_field(:diploma)
+  .col-12= form.select2(:organizations, Organization.region_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
+  .col-12.hidden= form.select2(:suborganizations, Organization.district_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
+  .col-12= form.check_box(:shorter_invitation)
+  .col-12= form.check_box(:agreed_limitations)
+
+:javascript
+  $(function(){
+    function toggle_higher_title(state) {
+      $('#candidate_higher_title_field').closest('.form-group').toggle(state);
+    }
+    toggle_higher_title($('#candidate_higher_title').is(':checked'));
+    $('#candidate_higher_title').on('change', function(evt){
+      toggle_higher_title($(this).is(':checked'));
+    });
+
+    $('#candidate_organization_id').on('change', function(evt){
+
+    });
+  });

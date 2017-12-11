@@ -66,13 +66,19 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'pry-rails'
+
+  gem 'i18n-debug'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'dragonfly', '~> 1.1'
+gem 'state_machines-activerecord', '~> 0.5'
+
 # gem 'egov_utils', path: '../egov_utils'
 gem 'egov_utils', '~> 0.1.8' #, path: '../egov_utils'
+gem 'phonelib', '~> 0.6'
 
 #UI gems
 source 'https://rails-assets.org' do

@@ -1,0 +1,27 @@
+- create_attributes ||= {}
+- formatter = attribute_formatter_for(tiles.schema)
+- new_path ||= formatter.new_path(create_attributes) rescue nil
+.egov-tiles.row
+  - if new_path && can?(:create, tiles.schema.model)
+    .tile.tile-add.col-12.col-sm-6.col-lg-4
+      .card.text-center
+        .card-body
+          .add-icon
+            = link_to( new_path ) do
+              %i.fa.fa-5x.fa-plus-circle{'aria-hidden'=>"true"}
+        .card-footer
+          = link_to( new_path ) do
+            = t('helpers.submit.create', model: tiles.model_name.human)
+  - tiles.schema.entities.each do |entity|
+    .tile.col-12.col-sm-6.col-lg-4
+      .card
+        .card-header
+          = formatter.formatted_value( main_schema_attribute( tiles.schema ), entity)
+        .card-body
+          - tiles.schema.columns.each do |col|
+            - next if col.name == tiles.schema.main_attribute_name
+            = formatter.labeled_html_attribute_value(col, entity)
+        .card-footer.text-center
+          = link_to formatter.show_path(entity) do
+            %i.fa.fa-eye
+            = t('label_show')

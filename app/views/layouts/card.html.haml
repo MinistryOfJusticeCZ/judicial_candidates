@@ -1,0 +1,6 @@
+- content_for :content do
+  = content_for(:heading) if content_for?(:heading)
+  #card_layout
+    = yield
+
+= render template: "layouts/application"

@@ -1,0 +1,13 @@
+- candidate_entry_test = entry_test.candidate_entry_tests.find_by(candidate_id: current_candidate.id)
+- if candidate_entry_test && !entry_test.passed?
+  - if !%w(apology excused).include?(candidate_entry_test.arrival)
+    = bootstrap_form_for([entry_test, candidate_entry_test]) do |f|
+      = render 'candidate_entry_tests/form', form: f, candidate_entry_test: candidate_entry_test
+      = f.submit(t('label_send_apology'))
+  - else
+    %h4= t('label_apology')
+    .apology-text= candidate_entry_test.apology
+- elsif candidate_entry_test && entry_test.passed?
+  .attribute
+    .label= CandidateEntryTest.human_attribute_name('points')
+    .value= candidate_entry_test.points

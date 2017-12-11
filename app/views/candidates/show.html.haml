@@ -1,0 +1,35 @@
+.attribute
+  .label= Candidate.human_attribute_name('birth_date')
+  .value= l(@candidate.birth_date) if @candidate.birth_date
+.attribute
+  .label= Candidate.human_attribute_name('phone')
+  .value= @candidate.phone
+.attribute
+  .label= Candidate.human_attribute_name('university')
+  .value= @candidate.university
+.attribute
+  .label= Candidate.human_attribute_name('graduation_year')
+  .value= @candidate.graduation_year
+.attribute
+  .label= Candidate.human_attribute_name('diploma')
+  .value= image_tag(@candidate.diploma.url) if @candidate.diploma
+.attribute
+  .label= Candidate.human_attribute_name('organizations')
+  .value= Organization.where(id: @candidate.organizations).collect{|o| o.name} if @candidate.organizations.is_a?(Array)
+.attribute
+  .label= Candidate.human_attribute_name('suborganizations')
+  .value= @candidate.suborganizations
+.attribute
+  .label= Candidate.human_attribute_name('shorter_invitation')
+  .value= @candidate.shorter_invitation
+.attribute
+  .label= Candidate.human_attribute_name('agreed_limitations')
+  .value= @candidate.agreed_limitations
+- if can?(:manage, @candidate)
+  - if @candidate.incomplete?
+    .pull-right
+      = button_to(t('label_finalize_candidate'), finalize_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_finalize_candidate_confirm') } )
+    = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn' )
+  - if @candidate.validation?
+    = button_to(t('label_approve'), approve_candidate_path(@candidate), class: 'btn btn-primary' )
+    = button_to(t('label_disapprove'), disapprove_candidate_path(@candidate), class: 'btn' )
