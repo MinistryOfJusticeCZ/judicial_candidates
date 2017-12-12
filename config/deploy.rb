@@ -39,3 +39,8 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+set :default_environment, {
+  'http_proxy' => 'http://proxy.justice.cz:3128/',
+  'https_proxy' => 'http://proxy.justice.cz:3128/'
+}
