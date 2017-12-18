@@ -1,0 +1,35 @@
+footer {
+  border-top: solid 1px $gray-400;
+  padding: $footer-padding-y $footer-padding-x;
+  font-size: 90%;
+  background-color: $secondary;
+  height: $footer-height;
+
+  .subtitle {
+    //border: solid 1px $gray-light;
+    //border-radius: 5px;
+    color: $gray-100;
+    text-align: justify;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+  }
+  .contacts {
+    text-align: center;
+  }
+  .social-network-links {
+    a {
+      display: inline-block;
+      padding: 0.5rem;
+      color: #000;
+    }
+  }
+  .notice, .copyright {
+    color: white;
+    font-size: 80%;
+  }
+  @include media-breakpoint-up(sm) {
+    .copyright {
+      text-align: right;
+    }
+  }
+}

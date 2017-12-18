@@ -16,13 +16,13 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
 @import 'egov_utils/bootstrap_variables';
 @import 'themes/justice_variables';
-$brand-primary: $primary;
-@import 'themes/sako_variables';
 
 @import 'bootstrap';
-@import 'themes/sako';
 @import 'bootstrap-datetimepicker';
 @import 'azahara_schema/schema_options';
 @import 'egov_utils/application';

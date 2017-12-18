@@ -2,7 +2,8 @@
   = form.fields_for(:user) do |fields|
     .col-12.col-sm-6= fields.text_field(:fullname, disabled: true)
     .col-12.col-sm-6= fields.text_field(:mail, disabled: true)
-  .col-12.col-sm-6= form.date_field(:birth_date, data: {'date-view-mode' => 'decades', 'date-min-date' => Date.new(1920, 1, 1).to_s, 'date-max-date' => Date.today.to_s, 'date-use-current' => false, 'date-view-date' => Date.new(1950, 1, 1).to_s })
+
+  .col-12.col-sm-6= form.date_field(:birth_date, min:  Date.new(1920, 1, 1), data: {'date-view-mode' => 'decades', 'date-max-date' => Date.today.to_s, 'date-use-current' => false, 'date-view-date' => Date.new(1950, 1, 1).to_s })
   .col-12.col-sm-6= form.text_field(:phone)
   .col-12.col-sm-6= form.select(:university, enum_values_for_select(candidate.class, :university))
   .col-12.col-sm-6= form.text_field(:graduation_year)
@@ -12,8 +13,8 @@
   .col-12
     =# image_tag(candidate.diploma.url) if candidate.diploma
     = form.custom_file_field(:diploma)
-  .col-12= form.select2(:organizations, Organization.region_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
-  .col-12.hidden= form.select2(:suborganizations, Organization.district_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
+  .col-12= form.select2(:organizations, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
+  .col-12.hidden= form.select2(:suborganizations, EgovUtils::Organization.district_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
   .col-12= form.check_box(:shorter_invitation)
   .col-12= form.check_box(:agreed_limitations)
 
@@ -27,7 +28,20 @@
       toggle_higher_title($(this).is(':checked'));
     });
 
-    $('#candidate_organization_id').on('change', function(evt){
+    function disable_os_by_ks(enabled_superiors) {
+      $.ajax('#{egov_utils.district_courts_organizations_path}', {method: 'GET', data: {ids: enabled_superiors}}).done(function(data){
+        var options = $('#candidate_suborganizations option')
+        options.prop('disabled', false);
+        for( var i = 0; i < data.length; ++i ){
+          options = options.not('[value="'+data[i].toString()+'"]')
+        }
+        options.prop('disabled', true);
+        $('#candidate_suborganizations').select2();
+      });
+    }
 
+    disable_os_by_ks( $('#candidate_organizations').val() );
+    $('#candidate_organizations').on('change', function(evt){
+      disable_os_by_ks($(this).val());
     });
   });

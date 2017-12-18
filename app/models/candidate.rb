@@ -62,6 +62,11 @@ class Candidate < ApplicationRecord
     super(values)
   end
 
+  def suborganizations=(values)
+    values = values.select{|v| v.present?} if values.is_a?(Array)
+    super(values)
+  end
+
   def invite_to!(entry_test)
     candidate_entry_tests.create(entry_test: entry_test)
   end

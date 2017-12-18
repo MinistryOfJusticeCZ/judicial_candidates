@@ -1,9 +1,10 @@
 -# navigation styled for Bootstrap 3.0
 %nav.navbar.navbar-expand-md.navbar-light
+  = link_to '/', class: 'navbar-brand' do
+    = image_tag('egov_utils/justice_logo.png', size: '40x40')
+    %span.brand-name Justice.cz
   %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "exCollapsingNavbar2", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
-  = link_to '/', class: 'navbar-brand' do
-    /= image_tag('logo.svg', size: '40x40')
   #exCollapsingNavbar2.collapse.navbar-collapse
     %ul.nav.navbar-nav.mr-auto.main-menu
       %li.nav-item.main-item= link_to t(:app_abbrev), '/', class: 'nav-link'

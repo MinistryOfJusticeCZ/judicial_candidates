@@ -1,9 +1,44 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed');
+
+@font-face {
+  font-family: "DIN Next LT Pro Condensed";
+  src: font-url("Linotype.ttf"), font-url("Linotype.eot");
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-  background-color: $secondary;
+  background-color: #eaf0f5;
+}
+main {
+  margin-top: 1rem;
+  min-height: calc( 100% - #{ 1rem + $navbar-height + $footer-height});
 }
 
 nav.navbar {
   background-color: white;
+  height: $navbar-height;
+
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.1);
+
+  .navbar-brand {
+    img {
+      margin-top: -$navbar-padding-y;
+      vertical-align: top;
+    }
+    .brand-name {
+      margin-left: -10px;
+      font-size: 45px;
+      font-weight: 600;
+      color: #808080;
+      text-transform: uppercase;
+      font-family: "DIN Next LT Pro Condensed", sans-serif;
+      letter-spacing: normal;
+    }
+  }
 }
 
 #card_layout {
@@ -15,5 +50,10 @@ nav.navbar {
   padding: $card-spacer-x;
 }
 
+
 @import 'attributes';
 @import 'cards';
+@import 'forms';
+@import 'footer';
+
+@import 'shield-custom/all';

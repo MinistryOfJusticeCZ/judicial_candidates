@@ -1,5 +1,5 @@
 class CandidatesController < ApplicationController
-  layout 'card', only: [:new, :edit]
+  layout 'card', only: [:new, :edit, :show]
 
   load_and_authorize_resource
 

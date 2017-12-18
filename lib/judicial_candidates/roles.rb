@@ -16,9 +16,10 @@ class CandidateRole < EgovUtils::UserUtils::Role
   add 'candidate'
 
   def define_abilities(ability, user)
+
     ability.can :create, Candidate
     ability.can :read, Candidate, user_id: user.id
-    ability.can :manage, Candidate, user_id: user.id, state: 'incomplete'
+    ability.can :manage, Candidate, user_id: user.id, state: Candidate.states[:incomplete]
     ability.can :read, EntryTest, candidate_entry_tests: { candidate: { user_id: user.id } }
     ability.can :read, CandidateEntryTest, candidate: { user_id: user.id }
     # ability.can :manage, CandidateEntryTest, CandidateEntryTest.comming.joins(:candidate).where(Candidate.arel_table[:user_id].eq(user.id))
@@ -32,7 +33,7 @@ class JusticeOrganizationRole < EgovUtils::UserUtils::Role
   add 'ooj'
 
   def define_abilities(ability, user)
-    ability.can :manage, Candidate, state: 'validation'
+    ability.can :manage, Candidate, state: Candidate.states[:validation]
   end
 
 end
@@ -42,7 +43,7 @@ class JusticeAcademyRole < EgovUtils::UserUtils::Role
   add 'academy'
 
   def define_abilities(ability, user)
-    ability.can :read, Candidate, state: 'waiting'
+    ability.can :read, Candidate, state: Candidate.states[:waiting]
     ability.can :manage, EntryTest
     ability.can :manage, CandidateEntryTest
   end

@@ -1,0 +1,73 @@
+// Forms ======================================================================
+
+label {
+  color: $label-color;
+}
+
+form .form-actions {
+  text-align: center;
+}
+
+.has-warning {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $warning;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $warning;
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $danger;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $danger;
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  &.radio label,
+  &.checkbox label,
+  &.radio-inline label,
+  &.checkbox-inline label,
+  .form-control-feedback {
+    color: $success;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $success;
+  }
+}
+

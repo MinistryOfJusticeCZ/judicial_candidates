@@ -2,6 +2,7 @@ cs:
   app_name: Justiční čekatelé
   app_abbrev: Justiční čekatelé
 
+  label_show_detail: Zobrazit detail
   label_publish_and_invite: Zveřejnit termín
   label_invited_candidates: Pozvaní kandidáti
   label_disapprove: Vyzvat k doplnění
@@ -13,7 +14,7 @@ cs:
   label_excuses: Omluvenky
   notice_excuse_sent: Omluvenka zaslána
   success_evaluation: Vyhodnocení uloženo
-  text_finalize_candidate_confirm: Tato akce je nezvratná. Tímto váš profil odešlete ke kontrole Ministerstvu spravedlnosti ČR.
+  text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.
   warning_not_enough_candidates: Nedostatek kandidátů
 
   models: &my_models
@@ -35,6 +36,18 @@ cs:
   model_attributes: &my_attributes
     candidate:
       state: Stav
+      birth_date: Datum narození
+      phone: Telefon
+      graduation_year: Rok promoce
+      higher_title: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
+      diploma: Kopie o dosaženém vysokoškolském právnickém vzdělání
+      organizations: Krajské soudy pro přípravnou službu
+      suborganizations: Preferované okresní soudy pro přípravnou službu
+      shorter_invitation: Ve smyslu ust. § 3 odst. 2 věta druhá vyhlášky souhlasím se zkrácením lhůty pro pozvání zájemce ke vstupnímu testu ze 30 dnů na minimálně 7 dnů před jeho konáním.
+      agreed_limitations: |
+        Prohlašuji, v návaznosti na § 25 odst. 1 písm. a) zákona č. 234/2014 Sb., o státní službě, že jsem státním občanem České republiky.
+        Prohlašuji, s odvoláním na ustanovení § 15 odst. 2 zákona č. 89/2012 Sb., občanský zákoník, že jsem plně svéprávný/á, resp. že má svéprávnost nebyla soudem omezena.
+        Čestně prohlašuji, že jsem v minulosti nebyl souzen za trestný čin a v současné době není proti mě vedeno žádné trestní stíhání.
       states:
         incomplete: Nevyplněný
         validation: Čeká na schválení

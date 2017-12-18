@@ -1,3 +1,20 @@
+.attribute {
+  border-bottom: 1px solid $gray-200;
+  margin: 0 8%;
+  margin-bottom: .5rem;
+  width: 88%;
+  .label {
+    font-size: 80%;
+    color: $gray-600;
+  }
+  .value {
+    padding-left: 1rem;
+    .unfilled-message {
+      color: $gray-400;
+    }
+  }
+}
+
 .inline-attribute {
   margin-bottom: 1.5rem;
   i {
