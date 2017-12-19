@@ -1,0 +1,22 @@
+%ul.nav.nav-tabs{'role' => 'tablist'}
+  %li.nav-item.active
+    %a#login_tab.nav-link.active{'href' => '#login', 'data-toggle' => 'tab', 'role' => 'tab', 'aria-controls' => 'login'}
+      = t('label_login')
+  - if EgovUtils::Settings.allow_register?
+    %li.nav-item.active
+      %a#register_tab.nav-link{'href' => '#register', 'data-toggle' => 'tab', 'role' => 'tab', 'aria-controls' => 'register'}
+        = t('label_signup')
+
+.tab-content
+  #login.tab-pane.fade.show.active{'role' => 'tabpanel', 'aria-labelledby' => 'login_tab'}
+    = bootstrap_form_for(:session) do |f|
+      = f.text_field(:username)
+      = f.password_field(:password)
+      .form-actions
+        = f.submit t('label_login'), class: 'btn btn-primary'
+  - if EgovUtils::Settings.allow_register?
+    #register.tab-pane.fade{'role' => 'tabpanel', 'aria-labelledby' => 'register_tab'}
+      = bootstrap_form_for(EgovUtils::User.new) do |f|
+        = render 'egov_utils/users/form', form: f
+        .form-actions
+          = f.submit t('label_signup'), class: 'btn btn-primary'
