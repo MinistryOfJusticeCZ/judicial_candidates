@@ -10,8 +10,14 @@ html, body {
   height: 100%;
 }
 
+body {
+  background-color: #eaf0f5;
+}
 main {
   min-height: calc( 100% - #{ $navbar-height + $footer-height});
+}
+#content {
+  margin-top: $content-margin-y;
 }
 
 nav.navbar {
