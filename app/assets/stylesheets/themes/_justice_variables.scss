@@ -6,9 +6,6 @@ $footer-padding-x:            1.5rem !default;
 $footer-height:               3rem !default;
 
 
-$label-color:                 $gray-700;
-
-
 // BOOTSTRAP VARIABLES
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto Condensed", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
@@ -25,3 +22,12 @@ $font-family-sans-serif:      "Roboto", "Arial Narrow Bold", sans-serif;
 
 // $card-shadow:         0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12) !default;
 $card-shadow:         2px 6px 13px 3px rgba(122,122,122,0.2);
+
+
+// BOOTSTRAP DEPENDENT REDEFINITIONS
+@import 'bootstrap/functions';
+@import 'bootstrap/variables';
+
+
+$label-color:                 $gray-700;
+
