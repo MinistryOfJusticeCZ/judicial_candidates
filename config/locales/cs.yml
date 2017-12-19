@@ -2,6 +2,11 @@ cs:
   app_name: Justiční čekatelé
   app_abbrev: Justiční čekatelé
 
+  about:
+    title: Evidence zájemců o přijetí do přípravné služby justičních čekatelů
+    text: |
+      Podle ust. § 1 vyhlášky č. 382/2017 Sb. o výběru
+
   label_show_detail: Zobrazit detail
   label_publish_and_invite: Zveřejnit termín
   label_invited_candidates: Pozvaní kandidáti
