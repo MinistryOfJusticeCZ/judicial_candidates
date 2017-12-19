@@ -1,5 +1,5 @@
 cs:
-  app_name: Justiční čekatelé
+  app_name: Evidence zájemců o přijetí do přípravné služby justičních čekatelů
   app_abbrev: Justiční čekatelé
 
   about:
@@ -19,6 +19,7 @@ cs:
   label_send_apology: Odeslat omluvenku
   label_edit_candidate: Úprava profilu
   label_excuses: Omluvenky
+  label_registration_confirmation: potvrzení registrace
   notice_excuse_sent: Omluvenka zaslána
   success_evaluation: Vyhodnocení uloženo
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.

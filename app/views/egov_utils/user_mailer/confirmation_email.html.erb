@@ -1,7 +1,15 @@
-Dobrý den <%= @user.fullname %>,<br />
-<br />
-vítejte v aplikaci <%= t(:app_name) %>, pro aktivaci vašeho účtu klikněte prosím <%= link_to 'sem', confirm_user_url(@user.confirmation_code) %> a můžete začít čekat.<br />
+<p>
+děkujeme za registraci v evidenci zájemců o přijetí do přípravné služby justičních čekatelů.
+Pro dokončení registrace prosím klikněte na následující odkaz: <%= link_to confirm_user_url(@user.confirmation_code), confirm_user_url(@user.confirmation_code) %>.
+</p>
+
+<p>
+Následně bude Vaše registrace posouzena Ministerstvem spravedlnosti a v případě neúplnosti údajů budete vyzván k jejich doplnění.
+V případě, že bude registrace vyhodnocena jako spam, bude Váš účet zrušen.
+Vaš profil v evidenci můžete zobrazit zde: <%= link_to candidate_url('me'), candidate_url('me') %>
+</p>
+
 <br />
 S pozdravem<br />
-Ministerstvo spravedlnosti<br />
-Odbor Informatiky
+<br />
+Ministerstvo spravedlnosti
