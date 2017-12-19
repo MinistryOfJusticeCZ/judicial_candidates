@@ -1,3 +1,4 @@
+- is_landing = params[:controller] == 'egov_utils/sessions'
 !!!
 %html{lang: I18n.locale}
   %head
@@ -10,22 +11,26 @@
     = i18n_js_set_locales_tag
     = csrf_meta_tags
   %body
-    -#%header
-    = render 'layouts/navigation'
-    %main#container{:role => "main"}
-      #content
-        .container
+    %header
+      = render 'layouts/navigation'
+    %main#container{role: (is_landing ? 'landing' : 'main')}
+      - if is_landing
+        #content.container-fluid
+          = render 'layouts/egov_utils/messages'
+          = yield
+      - else
+        #content.container
           = render 'layouts/egov_utils/messages'
           = content_for?(:content) ? content_for(:content) : yield
-    %footer
-      .container
-        .row
-          .col-12.col-md-6.notice
-            Webové stránky jsou v souladu s
-            = link_to 'vyhláškou č. 64/2008 Sb', "http://www.mvcr.cz/clanek/vyhlaska-c-64-2008-sb-o-forme-uverejnovani-informaci-souvisejicich-s-vykonem-verejne-spravy-prostrednictvim-webovych-stranek-pro-osoby-se-zdravotnim-postizenim-vyhlaska-o-pristupnosti-10.aspx", title: "Vyhláška č. 64/2008 Sb"
-            o přístupnosti.
-          .col-12.col-md-6.copyright
-            &copy; 2017-
-            = Date.today.year
-            = t('ministery_justice_name')
+      %footer
+        .container
+          .row
+            .col-12.col-md-6.notice
+              Webové stránky jsou v souladu s
+              = link_to 'vyhláškou č. 64/2008 Sb', "http://www.mvcr.cz/clanek/vyhlaska-c-64-2008-sb-o-forme-uverejnovani-informaci-souvisejicich-s-vykonem-verejne-spravy-prostrednictvim-webovych-stranek-pro-osoby-se-zdravotnim-postizenim-vyhlaska-o-pristupnosti-10.aspx", title: "Vyhláška č. 64/2008 Sb"
+              o přístupnosti.
+            .col-12.col-md-6.copyright
+              &copy; 2017-
+              = Date.today.year
+              = t('ministery_justice_name')
     = render 'cookies_eu/consent_banner'

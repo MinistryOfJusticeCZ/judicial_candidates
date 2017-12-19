@@ -1,12 +1,14 @@
+Vážený uchazeči,<br />
+
 <p>
 děkujeme za registraci v evidenci zájemců o přijetí do přípravné služby justičních čekatelů.
-Pro dokončení registrace prosím klikněte na následující odkaz: <%= link_to confirm_user_url(@user.confirmation_code), confirm_user_url(@user.confirmation_code) %>.
+Pro dokončení registrace prosím klikněte na následující odkaz: <%= link_to egov_utils.confirm_user_url(@user.confirmation_code), egov_utils.confirm_user_url(@user.confirmation_code) %>.
 </p>
 
 <p>
 Následně bude Vaše registrace posouzena Ministerstvem spravedlnosti a v případě neúplnosti údajů budete vyzván k jejich doplnění.
 V případě, že bude registrace vyhodnocena jako spam, bude Váš účet zrušen.
-Vaš profil v evidenci můžete zobrazit zde: <%= link_to candidate_url('me'), candidate_url('me') %>
+Vaš profil v evidenci můžete zobrazit zde: <%= link_to main_app.candidate_url('me'), main_app.candidate_url('me') %>
 </p>
 
 <br />

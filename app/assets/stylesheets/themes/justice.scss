@@ -14,12 +14,29 @@ body {
   background-color: #eaf0f5;
 }
 main {
-  min-height: calc( 100% - #{ $navbar-height + $footer-height});
-}
-#content {
-  margin-top: $content-margin-y;
+  position: relative;
+  // min-height: calc( 100% - #{ $navbar-height + $footer-height });
+  min-height: 100%;
+
+  padding-top: $navbar-height;
+  padding-bottom: $footer-height;
+
+  &[role="main"] #content {
+    padding-top: 2rem;
+  }
+  // &[role="landing"] #content {
+  //   margin-top: 0;
+  // }
 }
 
+header {
+  z-index: 5;
+  height: $navbar-height;
+
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 nav.navbar {
   background-color: white;
   height: $navbar-height;
@@ -27,13 +44,16 @@ nav.navbar {
   box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.1);
 
   .navbar-brand {
+    padding: 0;
     img {
       margin-top: -$navbar-padding-y;
-      vertical-align: top;
+      // vertical-align: top;
+      height: $navbar-height - $navbar-padding-y;
+      // margin-bottom: 0.5rem;
     }
     .brand-name {
       margin-left: -10px;
-      font-size: 45px;
+      font-size: 2.5rem;
       font-weight: 600;
       color: #808080;
       text-transform: uppercase;
@@ -55,6 +75,7 @@ nav.navbar {
 
 @import 'attributes';
 @import 'cards';
+@import 'buttons';
 @import 'forms';
 @import 'footer';
 

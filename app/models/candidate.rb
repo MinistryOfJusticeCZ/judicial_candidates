@@ -9,13 +9,18 @@ class Candidate < ApplicationRecord
 
   accepts_nested_attributes_for :user
 
+  dragonfly_accessor :diploma
+
+
   validates :birth_date, presence: true
   validates :graduation_year, inclusion: 1900..9999, numericality: { only_integer: true, less_than_or_equal_to: :current_year }
   validates :user_id, uniqueness: true
   validates :phone, phone: true
   validates :agreed_limitations, presence: true
 
-  dragonfly_accessor :diploma
+  validates :diploma, presence: true
+  validates_property :format, of: :diploma, in: ['jpeg', 'png', 'pdf']
+  validates_size_of :diploma, maximum: 5.megabytes
 
   scope :for_entry_test, ->{ where(state: 'for_entry_test').order(updated_at: :asc) }
   scope :for_interview, ->(region_court_id, boundary=nil){
@@ -72,6 +77,7 @@ class Candidate < ApplicationRecord
   end
 
   private
+
     def current_year
       Date.today.year
     end

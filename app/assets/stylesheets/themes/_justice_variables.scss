@@ -1,11 +1,9 @@
-$navbar-height:               5rem !default;
 
 $footer-padding-y:            1rem !default;
 $footer-padding-x:            1.5rem !default;
 
 $footer-height:               3rem !default;
 
-$content-margin-y:            2rem;
 $content-padding-y:           2rem;
 
 
@@ -15,11 +13,14 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto Condensed", 
 
 $input-color:                 black;
 
-$blue:       #5e6f7f;
 $primary:    #fe505d;
 $secondary:  #517493;
 // $body-bg:    #5e6f7f;
 $body-bg:    #eaf0f5;
+
+$border-radius:               0;
+$border-radius-lg:            0;
+$border-radius-sm:            0;
 
 // $input-color:                 black;
 // $font-family-sans-serif:      "Roboto", "Arial Narrow Bold", sans-serif;
@@ -30,6 +31,9 @@ $body-bg:    #eaf0f5;
 $card-shadow:         2px 6px 13px 3px rgba(122,122,122,0.2);
 
 
+
+$input-focus-border-color:    lighten($secondary, 25%);
+
 // BOOTSTRAP DEPENDENT REDEFINITIONS
 @import 'bootstrap/functions';
 @import 'bootstrap/variables';
@@ -37,3 +41,8 @@ $card-shadow:         2px 6px 13px 3px rgba(122,122,122,0.2);
 
 $label-color:                 $gray-700;
 
+
+$navbar-height-primary:       5.5rem !default;
+// $navbar-height-secondary:     $nav-link-height !default;
+$navbar-height-secondary:     0 !default;
+$navbar-height:               ($navbar-height-primary + $navbar-height-secondary) !default;

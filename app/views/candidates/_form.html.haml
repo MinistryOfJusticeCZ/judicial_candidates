@@ -8,10 +8,10 @@
   .col-12.col-sm-6= form.select(:university, enum_values_for_select(candidate.class, :university))
   .col-12.col-sm-6= form.text_field(:graduation_year)
   .col-12
-    = form.check_box(:higher_title, id: 'candidate_higher_title')
+    = form.check_box(:higher_title, id: 'candidate_higher_title', include_hidden: false, checked: form.object.higher_title?)
     = form.text_field(:higher_title, skip_label: true, id: 'candidate_higher_title_field')
   .col-12
-    =# image_tag(candidate.diploma.url) if candidate.diploma
+    = link_to( diploma_thumb(@candidate), @candidate.diploma.url, target: '_blank') if candidate.diploma_stored?
     = form.custom_file_field(:diploma)
   .col-12= form.select2(:organizations, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
   .col-12.hidden= form.select2(:suborganizations, EgovUtils::Organization.district_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)

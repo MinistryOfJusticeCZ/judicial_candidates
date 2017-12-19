@@ -15,15 +15,20 @@
   .value= @candidate.graduation_year
 .attribute
   .label= Candidate.human_attribute_name('diploma')
-  .value= image_tag(@candidate.diploma.url) if @candidate.diploma
+  .value= link_to( diploma_thumb(@candidate), @candidate.diploma.url, target: '_blank') if @candidate.diploma_stored?
 .attribute
   .label= Candidate.human_attribute_name('organizations')
   .value= EgovUtils::Organization.where(id: @candidate.organizations).collect{|o| o.name}.join(', ') if @candidate.organizations.is_a?(Array)
 .attribute
   .label= Candidate.human_attribute_name('suborganizations')
-  .value= EgovUtils::Organization.where(id: @candidate.suborganizations).collect{|o| o.name}.join(', ') if @candidate.suborganizations.is_a?(Array) && @candidate.suborganizations.any?
-.attribute
-  .value= @candidate.shorter_invitation ? Candidate.human_attribute_name('shorter_invitation') : nil
+  .value
+    - if @candidate.suborganizations.is_a?(Array) && @candidate.suborganizations.any?
+      = EgovUtils::Organization.where(id: @candidate.suborganizations).collect{|o| o.name}.join(', ')
+    - else
+      = unfilled_attribute_message
+- if @candidate.shorter_invitation
+  .attribute
+    .value= Candidate.human_attribute_name('shorter_invitation')
 .attribute
   .value= @candidate.agreed_limitations ? Candidate.human_attribute_name('agreed_limitations') : nil
 

@@ -5,7 +5,11 @@ cs:
   about:
     title: Evidence zájemců o přijetí do přípravné služby justičních čekatelů
     text: |
-      Podle ust. § 1 vyhlášky č. 382/2017 Sb. o výběru
+      <p> Podle ust. § 1 vyhlášky č. 382/2017 Sb., o výběru,
+      přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce (dále jen „vyhláška“),
+      vede Ministerstvo spravedlnosti evidenci zájemců o přijetí do přípravné služby justičních čekatelů (dále jen „evidence“).</p>
+      <p> Podle ust. § 1 odst. 8 vyhlášky je registrace do evidence nezbytná pro možnost absolvování výběrového řízení na obsazení míst justičních čekatelů.
+      Registraci a přihlášení do evidence lze uskutečnit na těchto stránkách. </p>
 
   label_know_more: Dozvědět se více
   label_contact_us: Kontaktujte nás
@@ -47,6 +51,7 @@ cs:
       birth_date: Datum narození
       phone: Telefon
       graduation_year: Rok promoce
+      higher_title?: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
       higher_title: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
       diploma: Kopie o dosaženém vysokoškolském právnickém vzdělání
       organizations: Krajské soudy pro přípravnou službu

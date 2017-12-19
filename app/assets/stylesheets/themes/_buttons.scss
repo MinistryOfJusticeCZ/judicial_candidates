@@ -1,0 +1,3 @@
+.btn-outline-secondary.btn-inverted {
+  @include button-outline-variant($white, $secondary)
+}
