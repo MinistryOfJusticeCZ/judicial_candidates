@@ -1,7 +1,14 @@
 cs:
-  app_name: Justiční čekatelé
+  app_name: Evidence zájemců o přijetí do přípravné služby justičních čekatelů
   app_abbrev: Justiční čekatelé
 
+  about:
+    title: Evidence zájemců o přijetí do přípravné služby justičních čekatelů
+    text: |
+      Podle ust. § 1 vyhlášky č. 382/2017 Sb. o výběru
+
+  label_know_more: Dozvědět se více
+  label_contact_us: Kontaktujte nás
   label_show_detail: Zobrazit detail
   label_publish_and_invite: Zveřejnit termín
   label_invited_candidates: Pozvaní kandidáti
@@ -12,6 +19,7 @@ cs:
   label_send_apology: Odeslat omluvenku
   label_edit_candidate: Úprava profilu
   label_excuses: Omluvenky
+  label_registration_confirmation: potvrzení registrace
   notice_excuse_sent: Omluvenka zaslána
   success_evaluation: Vyhodnocení uloženo
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.

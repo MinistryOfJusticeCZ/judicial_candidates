@@ -5,6 +5,9 @@ $footer-padding-x:            1.5rem !default;
 
 $footer-height:               3rem !default;
 
+$content-margin-y:            2rem;
+$content-padding-y:           2rem;
+
 
 // BOOTSTRAP VARIABLES
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto Condensed", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -12,11 +15,14 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Roboto Condensed", 
 
 $input-color:                 black;
 
-$blue:       #517493;
-$secondary:  #5e6f7f;
+$blue:       #5e6f7f;
+$primary:    #fe505d;
+$secondary:  #517493;
+// $body-bg:    #5e6f7f;
+$body-bg:    #eaf0f5;
 
 // $input-color:                 black;
-$font-family-sans-serif:      "Roboto", "Arial Narrow Bold", sans-serif;
+// $font-family-sans-serif:      "Roboto", "Arial Narrow Bold", sans-serif;
 // $font-family-base:            $font-family-sans-serif;
 // $headings-font-family:        $font-family-sans-serif;
 

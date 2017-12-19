@@ -1,6 +1,8 @@
 class CandidatesController < ApplicationController
   layout 'card', only: [:new, :edit, :show]
 
+  before_action :translate_me_to_id
+
   load_and_authorize_resource
 
   def index
@@ -61,6 +63,10 @@ class CandidatesController < ApplicationController
 
 
   private
+
+    def translate_me_to_id
+      params[:id] = current_candidate.try(:id) if params[:id] == 'me'
+    end
 
     def create_params
       params.require(:candidate).permit( :birth_date, :phone, :university, :graduation_year, :higher_title, {organizations: [], suborganizations: []}, :shorter_invitation, :agreed_limitations, :diploma)

@@ -14,8 +14,10 @@ body {
   background-color: #eaf0f5;
 }
 main {
-  margin-top: 1rem;
-  min-height: calc( 100% - #{ 1rem + $navbar-height + $footer-height});
+  min-height: calc( 100% - #{ $navbar-height + $footer-height});
+}
+#content {
+  margin-top: $content-margin-y;
 }
 
 nav.navbar {
