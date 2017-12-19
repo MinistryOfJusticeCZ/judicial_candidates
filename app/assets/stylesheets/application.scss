@@ -26,3 +26,9 @@
 
 @import 'themes/justice';
 @import 'tiles';
+
+
+#login_page > div {
+  padding-top: $content-padding-y;
+  padding-bottom: $content-padding-y;
+}
