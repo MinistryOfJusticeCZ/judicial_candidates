@@ -34,6 +34,7 @@ gem 'activeresource'
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 gem 'haml'
@@ -79,6 +80,8 @@ gem 'state_machines-activerecord', '~> 0.5'
 # gem 'egov_utils', path: '../egov_utils'
 gem 'egov_utils', '~> 0.1.8' #, path: '../egov_utils'
 gem 'phonelib', '~> 0.6'
+
+gem 'sidekiq', '~> 5.0'
 
 #UI gems
 source 'https://rails-assets.org' do
