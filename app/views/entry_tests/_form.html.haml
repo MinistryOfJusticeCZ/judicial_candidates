@@ -1,4 +1,4 @@
 .entry-test-attributes{style: 'position: relative;'}
-  = form.datetime_field(:time)
+  = form.datetime_field(:time, min: Time.now+2.months)
   = form.select(:place, [['Kromeriz', 'kromeriz'], ['Praha', 'praha']])
   = form.number_field(:capacity)

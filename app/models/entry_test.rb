@@ -4,6 +4,7 @@ class EntryTest < ApplicationRecord
   has_many :candidates, through: :candidate_entry_tests
 
   validates :time, presence: true
+  validates :time, inclusion: {in: ->(t){ (Time.now+2.months..Time.now+5.years) }}, on: :create
   validates :capacity, numericality: true
 
   enum place: {kromeriz: 1, praha: 2}

@@ -8,4 +8,8 @@ class InterviewSchema < AzaharaSchema::ModelSchema
     {'time' => :desc}
   end
 
+  def enabled_filters
+    ['time', 'region_court_id']
+  end
+
 end

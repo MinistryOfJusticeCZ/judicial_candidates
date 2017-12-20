@@ -31,7 +31,7 @@ class Candidate < ApplicationRecord
 
   enum state: { incomplete: 0, validation: 1, rejected: 3, for_entry_test: 10, waiting: 15 }, _suffix: true
 
-  state_machine :initial => :incomplete do
+  state_machine do # :initial => :incomplete do - initial is done by default column value
     # before_transition :parked => any - :parked, :do => :put_on_seatbelt
     # after_transition any => :parked do |vehicle, transition|
     #   vehicle.seatbelt = 'off'

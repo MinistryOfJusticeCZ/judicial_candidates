@@ -23,6 +23,7 @@ cs:
   label_send_apology: Odeslat omluvenku
   label_edit_candidate: Úprava profilu
   label_excuses: Omluvenky
+  label_another_holding_place: Místo konání se liší
   label_registration_confirmation: potvrzení registrace
   notice_excuse_sent: Omluvenka zaslána
   success_evaluation: Vyhodnocení uloženo
@@ -51,7 +52,6 @@ cs:
       birth_date: Datum narození
       phone: Telefon
       graduation_year: Rok promoce
-      higher_title?: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
       higher_title: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
       diploma: Kopie o dosaženém vysokoškolském právnickém vzdělání
       organizations: Krajské soudy pro přípravnou službu
@@ -82,11 +82,17 @@ cs:
         excused: Omluven
         absent: Nedorazil/a
     entry_test:
+      time: Čas konání
       capacity: Kapacita
       place: Místo
+      state: Stav
       places:
         kromeriz: Kroměříž
         praha: Praha
+    interview:
+      time: Čas konání
+      boundary: Bodová hranice
+      region_court_id: Pořádající soud
 
   model_help_messages: &my_help_messages
     claim:

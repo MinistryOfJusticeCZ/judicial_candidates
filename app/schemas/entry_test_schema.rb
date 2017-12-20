@@ -1,5 +1,9 @@
 class EntryTestSchema < AzaharaSchema::ModelSchema
 
+  def enabled_filters
+    ['time', 'place', 'state']
+  end
+
   def main_attribute_name
     'time'
   end

@@ -1,6 +1,6 @@
 .interview-attributes{style: 'position: relative;'}
   = form.datetime_field(:time)
-  = form.select2(:region_court_id, Organization.region_courts.collect{|o| [o.name, o.id] }, {}, class: 'region-court-select')
+  = form.select2(:region_court_id, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, class: 'region-court-select')
   .address
     = check_box_tag('another_address', '1', !!interview.address_id, id: 'another_address_check')
     = label_tag('another_address_check', t('label_another_holding_place'))
