@@ -67,6 +67,7 @@ deploy_staging:
     - ssh-add ~/.ssh/id_rsa
     - gem install capistrano-rails
     - gem install capistrano3-unicorn
+    - gem install capistrano-sidekiq
     - cap staging deploy
   environment:
     name: staging
@@ -84,6 +85,7 @@ deploy_production:
     - ssh-add ~/.ssh/id_rsa
     - gem install capistrano-rails
     - gem install capistrano3-unicorn
+    - gem install capistrano-sidekiq
     - cap production deploy
   environment:
     name: production
