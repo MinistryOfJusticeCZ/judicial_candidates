@@ -65,7 +65,10 @@ class CandidatesController < ApplicationController
   private
 
     def translate_me_to_id
-      params[:id] = current_candidate.try(:id) if params[:id] == 'me'
+      if params[:id] == 'me'
+        redirect_to new_candidate_path unless current_candidate
+        params[:id] = current_candidate.try(:id)
+      end
     end
 
     def create_params

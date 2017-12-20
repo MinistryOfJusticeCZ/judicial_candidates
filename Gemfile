@@ -77,8 +77,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dragonfly', '~> 1.1'
 gem 'state_machines-activerecord', '~> 0.5'
 
-# gem 'egov_utils', path: '../egov_utils'
-gem 'egov_utils', '~> 0.1.8' #, path: '../egov_utils'
+gem 'egov_utils', '~> 0.1.33'
 gem 'phonelib', '~> 0.6'
 
 gem 'sidekiq', '~> 5.0'

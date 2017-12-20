@@ -371,7 +371,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   dragonfly (~> 1.1)
-  egov_utils (~> 0.1.8)
+  egov_utils (~> 0.1.33)
   factory_bot_rails (~> 4.0)
   font-awesome-sass
   haml
