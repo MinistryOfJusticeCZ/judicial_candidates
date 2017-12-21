@@ -1,3 +1,7 @@
+$egov-empty-message: (
+  cs: 'Žádný obsah k zobrazení.',
+  en: 'No content to show.'
+) !default;
 
 $footer-padding-y:            1rem !default;
 $footer-padding-x:            1.5rem !default;
@@ -17,6 +21,10 @@ $primary:    #fe505d;
 $secondary:  #517493;
 // $body-bg:    #5e6f7f;
 $body-bg:    #eaf0f5;
+
+
+$headings-color:              #495057;
+
 
 $border-radius:               0;
 $border-radius-lg:            0;

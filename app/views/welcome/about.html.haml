@@ -1,0 +1,108 @@
+#about_page
+  #about_ucel.row.bg-white
+    .col-12.text-center
+      %h3 Účel evidence
+      %p Podle ust. § 1 odst. 2 vyhlášky č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce (dále jen „vyhláška“), vede Ministerstvo spravedlnosti evidenci zájemců o přijetí do přípravné služby justičních čekatelů (dále jen evidence“). Prostřednictvím evidence může uchazeč provádět tyto úkony:
+      .text-secondary.icons.row
+        .col-12.col-md-6.col-lg-4.text-center
+          = image_tag('reg.svg', size: '100x100')
+          %p Prvotní registrace do evidence
+        .col-12.col-md-6.col-lg-4.text-center
+          = image_tag('vyplneni.svg', size: '100x100')
+          %p Vyplnění osobních údajů dle ust. § 1 odst. 3 vyhlášky
+        .col-12.col-md-6.col-lg-4.text-center
+          = image_tag('zobrazeni.svg', size: '100x100')
+          %p Zobrazení termínů a výsledků vstupního testu
+        .col-12.col-md-6.col-lg-4.text-center
+          = image_tag('omluva.svg', size: '100x100')
+          %p Omluvy z termínů vstupních testů a přijímacích pohovorů
+        .col-12.col-md-6.col-lg-4.text-center
+          = image_tag('vyrazeni.svg', size: '100x100')
+          %p Žádost o vyřazení z evidence dle ust. § 6 odst. 2 věty druhé vyhlášky
+
+  #carousel_proces.row
+    .col-12.col-lg-6.bg-white
+      #carouselProcesHeading.carousel.slide{'data-ride' => "carousel", 'pause' => 'hover'}
+        %ol.carousel-indicators
+          %li.active{'data-target' => '#carouselProcesHeading', 'data-slide-to' => '0'}
+          %li{'data-target' => '#carouselProcesHeading', 'data-slide-to' => '1'}
+          %li{'data-target' => '#carouselProcesHeading', 'data-slide-to' => '2'}
+          %li{'data-target' => '#carouselProcesHeading', 'data-slide-to' => '3'}
+        .carousel-inner
+          .carousel-item.active
+            .carousel-caption
+              %h4 Registrace
+          .carousel-item
+            .carousel-caption
+              %h4 Profil a žádost
+          .carousel-item
+            .carousel-caption
+              %h4 Termíny a testy
+          .carousel-item
+            .carousel-caption
+              %h4 Pohovory
+        %a.carousel-control-prev{href: '#carouselProcesHeading', role: 'button', data: {slide: 'prev'}}
+          %span.fa.fa-chevron-left{'aria-hidden' => "true"}
+          %span.sr-only Předchozí
+        %a.carousel-control-next{href: '#carouselProcesHeading', role: 'button', data: {slide: 'next'}}
+          %span.fa.fa-chevron-right{'aria-hidden' => "true"}
+          %span.sr-only Následující
+
+    .col-12.col-lg-6.bg-primary.text-white
+      #contentHeading.h1.text-white Popis procesu
+      #carouselProcesContent.carousel.slide
+        .carousel-inner
+          .carousel-item.active
+            %ol
+              %li Uchazeč se registruje (vytvoří uživatelský účet).
+              %li Na uvedenou e-mailovou adresu uchazeč obdrží verifikační e-mail, prostřednictvím něhož je třeba registraci potvrdit.
+              %li Po potvrzení registrace kliknutím na odkaz je uchazeči umožněno přihlásit se do evidence.
+              %li Uživatel vyplňuje svůj kompletní profil, přičemž žádost musí obsahovat veškeré náležitosti dle § 1 odst. 3 vyhlášky
+          .carousel-item
+            %ol{start: '5'}
+              %li
+                Kliknutím na tlačítko „Potvrdit a odeslat“ odešle uchazeč své údaje ke kontrole Ministerstvu spravedlnosti ČR.
+                %ol{type: 'a'}
+                  %li Pokud je v žádosti drobná nesrovnalost (například chybně vyplněné datum), může být uchazeč vyzván Ministerstvem spravedlnosti ČR k doplnění údajů. Toto doplnění provádí opět prostřednictvím evidence).
+              %li Po schválení žádosti Ministerstvem spravedlnosti ČR je uchazeč zařazen na konec fronty zájemců čekajících na termín vstupních testů.
+          .carousel-item
+            %ol{start: '7'}
+              %li
+                Pokud je vyhlášen termín a uchazeč je na řadě, zobrazí se mu tato informace na domovské stránce evidence. Informaci včetně termínu a místa konání vstupního testu obdrží rovněž e-mailem.
+                %ol{type: 'a'}
+                  %li Nevyhovuje-li uchazeči termín, může se prostřednictvím evidence z termínu omluvit. Následně je uchazeč zařazen na konec fronty.
+                  %li Pokud se uchazeč ve lhůtě nejpozději 5 dnů od konání testu neomluví, považuje se za uchazeče, který test nevykonal.
+              %li Po vykonání testu je uchazeči sdělen bodový zisk prostřednictvím evidence. Informace je uchazeči rovněž odeslána na jeho e-mailovou adresu.
+          .carousel-item
+            %ol{start: '9'}
+              %li
+                V případě konání výběrového řízení v obvodu krajského soudu, který uchazeč označil dle ust. § 1 odst. 3 písm. %li vyhlášky, je uchazeč pozván na
+                %ol{type: 'a'}
+                  %li ústní pohovor, pokud získal počet bodů stanovený předsedou krajského soudu dle ust. § 7 odst. 3 věta druhá vyhlášky,
+                  %li písemný test a ústní pohovor.
+              %li Výsledky písemného testu a ústního pohovoru jsou uchazeči sděleny prostřednictvím evidence. Informaci obdrží rovněž e-mailem.
+
+    :javascript
+      $(function(){
+        $('#carouselProcesHeading').on('slide.bs.carousel', function(evt){
+          $('#carouselProcesContent').carousel(evt.to);
+        });
+        $('#carouselProcesContent').carousel('pause');
+        $('#carouselProcesContent').on('mouseenter', function(){
+          $('#carouselProcesHeading').carousel('pause');
+        }).on('mouseleave', function(){
+          $('#carouselProcesHeading').carousel('cycle');
+        });
+      });
+
+  #about_files.row.text-center
+    .user-guide-container.col-12.col-md-6
+      = image_tag('dole_guide.svg', size: '100x100')
+      %h3.text-white Uživatelská příručka
+      %p.text-white  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+      .btn.btn-lg.btn-primary Stáhnout
+    .vyhlaska-container.col-12.col-md-6
+      = image_tag('dole_vyhlaska.svg', size: '100x100')
+      %h3.text-white Platná vyhláška
+      %p.text-white  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+      .btn.btn-lg.btn-primary Stáhnout

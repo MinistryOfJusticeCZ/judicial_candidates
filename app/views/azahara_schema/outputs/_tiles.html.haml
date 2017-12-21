@@ -1,7 +1,8 @@
 - create_attributes ||= {}
 - formatter = attribute_formatter_for(tiles.schema)
 - new_path ||= formatter.new_path(create_attributes) rescue nil
-.egov-tiles.row
+- entities ||= tiles.schema.entities.to_a
+.egov-tiles.row{class: ('empty' unless entities.any?)}
   - if new_path && can?(:create, tiles.schema.model)
     .tile.tile-add.col-12.col-sm-6.col-lg-4
       .card.text-center
@@ -12,7 +13,7 @@
         .card-footer
           = link_to( new_path ) do
             = t('helpers.submit.create', model: tiles.model_name.human)
-  - tiles.schema.entities.each do |entity|
+  - entities.each do |entity|
     .tile.col-12.col-sm-6.col-lg-4
       .card
         .card-header

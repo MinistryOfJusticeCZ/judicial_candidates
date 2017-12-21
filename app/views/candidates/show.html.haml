@@ -1,5 +1,19 @@
+- content_for(:heading) do
+  %h2
+    - if current_user.has_role?('candidate')
+      = t('label_profile')
+    - else
+      = Candidate.model_name.human
+
+
 - formatter = attribute_formatter_for(schema = CandidateSchema.new)
 
+.attribute
+  .label= EgovUtils::User.human_attribute_name('fullname')
+  .value= @candidate.user.fullname
+.attribute
+  .label= EgovUtils::User.human_attribute_name('mail')
+  .value= @candidate.user.mail
 .attribute
   .label= Candidate.human_attribute_name('birth_date')
   .value= l(@candidate.birth_date) if @candidate.birth_date
@@ -18,7 +32,11 @@
   .value= link_to( diploma_thumb(@candidate), @candidate.diploma.url, target: '_blank') if @candidate.diploma_stored?
 .attribute
   .label= Candidate.human_attribute_name('organizations')
-  .value= EgovUtils::Organization.where(id: @candidate.organizations).collect{|o| o.name}.join(', ') if @candidate.organizations.is_a?(Array)
+  .value
+    - if @candidate.organizations.is_a?(Array) && @candidate.organizations.any?
+      = EgovUtils::Organization.where(id: @candidate.organizations).collect{|o| o.name}.join(', ')
+    - else
+      = unfilled_attribute_message
 .attribute
   .label= Candidate.human_attribute_name('suborganizations')
   .value

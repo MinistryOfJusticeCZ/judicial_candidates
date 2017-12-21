@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
 
+  # layout 'card', only: 'about'
+
   def index
     if current_user.has_role?('candidate')
       if current_candidate && !current_candidate.incomplete?
@@ -18,6 +20,10 @@ class WelcomeController < ApplicationController
     else
       redirect_to(interviews_path)
     end
+  end
+
+  def about
+
   end
 
 end

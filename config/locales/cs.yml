@@ -10,7 +10,11 @@ cs:
       vede Ministerstvo spravedlnosti evidenci zájemců o přijetí do přípravné služby justičních čekatelů (dále jen „evidence“).</p>
       <p> Podle ust. § 1 odst. 8 vyhlášky je registrace do evidence nezbytná pro možnost absolvování výběrového řízení na obsazení míst justičních čekatelů.
       Registraci a přihlášení do evidence lze uskutečnit na těchto stránkách. </p>
+  contact_form:
+    heading: 'Kontaktujte nás!'
+    notice_sent: Zpráva úspěšně odeslána.
 
+  label_send: Poslat
   label_know_more: Dozvědět se více
   label_contact_us: Kontaktujte nás
   label_show_detail: Zobrazit detail
@@ -23,6 +27,8 @@ cs:
   label_send_apology: Odeslat omluvenku
   label_edit_candidate: Úprava profilu
   label_excuses: Omluvenky
+  label_contacts: Kontakty
+  label_about: O aplikaci
   label_another_holding_place: Místo konání se liší
   label_registration_confirmation: potvrzení registrace
   notice_excuse_sent: Omluvenka zaslána
@@ -102,6 +108,13 @@ cs:
   models_errors: &my_model_errors
     profile:
       too_many_authors: Příliš mnoho autorů
+
+  helpers:
+    label:
+      contact:
+        name: Jméno
+        mail: E-mail
+        message: Zpráva
 
   activerecord:
     models:

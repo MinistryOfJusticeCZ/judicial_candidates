@@ -1,4 +1,30 @@
 .egov-tiles {
+  &.empty {
+    @include alpha-color( rgba($body-color, 0.05), $body-bg );
+    margin: 1rem;
+
+    font-size: 2rem;
+
+    @include media-breakpoint-up(md) {
+      font-size: 3rem;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: 4rem;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 6rem;
+    }
+
+    @each $lang, $text in $egov-empty-message {
+      &:lang(#{$lang})::before {
+        content: $text;
+      }
+    }
+    // &:after {
+    //   font-family: FontAwesome;
+    //   content: "\f119";
+    // }
+  }
 
   .tile-add .card-body {
     position: relative;
@@ -15,3 +41,5 @@
     margin-bottom: 1rem;
   }
 }
+
+

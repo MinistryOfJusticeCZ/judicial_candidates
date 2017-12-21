@@ -16,6 +16,11 @@
       - if current_user.has_role?('academy')
         %li.nav-item
           = link_to EntryTest.model_name.human(count: :other), main_app.entry_tests_path, class: 'nav-link'
+
+      %li.nav-item
+        = link_to t('label_contacts'), main_app.contacts_path, class: 'nav-link'
+      %li.nav-item
+        = link_to t('label_about'), main_app.about_path, class: 'nav-link'
       - if can?(:manage, EgovUtils::User)
         %li.nav-item.dropdown
           = link_to 'javascript:void(0)', id: 'navbarAdminDropdownLink', class: 'nav-link dropdown-toggle', aria: {haspopup: true}, data: {toggle: 'dropdown'} do
