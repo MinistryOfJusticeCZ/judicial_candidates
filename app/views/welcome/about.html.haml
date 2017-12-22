@@ -96,13 +96,19 @@
       });
 
   #about_files.row.text-center
-    .user-guide-container.col-12.col-md-6
-      = image_tag('dole_guide.svg', size: '100x100')
-      %h3.text-white Uživatelská příručka
-      %p.text-white  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
-      .btn.btn-lg.btn-primary Stáhnout
-    .vyhlaska-container.col-12.col-md-6
+    / .user-guide-container.col-12.col-md-6
+    /   = image_tag('dole_guide.svg', size: '100x100')
+    /   %h3.text-white Uživatelská příručka
+    /   %p.text-white  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+    /   .btn.btn-lg.btn-primary Stáhnout
+    / .vyhlaska-container.col-12.col-md-6
+    /   = image_tag('dole_vyhlaska.svg', size: '100x100')
+    /   %h3.text-white Platná vyhláška
+    /   %p.text-white  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+    /   .btn.btn-lg.btn-primary Stáhnout
+
+    .user-guide-container.col-12
       = image_tag('dole_vyhlaska.svg', size: '100x100')
       %h3.text-white Platná vyhláška
       %p.text-white  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
-      .btn.btn-lg.btn-primary Stáhnout
+      = link_to 'Stáhnout', 'data/Cekatele-Vyhlaska.pdf', target: '_blank', class: 'btn btn-lg btn-primary'
