@@ -112,9 +112,9 @@ cs:
   helpers:
     label:
       contact:
-        name: Jméno
-        mail: E-mail
-        message: Zpráva
+        name: Vaše jméno
+        mail: Váš e-mail
+        message: Vaše zpráva
 
   activerecord:
     models:

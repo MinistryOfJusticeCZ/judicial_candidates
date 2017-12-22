@@ -2,6 +2,11 @@
   #contact_map {
     padding: 0;
     line-height: 0;
+    @include media-breakpoint-up(lg) {
+      iframe {
+        height: 20rem;
+      }
+    }
   }
 
   #contact_list, #contact_form {
