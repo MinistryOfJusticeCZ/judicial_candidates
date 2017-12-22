@@ -11,7 +11,9 @@
     margin-top: 2rem;
     font-weight: 500;
   }
-  padding: 4rem 5rem;
+  @include media-breakpoint-up(md) {
+    padding: 4rem 5rem;
+  }
 }
 #carousel_proces {
   #carouselProcesHeading {

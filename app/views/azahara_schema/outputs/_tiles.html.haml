@@ -2,7 +2,7 @@
 - formatter = attribute_formatter_for(tiles.schema)
 - new_path ||= formatter.new_path(create_attributes) rescue nil
 - entities ||= tiles.schema.entities.to_a
-.egov-tiles.row{class: ('empty' unless entities.any?)}
+.egov-tiles.row{class: ('empty' unless entities.any? || (new_path && can?(:create, tiles.schema.model)) )}
   - if new_path && can?(:create, tiles.schema.model)
     .tile.tile-add.col-12.col-sm-6.col-lg-4
       .card.text-center
