@@ -1,0 +1,13 @@
+Vážený uchazeči,<br />
+
+<p>
+Vaše registrace nebyla vyhodnocena jako úplná, a to z následujících důvodů:
+</p>
+
+<p>
+  <%= @audit.comment %>
+</p>
+<p>
+Opravu Vaší registrace můžete provést <%= link_to 'zde', candidate_url(@candidate) %>.
+V případě, že Vaše registrace nebude opravena do 14 dnů, bude účet smazán.
+</p>

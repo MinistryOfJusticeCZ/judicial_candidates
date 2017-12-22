@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :candidates do
     post :finalize, on: :member
     post :approve, on: :member
-    post :disapprove, on: :member
+    patch :disapprove, on: :member
   end
 
   resources :entry_tests do

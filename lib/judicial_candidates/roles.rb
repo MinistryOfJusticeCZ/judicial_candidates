@@ -33,7 +33,7 @@ class JusticeOrganizationRole < EgovUtils::UserUtils::Role
   add 'ooj'
 
   def define_abilities(ability, user)
-    ability.can :manage, Candidate, state: Candidate.states[:validation]
+    ability.can [:approve, :disapprove], Candidate, state: Candidate.states[:validation]
   end
 
 end

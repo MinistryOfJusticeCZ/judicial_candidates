@@ -12,6 +12,9 @@ class Candidate < ApplicationRecord
   dragonfly_accessor :diploma
 
 
+  audited
+
+
   validates :birth_date, presence: true
   validates :graduation_year, inclusion: 1900..9999, numericality: { only_integer: true, less_than_or_equal_to: :current_year }
   validates :user_id, uniqueness: true

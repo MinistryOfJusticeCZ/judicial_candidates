@@ -80,6 +80,7 @@ cs:
         cuni: Právnická fakulta Univerzity Karlovy
         zcu: Právnická fakulta Západočeské univerzity
         upol: Právnická fakulta Univerzity Palackého
+      disapprove_comment: Zdůvodnění
     candidate_entry_test:
       arrivals:
         invited: Pozvaný/á

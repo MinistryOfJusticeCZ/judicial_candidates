@@ -49,15 +49,16 @@ class CandidatesController < ApplicationController
   end
 
   def approve
-    authorize!(:manage, @candidate)
-    @candidate.approve
+    authorize!(:approve, @candidate)
     CandidateMailer.approved_notification(@candidate).deliver_later
     redirect_to candidates_path
   end
 
   def disapprove
-    authorize!(:manage, @candidate)
+    authorize!(:disapprove, @candidate)
+    @candidate.audit_comment = params[:candidate][:audit_comment]
     @candidate.disapprove
+    CandidateMailer.incomplete_profile(@candidate, @candidate.audits.last).deliver_later
     redirect_to candidates_path
   end
 

@@ -7,54 +7,58 @@
 
 
 - formatter = attribute_formatter_for(schema = CandidateSchema.new)
-
-.attribute
-  .label= EgovUtils::User.human_attribute_name('fullname')
-  .value= @candidate.user.fullname
-.attribute
-  .label= EgovUtils::User.human_attribute_name('mail')
-  .value= @candidate.user.mail
-.attribute
-  .label= Candidate.human_attribute_name('birth_date')
-  .value= l(@candidate.birth_date) if @candidate.birth_date
-.attribute
-  .label= Candidate.human_attribute_name('phone')
-  .value= @candidate.phone
-.attribute
-  - attribute = schema.attribute('university')
-  .label= Candidate.human_attribute_name('university')
-  .value= formatter.formatted_value(attribute, @candidate)
-.attribute
-  .label= Candidate.human_attribute_name('graduation_year')
-  .value= @candidate.graduation_year
-.attribute
-  .label= Candidate.human_attribute_name('diploma')
-  .value= link_to( diploma_thumb(@candidate), @candidate.diploma.url, target: '_blank') if @candidate.diploma_stored?
-.attribute
-  .label= Candidate.human_attribute_name('organizations')
-  .value
-    - if @candidate.organizations.is_a?(Array) && @candidate.organizations.any?
-      = EgovUtils::Organization.where(id: @candidate.organizations).collect{|o| o.name}.join(', ')
-    - else
-      = unfilled_attribute_message
-.attribute
-  .label= Candidate.human_attribute_name('suborganizations')
-  .value
-    - if @candidate.suborganizations.is_a?(Array) && @candidate.suborganizations.any?
-      = EgovUtils::Organization.where(id: @candidate.suborganizations).collect{|o| o.name}.join(', ')
-    - else
-      = unfilled_attribute_message
-- if @candidate.shorter_invitation
+.candidate{id: 'candidate-'+@candidate.id.to_s}
   .attribute
-    .value= Candidate.human_attribute_name('shorter_invitation')
-.attribute
-  .value= @candidate.agreed_limitations ? Candidate.human_attribute_name('agreed_limitations') : nil
+    .label= EgovUtils::User.human_attribute_name('fullname')
+    .value= @candidate.user.fullname
+  .attribute
+    .label= EgovUtils::User.human_attribute_name('mail')
+    .value= @candidate.user.mail
+  .attribute
+    .label= Candidate.human_attribute_name('birth_date')
+    .value= l(@candidate.birth_date) if @candidate.birth_date
+  .attribute
+    .label= Candidate.human_attribute_name('phone')
+    .value= @candidate.phone
+  .attribute
+    - attribute = schema.attribute('university')
+    .label= Candidate.human_attribute_name('university')
+    .value= formatter.formatted_value(attribute, @candidate)
+  .attribute
+    .label= Candidate.human_attribute_name('graduation_year')
+    .value= @candidate.graduation_year
+  .attribute
+    .label= Candidate.human_attribute_name('diploma')
+    .value= link_to( diploma_thumb(@candidate), @candidate.diploma.url, target: '_blank') if @candidate.diploma_stored?
+  .attribute
+    .label= Candidate.human_attribute_name('organizations')
+    .value
+      - if @candidate.organizations.is_a?(Array) && @candidate.organizations.any?
+        = EgovUtils::Organization.where(id: @candidate.organizations).collect{|o| o.name}.join(', ')
+      - else
+        = unfilled_attribute_message
+  .attribute
+    .label= Candidate.human_attribute_name('suborganizations')
+    .value
+      - if @candidate.suborganizations.is_a?(Array) && @candidate.suborganizations.any?
+        = EgovUtils::Organization.where(id: @candidate.suborganizations).collect{|o| o.name}.join(', ')
+      - else
+        = unfilled_attribute_message
+  - if @candidate.shorter_invitation
+    .attribute
+      .value= Candidate.human_attribute_name('shorter_invitation')
+  .attribute
+    .value= @candidate.agreed_limitations ? Candidate.human_attribute_name('agreed_limitations') : nil
 
-- if @candidate.incomplete? && can?(:edit, @candidate)
-  .pull-right
-    = button_to(t('label_finalize_candidate'), finalize_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_finalize_candidate_confirm') } )
-  = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn btn-default' )
-- if @candidate.validation? && can?(:edit, @candidate)
-  .pull-right
-    = button_to(t('label_approve'), approve_candidate_path(@candidate), class: 'btn btn-primary' )
-  = button_to(t('label_disapprove'), disapprove_candidate_path(@candidate), class: 'btn btn-default' )
+  - if @candidate.incomplete? && can?(:edit, @candidate)
+    .pull-right
+      = button_to(t('label_finalize_candidate'), finalize_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_finalize_candidate_confirm') } )
+    = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn btn-default' )
+  - if @candidate.validation? && can?(:approve, @candidate)
+    .approve-candidate
+      .text-center
+        = button_to(t('label_approve'), approve_candidate_path(@candidate), class: 'btn btn-primary' )
+      = bootstrap_form_for(@candidate, url: disapprove_candidate_path(@candidate)) do |f|
+        = f.text_area(:audit_comment, label: {text: t('disapprove_comment', scope: 'model_attributes.candidate')})
+        .form-actions
+          = f.submit t('label_disapprove')
