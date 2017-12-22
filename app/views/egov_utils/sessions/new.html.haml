@@ -3,9 +3,11 @@
     %h1.text-white= t('about.title')
     = raw t('about.text')
 
-    .pull-right
-      = link_to t('label_contact_us'), main_app.contacts_path, class: 'btn btn-lg btn-outline-secondary btn-inverted'
-    = link_to t('label_know_more'), main_app.about_path, class: 'btn btn-lg btn-primary'
+    .row.buttons
+      .col-6
+        = link_to t('label_contact_us'), main_app.contacts_path, class: 'btn btn-lg btn-outline-secondary btn-inverted'
+      .col-6.text-right
+        = link_to t('label_know_more'), main_app.about_path, class: 'btn btn-lg btn-primary'
 
   .bg-white.col-12.col-md-5.order-first.order-md-2
     %ul.nav.nav-tabs.nav-fill.justify-content-center{'role' => 'tablist'}
@@ -28,5 +30,15 @@
         #register.tab-pane.fade{'role' => 'tabpanel', 'aria-labelledby' => 'register_tab'}
           = bootstrap_form_for(EgovUtils::User.new) do |f|
             = render 'egov_utils/users/form', form: f
+            %p
+              Odesláním formuláře prohlašuji, že jsem byl/a v souladu se zákonem č. 101/2000 Sb., o ochraně osobních údajů,
+              ve znění pozdějších předpisů, řádně informován/a o zpracování mých osobních údajů pro
+              účely vedení evidence zájemců o přijetí do přípravné služby justičních čekatelů, jakož i o mých
+              právech a povinnostech s tím spojených.
+            %p
+              Souhlasím s tím, aby Ministerstvo spravedlnosti ČR zpracovávalo mnou poskytnuté osobní údaje pro účely
+              vedení evidence zájemců o přijetí do přípravné služby justičních čekatelů, a to ode dne jejich
+              poskytnutí, a zavazuji se mu proto bezodkladně oznamovat všechny změny v osobních
+              údajích mnou poskytnutých.
             .form-actions
               = f.submit t('label_signup'), class: 'btn btn-secondary'
