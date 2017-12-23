@@ -51,9 +51,11 @@
     .value= @candidate.agreed_limitations ? Candidate.human_attribute_name('agreed_limitations') : nil
 
   - if @candidate.incomplete? && can?(:edit, @candidate)
-    .pull-right
-      = button_to(t('label_finalize_candidate'), finalize_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_finalize_candidate_confirm') } )
-    = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn btn-default' )
+    .row.buttons
+      .col-6
+        = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn btn-secondary' )
+      .col-6.text-right
+        = button_to(t('label_finalize_candidate'), finalize_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_finalize_candidate_confirm') } )
   - if @candidate.validation? && can?(:approve, @candidate)
     .approve-candidate
       .text-center
