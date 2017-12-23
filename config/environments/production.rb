@@ -62,7 +62,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "JudicialCandidates_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'cekatele.justice.cz' }
+  config.action_mailer.default_url_options = { host: 'https://cekatele.justice.cz' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
