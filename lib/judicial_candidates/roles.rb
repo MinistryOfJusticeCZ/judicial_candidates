@@ -17,7 +17,7 @@ class CandidateRole < EgovUtils::UserUtils::Role
 
   def define_abilities(ability, user)
 
-    ability.can :create, Candidate
+    ability.can :create, Candidate unless Candidate.where(user_id: user.id).exists?
     ability.can :read, Candidate, user_id: user.id
     ability.can :manage, Candidate, user_id: user.id, state: Candidate.states[:incomplete]
     ability.can :read, EntryTest, candidate_entry_tests: { candidate: { user_id: user.id } }
