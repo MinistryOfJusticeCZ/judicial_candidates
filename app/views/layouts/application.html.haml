@@ -11,6 +11,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = i18n_js_set_locales_tag
     = csrf_meta_tags
+    = google_analytics_snippet unless internal_network?
   %body
     %header
       = render 'layouts/navigation'
