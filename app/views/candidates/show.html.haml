@@ -9,6 +9,10 @@
 - formatter = attribute_formatter_for(schema = CandidateSchema.new)
 .candidate{id: 'candidate-'+@candidate.id.to_s}
   .attribute
+    - attribute = schema.attribute('state')
+    .label= Candidate.human_attribute_name('state')
+    .value= formatter.formatted_value(attribute, @candidate)
+  .attribute
     .label= EgovUtils::User.human_attribute_name('fullname')
     .value= @candidate.user.fullname
   .attribute
