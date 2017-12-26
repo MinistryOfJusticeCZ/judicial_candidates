@@ -109,8 +109,8 @@ cs:
 
 
   models_errors: &my_model_errors
-    profile:
-      too_many_authors: Příliš mnoho autorů
+    candidate:
+      diploma_format: "formát souboru musí být jeden z %{available_formats}"
 
   helpers:
     label:
