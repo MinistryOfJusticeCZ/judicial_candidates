@@ -50,7 +50,10 @@
     }
     .social-networks {
       a {
-        margin-right: 3rem;
+        margin-right: 1rem;
+        @include media-breakpoint-up(sm) {
+          margin-right: 2.5rem;
+        }
       }
       margin-bottom: 1rem;
     }
