@@ -63,8 +63,8 @@
   - if @candidate.validation? && can?(:approve, @candidate)
     .approve-candidate
       .text-center
-        = button_to(t('label_approve'), approve_candidate_path(@candidate), class: 'btn btn-primary' )
+        = button_to(t('label_approve'), approve_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_confirmation') } )
       = bootstrap_form_for(@candidate, url: disapprove_candidate_path(@candidate)) do |f|
         = f.text_area(:audit_comment, label: {text: t('disapprove_comment', scope: 'model_attributes.candidate')})
         .form-actions
-          = f.submit t('label_disapprove')
+          = f.submit t('label_disapprove'), data: { confirm: t('text_confirmation') }

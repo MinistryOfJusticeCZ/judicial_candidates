@@ -34,6 +34,7 @@ cs:
   notice_excuse_sent: Omluvenka zaslána
   success_evaluation: Vyhodnocení uloženo
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.
+  text_confirmation: Opravdu chcete provést tuto akci?
   warning_not_enough_candidates: Nedostatek kandidátů
 
   models: &my_models

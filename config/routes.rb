@@ -24,4 +24,8 @@ Rails.application.routes.draw do
   get '/about' => 'welcome#about', as: :about
 
   mount EgovUtils::Engine => '/internals'
+
+  require 'sidekiq/web'
+  require 'egov_utils/routes/admin_constraint'
+  mount Sidekiq::Web => '/sidekiq', constraints: EgovUtils::AdminConstraint.new
 end
