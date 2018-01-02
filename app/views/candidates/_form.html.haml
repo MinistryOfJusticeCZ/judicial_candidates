@@ -17,7 +17,7 @@
   .col-12= form.select2(:organizations, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
   .col-12.hidden= form.select2(:suborganizations, EgovUtils::Organization.district_courts.collect{|o| [o.name, o.id] }, {}, multiple: true)
   .col-12= form.check_box(:shorter_invitation)
-  .col-12= form.check_box(:agreed_limitations)
+  .col-12= form.check_box(:agreed_limitations, label: raw(t 'model_attributes.candidate.agreed_limitations') )
 
 / %p
 /   Odesláním formuláře prohlašuji, že jsem byl/a v souladu se zákonem č. 101/2000 Sb., o ochraně osobních údajů,

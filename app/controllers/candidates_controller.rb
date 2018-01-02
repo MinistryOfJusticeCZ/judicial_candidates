@@ -24,7 +24,7 @@ class CandidatesController < ApplicationController
       if @candidate.save
         format.html{ redirect_to @candidate }
       else
-        format.html{ render 'new' }
+        format.html{ render 'edit' }
       end
     end
   end

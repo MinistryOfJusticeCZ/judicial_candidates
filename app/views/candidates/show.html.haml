@@ -52,7 +52,7 @@
     .attribute
       .value= Candidate.human_attribute_name('shorter_invitation')
   .attribute
-    .value= @candidate.agreed_limitations ? Candidate.human_attribute_name('agreed_limitations') : nil
+    .value= @candidate.agreed_limitations ? raw(Candidate.human_attribute_name('agreed_limitations')) : nil
 
   - if @candidate.incomplete? && can?(:edit, @candidate)
     .row.buttons
