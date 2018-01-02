@@ -31,14 +31,6 @@
           = bootstrap_form_for(EgovUtils::User.new) do |f|
             = render 'egov_utils/users/form', form: f
             %p
-              Odesláním formuláře prohlašuji, že jsem byl/a v souladu se zákonem č. 101/2000 Sb., o ochraně osobních údajů,
-              ve znění pozdějších předpisů, řádně informován/a o zpracování mých osobních údajů pro
-              účely vedení evidence zájemců o přijetí do přípravné služby justičních čekatelů, jakož i o mých
-              právech a povinnostech s tím spojených.
-            %p
-              Souhlasím s tím, aby Ministerstvo spravedlnosti ČR zpracovávalo mnou poskytnuté osobní údaje pro účely
-              vedení evidence zájemců o přijetí do přípravné služby justičních čekatelů, a to ode dne jejich
-              poskytnutí, a zavazuji se mu proto bezodkladně oznamovat všechny změny v osobních
-              údajích mnou poskytnutých.
+              Podle zákona č. 101/2000 Sb., o ochraně osobních údajů a o změně některých zákonů, ve znění pozdějších předpisů (dále jen „zákon o ochraně osobních údajů“), souhlasím se shromažďováním, zpracováváním a uchováváním mých osobních údajů subjekty určenými k realizaci výběrového řízení vyhláškou č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce, v platném znění, a to v rozsahu nezbytném pro průběh výběrového řízení na místa justičních čekatelů a k případnému vzniku pracovního poměru v uvedených funkcích. Beru současně na vědomí, že po skončení výběrového řízení mně budou listiny obsahující osobní údaje vydány pouze na písemnou žádost, a že s nevyžádanými osobními údaji bude naloženo v souladu se zákonem o ochraně osobních údajů.
             .form-actions
               = f.submit t('label_signup'), class: 'btn btn-secondary'
