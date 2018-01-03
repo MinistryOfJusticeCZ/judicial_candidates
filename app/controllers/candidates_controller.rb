@@ -50,6 +50,7 @@ class CandidatesController < ApplicationController
 
   def approve
     authorize!(:approve, @candidate)
+    @candidate.approve
     CandidateMailer.approved_notification(@candidate).deliver_later
     redirect_to candidates_path
   end
