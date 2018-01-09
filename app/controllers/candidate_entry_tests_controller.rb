@@ -14,6 +14,9 @@ class CandidateEntryTestsController < ApplicationController
       flash[:warning] = t('warning_not_enough_candidates')
     else
       @entry_test.confirm_and_invite!(candidates)
+      candidates.each do |candidate|
+        CandidateMailer.entry_test_invitation(candidate, @entry_test).deliver_later
+      end
     end
     redirect_to @entry_test
   end

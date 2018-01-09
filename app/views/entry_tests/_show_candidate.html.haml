@@ -3,7 +3,8 @@
   - if !%w(apology excused).include?(candidate_entry_test.arrival)
     = bootstrap_form_for([entry_test, candidate_entry_test]) do |f|
       = render 'candidate_entry_tests/form', form: f, candidate_entry_test: candidate_entry_test
-      = f.submit(t('label_send_apology'))
+      .form-actions
+        = f.submit(t('label_send_apology'))
   - else
     %h4= t('label_apology')
     .apology-text= candidate_entry_test.apology

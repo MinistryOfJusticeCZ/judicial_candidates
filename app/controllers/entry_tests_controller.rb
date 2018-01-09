@@ -1,5 +1,7 @@
 class EntryTestsController < ApplicationController
 
+  layout 'card', except: :index
+
   load_and_authorize_resource
 
   def index

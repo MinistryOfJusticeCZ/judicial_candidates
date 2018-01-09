@@ -1,9 +1,15 @@
+- content_for(:heading) do
+  %h2
+    = EntryTest.model_name.human
+
+- formatter = attribute_formatter_for(schema = EntryTestSchema.new)
 .attribute
   .label= EntryTest.human_attribute_name('time')
-  .value= @entry_test.time
+  .value= l(@entry_test.time)
 .attribute
+  - attribute = schema.attribute('place')
   .label= EntryTest.human_attribute_name('place')
-  .value= @entry_test.place
+  .value= formatter.formatted_value(attribute, @entry_test)
 .attribute
   .label= EntryTest.human_attribute_name('capacity')
   .value= @entry_test.capacity

@@ -95,6 +95,9 @@ cs:
         upol: Právnická fakulta Univerzity Palackého
       disapprove_comment: Zdůvodnění
     candidate_entry_test:
+      absent: Nedostavil se
+      points: Dosažené body
+      apology: Omluvenka
       arrivals:
         invited: Pozvaný/á
         arrived: Dorazí
