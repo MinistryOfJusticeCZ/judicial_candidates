@@ -23,8 +23,11 @@ class Candidate < ApplicationRecord
   validates :agreed_limitations, presence: true
 
   validates :diploma, presence: true
-  validates_property :format, of: :diploma, in: ['jpeg', 'png', 'pdf'], message: ->(prop, entity){I18n.t('diploma_format', scope: 'activerecord.errors.models.candidate', available_formats: 'jpeg, png, pdf') }
-  validates_size_of :diploma, maximum: 5.megabytes
+  validates_property :format, of: :diploma,
+                              in: ['jpeg', 'png', 'pdf'],
+                              if: :diploma_changed?,
+                              message: ->(prop, entity){I18n.t('diploma_format', scope: 'activerecord.errors.models.candidate', available_formats: 'jpeg, png, pdf') }
+  validates_size_of :diploma, maximum: 5.megabytes, if: :diploma_changed?
 
   scope :for_entry_test, ->{ where(state: 'for_entry_test').order(updated_at: :asc) }
   scope :for_interview, ->(region_court_id, boundary=nil){
