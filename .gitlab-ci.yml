@@ -53,7 +53,7 @@ test:2.3:
     - bundle exec rails db:migrate RAILS_ENV=test
     - bundle exec rspec
 
-deploy_staging:
+deploy_lab:
   stage: deploy
   tags:
     - lab
