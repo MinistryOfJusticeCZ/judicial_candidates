@@ -93,7 +93,7 @@ cs:
         cuni: Právnická fakulta Univerzity Karlovy
         zcu: Právnická fakulta Západočeské univerzity
         upol: Právnická fakulta Univerzity Palackého
-      disapprove_comment: Zdůvodnění
+      audit_comment: Zdůvodnění
     candidate_entry_test:
       absent: Nedostavil se
       points: Dosažené body
@@ -110,8 +110,11 @@ cs:
       place: Místo
       state: Stav
       places:
-        kromeriz: Kroměříž
-        praha: Praha
+        kromerizA: Justiční akademie, Budova A, Masarykovo nám. 183, Kroměříž
+        kromerizB: Justiční akademie, Budova B, nám. Míru 517, Kroměříž
+        kromerizC: Justiční akademie, Budova C, Smetanova 3921, Kroměříž
+        praha_micanky: Justiční areál Na Míčánkách, ul. 28. pluku 1533/29b, Praha 10
+        praha_hybernska: Justiční akademie, Hybernská 18, Praha 1
     interview:
       time: Čas konání
       boundary: Bodová hranice

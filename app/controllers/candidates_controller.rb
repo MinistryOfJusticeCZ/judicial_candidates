@@ -42,6 +42,19 @@ class CandidatesController < ApplicationController
     end
   end
 
+  def destroy
+    @candidate.audit_comment = params[:candidate][:audit_comment]
+    @candidate.destroy
+    CandidateMailer.deleted_profile(@candidate, @candidate.audits.last).deliver_later
+    respond_to do |format|
+      format.html {
+        flash[:notice] = t('common_labels.notice_destroyed', model: @candidate.model_name.human)
+        redirect_to candidates_path
+      }
+      format.json { head :ok }
+    end
+  end
+
   def finalize
     authorize!(:manage, @candidate)
     @candidate.finalize

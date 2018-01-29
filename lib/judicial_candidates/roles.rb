@@ -35,6 +35,7 @@ class JusticeOrganizationRole < EgovUtils::UserUtils::Role
   def define_abilities(ability, user)
     ability.can :read, Candidate
     ability.can [:approve, :disapprove], Candidate, state: Candidate.states[:validation]
+    ability.can :destroy, Candidate
   end
 
 end

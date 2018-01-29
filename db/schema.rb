@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205122723) do
+ActiveRecord::Schema.define(version: 20180129124641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20171205122723) do
     t.boolean "agreed_limitations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_candidates_on_deleted_at"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 
@@ -105,6 +107,13 @@ ActiveRecord::Schema.define(version: 20171205122723) do
     t.index ["organization_key"], name: "index_egov_utils_groups_on_organization_key"
   end
 
+  create_table "egov_utils_groups_users", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.index ["group_id"], name: "index_egov_utils_groups_users_on_group_id"
+    t.index ["user_id"], name: "index_egov_utils_groups_users_on_user_id"
+  end
+
   create_table "egov_utils_people", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -130,6 +139,8 @@ ActiveRecord::Schema.define(version: 20171205122723) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "confirmation_code"
+    t.boolean "must_change_password"
+    t.datetime "password_changed_at"
   end
 
   create_table "entry_tests", force: :cascade do |t|
@@ -159,6 +170,8 @@ ActiveRecord::Schema.define(version: 20171205122723) do
   add_foreign_key "candidate_interviews", "candidates"
   add_foreign_key "candidate_interviews", "interviews"
   add_foreign_key "candidates", "egov_utils_users", column: "user_id"
+  add_foreign_key "egov_utils_groups_users", "egov_utils_groups", column: "group_id"
+  add_foreign_key "egov_utils_groups_users", "egov_utils_users", column: "user_id"
   add_foreign_key "egov_utils_people", "egov_utils_addresses", column: "residence_id"
   add_foreign_key "interviews", "egov_utils_addresses", column: "address_id"
 end

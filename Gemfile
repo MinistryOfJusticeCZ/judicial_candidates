@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use pg as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -36,10 +36,6 @@ group :development do
   gem 'capistrano3-unicorn', require: false
   gem 'capistrano-sidekiq', require: false
 end
-
-gem 'haml'
-
-gem 'rails-i18n', '~> 5.0'
 
 group :production do
   gem 'unicorn'
@@ -78,6 +74,8 @@ gem 'dragonfly', '~> 1.1'
 gem 'state_machines-activerecord', '~> 0.5'
 
 gem 'egov_utils', '~> 0.1.33'
+gem 'paranoia', '~> 2.4'
+
 gem 'phonelib', '~> 0.6'
 
 gem 'sidekiq', '~> 5.0'

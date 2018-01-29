@@ -11,7 +11,7 @@ class Candidate < ApplicationRecord
 
   dragonfly_accessor :diploma
 
-
+  acts_as_paranoid
   audited
 
 
