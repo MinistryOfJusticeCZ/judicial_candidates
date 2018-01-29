@@ -373,7 +373,7 @@ PLATFORMS
 DEPENDENCIES
   activeresource
   azahara_schema!
-  bootstrap (~> 4.0.0.beta)
+  bootstrap (~> 4.0)
   bootstrap3-datetimepicker-rails!
   bootstrap_form
   byebug

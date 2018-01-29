@@ -73,7 +73,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dragonfly', '~> 1.1'
 gem 'state_machines-activerecord', '~> 0.5'
 
-gem 'egov_utils', '~> 0.1.33'
+gem 'egov_utils', '~> 0.2'
 gem 'paranoia', '~> 2.4'
 
 gem 'phonelib', '~> 0.6'
@@ -84,7 +84,7 @@ gem 'sidekiq', '~> 5.0'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
-gem 'bootstrap', '~> 4.0.0.beta'
+gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-sass'
 gem 'bootstrap_form'
 gem 'momentjs-rails', '>= 2.9.0'
