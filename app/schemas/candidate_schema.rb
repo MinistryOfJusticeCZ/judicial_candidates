@@ -5,7 +5,7 @@ class CandidateSchema < AzaharaSchema::ModelSchema
   end
 
   def default_columns
-    ['user-fullname', 'updated_at', 'state']
+    ['user-fullname', 'user-mail', 'updated_at', 'state']
   end
 
   def default_outputs
