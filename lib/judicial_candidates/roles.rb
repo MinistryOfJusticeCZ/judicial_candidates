@@ -45,7 +45,7 @@ class JusticeAcademyRole < EgovUtils::UserUtils::Role
   add 'academy'
 
   def define_abilities(ability, user)
-    ability.can :read, Candidate, state: Candidate.states[:waiting]
+    ability.can :read, Candidate
     ability.can :manage, EntryTest
     ability.can :manage, CandidateEntryTest
   end

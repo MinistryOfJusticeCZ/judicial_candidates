@@ -60,17 +60,17 @@
         = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn btn-secondary' )
       .col-6.text-right
         = button_to(t('label_finalize_candidate'), finalize_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_finalize_candidate_confirm') } )
-  - if @candidate.validation? && ( can?(:approve, @candidate) || can?(:destroy, @candidate) )
+  - if ( @candidate.validation? && can?(:approve, @candidate) ) || ( @candidate.incomplete? && can?(:destroy, @candidate) )
     .approve-candidate.row
       .col-6
-        - if can?(:approve, @candidate)
+        - if @candidate.validation? && can?(:approve, @candidate)
           = button_to(t('label_approve'), approve_candidate_path(@candidate), class: 'btn btn-primary', data: { confirm: t('text_confirmation') } )
       .col-6.text-right
-        - if can?(:disapprove, @candidate)
+        - if @candidate.validation? && can?(:disapprove, @candidate)
           = link_to(t('label_disapprove') + '?', '#disapprove', class: 'btn btn-secondary', role: 'button', 'aria-expanded' => 'false', 'aria-controls' => 'disapprove', data: {toggle: 'collapse'} )
         - if can?(:destroy, @candidate)
           = link_to(t('label_delete') + '?', '#delete', class: 'btn btn-warning', role: 'button', 'aria-expanded' => 'false', 'aria-controls' => 'delete', data: {toggle: 'collapse'} )
-      - if can?(:disapprove, @candidate)
+      - if @candidate.validation? && can?(:disapprove, @candidate)
         #disapprove.collapse.col-12
           = bootstrap_form_for(@candidate, url: disapprove_candidate_path(@candidate)) do |f|
             = f.text_area(:audit_comment)
