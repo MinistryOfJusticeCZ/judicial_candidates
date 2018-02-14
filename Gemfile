@@ -75,6 +75,7 @@ gem 'state_machines-activerecord', '~> 0.5'
 
 gem 'egov_utils', '~> 0.2'
 gem 'paranoia', '~> 2.4'
+gem 'acts_as_list', '~> 0.9'
 
 gem 'phonelib', '~> 0.6'
 

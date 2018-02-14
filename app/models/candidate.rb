@@ -11,6 +11,7 @@ class Candidate < ApplicationRecord
 
   dragonfly_accessor :diploma
 
+  acts_as_list scope: [:state, deleted_at: nil]
   acts_as_paranoid
   audited
 
@@ -29,11 +30,11 @@ class Candidate < ApplicationRecord
                               message: ->(prop, entity){I18n.t('diploma_format', scope: 'activerecord.errors.models.candidate', available_formats: 'jpeg, png, pdf') }
   validates_size_of :diploma, maximum: 5.megabytes, if: :diploma_changed?
 
-  scope :for_entry_test, ->{ where(state: 'for_entry_test').order(updated_at: :asc) }
+  scope :for_entry_test, ->{ where(state: 'for_entry_test').order(:position) }
   scope :for_interview, ->(region_court_id, boundary=nil){
     res = where(state: 'waiting', organizations: region_court_id)
     res = res.joins(:candidate_entry_tests).where(CandidateEntryTest.arel_table[:points].gteq(boundary)) if boundary
-    res.order(updated_at: :asc)
+    res.order(:position)
   }
 
   enum state: { incomplete: 0, validation: 1, rejected: 3, for_entry_test: 10, waiting: 15 }, _suffix: true
