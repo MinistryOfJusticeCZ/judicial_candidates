@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :entry_test do
-    time "2017-11-20 15:24:29"
-    capacity 1
+    time { Time.now - 2.months }
+    capacity 5
     place 1
-    points ""
+
+    to_create {|instance| instance.save(validate: false) }
   end
 end

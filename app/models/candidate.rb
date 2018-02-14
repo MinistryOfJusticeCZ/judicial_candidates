@@ -23,7 +23,7 @@ class Candidate < ApplicationRecord
   validates :organizations, presence: true
   validates :agreed_limitations, presence: true
 
-  validates :diploma, presence: true
+  validates :diploma, presence: true, unless: :incomplete?
   validates_property :format, of: :diploma,
                               in: ['jpeg', 'png', 'pdf'],
                               if: :diploma_changed?,
@@ -32,7 +32,7 @@ class Candidate < ApplicationRecord
 
   scope :for_entry_test, ->{ where(state: 'for_entry_test').order(:position) }
   scope :for_interview, ->(region_court_id, boundary=nil){
-    res = where(state: 'waiting', organizations: region_court_id)
+    res = where(state: 'waiting').where("'#{region_court_id}' = ANY (#{connection.quote_column_name('organizations')})")
     res = res.joins(:candidate_entry_tests).where(CandidateEntryTest.arel_table[:points].gteq(boundary)) if boundary
     res.order(:position)
   }
