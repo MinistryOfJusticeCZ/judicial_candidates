@@ -17,4 +17,14 @@ RSpec.describe Candidate, type: :model do
       expect(Candidate.for_interview('204000', 70).pluck(:id)).to contain_exactly(candidate_for_interview_more_orgs.id)
     end
   end
+
+  describe 'invite_to!' do
+    let(:entry_test){ FactoryBot.create(:entry_test) }
+    let(:candidate) { FactoryBot.create(:candidate, state: 'for_entry_test') }
+
+    it 'creates candidate_entry_test' do
+      expect{ candidate.invite_to!(entry_test) }.to change{ CandidateEntryTest.count }.by(1)
+      expect( candidate.reload.state ).to eq('invited_to_test')
+    end
+  end
 end

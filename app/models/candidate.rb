@@ -93,7 +93,7 @@ class Candidate < ApplicationRecord
   end
 
   def invite_to!(entry_test)
-    candidate_entry_tests.create(entry_test: entry_test)
+    candidate_entry_tests.create(entry_test: entry_test) && invite_to_test
   end
 
   private
