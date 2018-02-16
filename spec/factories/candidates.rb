@@ -1,5 +1,10 @@
 FactoryBot.define do
   factory :candidate do
+    transient do
+      test_points nil
+      entry_test nil
+    end
+
     association :user, factory: :egov_utils_user
     state 'for_entry_test'
     birth_date "1991-11-15"
@@ -12,20 +17,24 @@ FactoryBot.define do
     diploma { Rails.root.join('spec', 'data', 'justice-enter.jpg') }
     shorter_invitation false
     agreed_limitations true
+    position nil
+
+
+    trait :invited_to_test do
+      state 'invited_to_test'
+      entry_test { FactoryBot.create(:entry_test) }
+    end
 
     trait :for_interview do
       state 'waiting'
-
-      transient do
-        test_points{ Random.rand(100) }
-        entry_test{ FactoryBot.create(:entry_test) }
-      end
+      test_points { Random.rand(100) }
+      entry_test { FactoryBot.create(:entry_test) }
 
       after(:create) do |candidate, evaluator|
         candidate.candidate_entry_tests.create(entry_test_id: evaluator.entry_test.id, points: evaluator.test_points)
       end
     end
 
-    to_create {|instance| instance.save(validate: false) }
+    factory :candidate_invited_to_test, traits: [:invited_to_test]
   end
 end

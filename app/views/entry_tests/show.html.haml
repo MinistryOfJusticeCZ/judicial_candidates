@@ -1,6 +1,5 @@
 - content_for(:heading) do
-  %h2
-    = EntryTest.model_name.human
+  %h2= EntryTest.model_name.human
 
 - formatter = attribute_formatter_for(schema = EntryTestSchema.new)
 .attribute

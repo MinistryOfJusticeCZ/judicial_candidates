@@ -11,7 +11,8 @@ gem 'rails', '~> 5.1.4'
 # Use pg as the database for Active Record
 gem 'pg', '~> 0.21'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.7', group: :production
+gem 'thin', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -47,6 +48,8 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem "factory_bot_rails", '~> 4.0'
+
+  gem 'pry-rails'
 end
 
 group :test do
@@ -62,7 +65,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'pry-rails'
 
   gem 'i18n-debug'
 end

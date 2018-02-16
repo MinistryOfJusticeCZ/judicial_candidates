@@ -37,7 +37,7 @@ class Candidate < ApplicationRecord
     res.order(:position)
   }
 
-  enum state: { incomplete: 0, validation: 1, rejected: 3, for_entry_test: 10, waiting: 15 }, _suffix: true
+  enum state: { incomplete: 0, validation: 1, rejected: 3, blocked: 4, for_entry_test: 10, invited_to_test: 11, waiting: 15 }, _suffix: true
 
   state_machine do # :initial => :incomplete do - initial is done by default column value
     # before_transition :parked => any - :parked, :do => :put_on_seatbelt
@@ -61,8 +61,20 @@ class Candidate < ApplicationRecord
       transition validation: :rejected
     end
 
+    event :invite_to_test do
+      transition for_entry_test: :invited_to_test
+    end
+
+    event :absent_on_test do
+      transition invited_to_test: :blocked
+    end
+
+    event :excused_on_entry_test do
+      transition invited_to_test: :for_entry_test
+    end
+
     event :succeded_entry_test do
-      transition for_entry_test: :waiting
+      transition invited_to_test: :waiting
     end
 
     state any - :incomplete do

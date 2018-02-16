@@ -40,8 +40,16 @@ class EntryTest < ApplicationRecord
   end
 
   def evaluate!(point_params)
-    update(point_params)
-    evaluate
+    point_params = point_params.dup
+    attributes = point_params['candidate_entry_tests_attributes']
+    #fill missing candidates and mark them as not comming to the test
+    candidate_entry_tests.comming.where.not(id: attributes.keys).pluck(:id).each do |missing_id|
+      attributes[missing_id] ||= {'id' => missing_id}
+      attributes[missing_id]['arrival'] ||= 'absent'
+    end
+    update(point_params.merge(state: 'evaluated'))
+    # update apologized
+    candidate_entry_tests.apologized.each{|ct| ct.update(updated_at: Time.now) }
   end
 
 end

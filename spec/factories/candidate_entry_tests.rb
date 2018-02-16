@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :candidate_entry_test do
-    points 1
-    arrived 1
-    apology "MyText"
+    entry_test
+    association :candidate, factory: :candidate_invited_to_test
+    points nil
+    arrival nil
+    apology nil
   end
 end

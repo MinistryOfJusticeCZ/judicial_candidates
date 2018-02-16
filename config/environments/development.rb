@@ -57,4 +57,14 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.love_url = 'http://172.20.4.238:4141'
+
+  config.after_initialize do
+    module ActionDispatch
+      module Routing
+        class RouteSet
+          alias inspect to_s
+        end
+      end
+    end
+  end
 end
