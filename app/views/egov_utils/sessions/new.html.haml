@@ -24,6 +24,9 @@
         = bootstrap_form_for(:session) do |f|
           = f.text_field(:username)
           = f.password_field(:password)
+          %div
+            - if EgovUtils::Settings.allow_password_reset?
+              = link_to t('label_forgotten_password'), egov_utils.reset_passwords_path
           .form-actions
             = f.submit t('label_login'), class: 'btn btn-secondary'
       - if EgovUtils::Settings.allow_register?
