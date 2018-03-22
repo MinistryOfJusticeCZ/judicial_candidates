@@ -1,7 +1,10 @@
 <% formatter = AzaharaSchema::AttributeFormatter.formatter_for(EntryTest).new((schema = EntryTestSchema.new), self) %>
 <% place_attr = schema.attribute('place') %>
+
+<% content_for(:greeting) do %>
+  Vážený uchazeči,<br />
+<% end %>
 <div>
-  Vážený uchazeči,<br/>
   <p>
     dovolujeme si Vám oznámit, že po úspěšném posouzení Vaší registrace Vám byl stanoven termín konání vstupního testu.
     Vstupní test se bude konat dne <%= l(@entry_test.time.to_date) %> v <%= l(@entry_test.time.to_time, format: :time) %> hodin v budově Justiční akademie,

@@ -8,6 +8,13 @@
   </head>
 
   <body>
+    <p>
+      <% if content_for?(:greeting) %>
+      <%= yield :greeting %>
+      <% else %>
+      Dobrý den,<br />
+      <% end %>
+    </p>
     <%= yield %>
     <div class="signature">
       S pozdravem<br />

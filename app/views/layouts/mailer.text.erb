@@ -1,3 +1,9 @@
+<% if content_for?(:greeting) %>
+<%= yield :greeting %>
+<% else %>
+Dobrý den,
+<% end %>
+
 <%= yield %>
 
 
