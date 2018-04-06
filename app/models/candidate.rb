@@ -16,7 +16,7 @@ class Candidate < ApplicationRecord
   audited
 
 
-  validates :birth_date, presence: true
+  validates :birth_date, presence: true, birthday: true
   validates :graduation_year, inclusion: 1900..9999, numericality: { only_integer: true, less_than_or_equal_to: :current_year }
   validates :user_id, uniqueness: true
   validates :phone, phone: true

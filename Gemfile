@@ -75,7 +75,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dragonfly', '~> 1.1'
 gem 'state_machines-activerecord', '~> 0.5'
 
-gem 'egov_utils', '~> 0.2'
+gem 'egov_utils', '~> 0.3'
 gem 'paranoia', '~> 2.4'
 gem 'acts_as_list', '~> 0.9'
 
