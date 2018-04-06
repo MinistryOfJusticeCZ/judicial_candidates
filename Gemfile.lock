@@ -385,7 +385,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   dragonfly (~> 1.1)
-  egov_utils (~> 0.2)
+  egov_utils (~> 0.3)
   factory_bot_rails (~> 4.0)
   font-awesome-sass
   i18n-debug
