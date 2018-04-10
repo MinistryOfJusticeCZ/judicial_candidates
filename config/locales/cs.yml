@@ -111,6 +111,7 @@ cs:
       capacity: Kapacita
       place: Místo
       state: Stav
+      additional_info: Dodatečné informace
       places:
         kromerizA: Justiční akademie, Budova A, Masarykovo nám. 183, Kroměříž
         kromerizB: Justiční akademie, Budova B, nám. Míru 517, Kroměříž

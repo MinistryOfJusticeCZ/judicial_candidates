@@ -42,7 +42,7 @@ class EntryTestsController < ApplicationController
   private
 
     def create_params
-      params.require(:entry_test).permit(:time, :place, :capacity)
+      params.require(:entry_test).permit(:time, :place, :capacity, :additional_info)
     end
 
     def evaluate_params
