@@ -34,6 +34,11 @@ class EntryTestsController < ApplicationController
     end
   end
 
+  protected
+    def require_login?
+      super && params[:action] != 'index'
+    end
+
   private
 
     def create_params

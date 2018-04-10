@@ -32,9 +32,19 @@ class Candidate < ApplicationRecord
 
   scope :for_entry_test, ->{ where(state: 'for_entry_test').order(:position) }
   scope :for_interview, ->(region_court_id, boundary=nil){
+    # arel_table[:organizations].contains([region_court_id]))
     res = where(state: 'waiting').where("'#{region_court_id}' = ANY (#{connection.quote_column_name('organizations')})")
     res = res.joins(:candidate_entry_tests).where(CandidateEntryTest.arel_table[:points].gteq(boundary)) if boundary
     res.order(:position)
+  }
+  scope :alternate_for_entry_test, ->(entry_test){
+    if (entry_test.time <= Time.now + 30.days)
+      for_entry_test
+    elsif (entry_test.time <= Time.now + 7.days)
+      for_entry_test.where(shorter_invitation: true)
+    else
+      where('1=0')
+    end
   }
 
   enum state: { incomplete: 0, validation: 1, rejected: 3, blocked: 4, for_entry_test: 10, invited_to_test: 11, waiting: 15 }, _suffix: true

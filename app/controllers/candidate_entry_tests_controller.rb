@@ -27,6 +27,7 @@ class CandidateEntryTestsController < ApplicationController
   def update
     respond_to do |format|
       if @candidate_entry_test.update(update_params)
+        invite_alternate if invite_alternate?
         format.html{ redirect_to root_path, notice: t('notice_excuse_sent') }
       else
         format.html{ render 'edit' }
@@ -35,6 +36,20 @@ class CandidateEntryTestsController < ApplicationController
   end
 
   private
+
+    def invite_alternate?
+      @candidate_entry_test.arrival_changed? &&
+        @candidate_entry_test.arrival_was == 'arrived' &&
+        (@candidate_entry_test.apology? || @candidate_entry_test.excused?)
+    end
+
+    def invite_alternate
+      if ( alternate = Candidate.alternate_for_entry_test(entry_test).first )
+        alternate.invite_to!(entry_test)
+        CandidateMailer.entry_test_invitation(alternate, @candidate_entry_test.entry_test).deliver_later
+      end
+    end
+
     def candidates
       @candidates ||= Candidate.for_entry_test.limit(@entry_test.capacity)
     end

@@ -10,6 +10,16 @@ class AdminRole < EgovUtils::UserUtils::Role
 
 end
 
+class AnonymousRole < EgovUtils::UserUtils::Role
+
+  add 'anonymous'
+
+  def define_abilities(ability, user)
+    ability.can :index, EntryTest, state: 'unconfirmed'
+  end
+
+end
+
 
 class CandidateRole < EgovUtils::UserUtils::Role
 

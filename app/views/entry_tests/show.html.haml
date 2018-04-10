@@ -10,6 +10,10 @@
   .label= EntryTest.human_attribute_name('place')
   .value= formatter.formatted_value(attribute, @entry_test)
 .attribute
+  - attribute = schema.attribute('additional_info')
+  .label= EntryTest.human_attribute_name('additional_info')
+  .value= formatter.formatted_value(attribute, @entry_test)
+.attribute
   .label= EntryTest.human_attribute_name('capacity')
   .value= @entry_test.capacity
 

@@ -1,4 +1,5 @@
 .entry-test-attributes{style: 'position: relative;'}
   = form.datetime_field(:time, min: Time.now+2.months)
   = form.select(:place, enum_values_for_select(entry_test.class, :place))
+  = form.text_area(:additional_info)
   = form.number_field(:capacity)

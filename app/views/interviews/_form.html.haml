@@ -30,7 +30,7 @@
     function get_candidates_count(points_boundary, region_court) {
       $.ajax('#{candidates_path('format' => 'json', '_type' => 'count')}', {
           method: 'GET',
-          data: {'f': {'state': 'waiting', 'organization_id': '=|'+region_court.toString(), 'candidate_entry_tests-points': '>=|'+points_boundary.toString()}}
+          data: {'f': {'state': 'waiting', 'organizations': '@>|'+region_court.toString(), 'candidate_entry_tests-points': '>=|'+points_boundary.toString()}}
         }).done( function( data ){
           $('#boundary .candidates-count').text(data.count);
         });

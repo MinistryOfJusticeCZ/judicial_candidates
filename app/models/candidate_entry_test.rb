@@ -35,6 +35,7 @@ class CandidateEntryTest < ApplicationRecord
   end
 
   private
+
     def set_candidate_state
       return unless candidate.invited_to_test?
       if absent?
