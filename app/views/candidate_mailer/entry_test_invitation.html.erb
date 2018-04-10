@@ -8,7 +8,7 @@
   <p>
     dovolujeme si Vám oznámit, že po úspěšném posouzení Vaší registrace Vám byl stanoven termín konání vstupního testu.
     Vstupní test se bude konat dne <%= l(@entry_test.time.to_date) %> v <%= l(@entry_test.time.to_time, format: :time) %> hodin v budově Justiční akademie,
-    <%= formatter.formatted_value(place_attr, @entry_test) %> (pozn. <%= @entry_test.additional_info %>).
+    <%= formatter.formatted_value(place_attr, @entry_test) %><%= " (pozn. #{@entry_test.additional_info})" if !@entry_test.additional_info.blank? %>.
   </p>
   <p>
     Prezence účastníků bude probíhat 30 minut před konáním testu.
