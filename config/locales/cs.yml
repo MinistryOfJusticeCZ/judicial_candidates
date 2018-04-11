@@ -61,6 +61,7 @@ cs:
       birth_date: Datum narození
       phone: Telefon
       graduation_year: Rok promoce
+      title: Titul
       higher_title: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
       diploma: Kopie o dosaženém vysokoškolském právnickém vzdělání
       organizations: Krajské soudy pro přípravnou službu

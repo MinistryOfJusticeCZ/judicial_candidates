@@ -87,7 +87,7 @@ class CandidatesController < ApplicationController
     end
 
     def create_params
-      params.require(:candidate).permit( :birth_date, :phone, :university, :graduation_year, :higher_title, {organizations: [], suborganizations: []}, :shorter_invitation, :agreed_limitations, :diploma)
+      params.require(:candidate).permit( :birth_date, :phone, :university, :graduation_year, :title, :higher_title, {organizations: [], suborganizations: []}, :shorter_invitation, :agreed_limitations, :diploma)
     end
 
     def update_params

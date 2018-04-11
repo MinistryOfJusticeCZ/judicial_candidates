@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180216134928) do
+ActiveRecord::Schema.define(version: 20180411113521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20180216134928) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.integer "position"
+    t.string "title"
     t.index ["deleted_at"], name: "index_candidates_on_deleted_at"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
@@ -116,7 +117,15 @@ ActiveRecord::Schema.define(version: 20180216134928) do
     t.index ["user_id"], name: "index_egov_utils_groups_users_on_user_id"
   end
 
-  create_table "egov_utils_people", force: :cascade do |t|
+  create_table "egov_utils_legal_people", force: :cascade do |t|
+    t.bigint "person_id"
+    t.string "name"
+    t.string "ico"
+    t.integer "legal_form"
+    t.index ["person_id"], name: "index_egov_utils_legal_people_on_person_id"
+  end
+
+  create_table "egov_utils_natural_people", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
     t.date "birth_date"
@@ -124,6 +133,15 @@ ActiveRecord::Schema.define(version: 20180216134928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "birth_place"
+    t.bigint "residence_id"
+    t.bigint "person_id"
+    t.index ["person_id"], name: "index_egov_utils_natural_people_on_person_id"
+    t.index ["residence_id"], name: "index_egov_utils_natural_people_on_residence_id"
+  end
+
+  create_table "egov_utils_people", force: :cascade do |t|
+    t.integer "person_type"
+    t.string "joid"
     t.bigint "residence_id"
     t.index ["residence_id"], name: "index_egov_utils_people_on_residence_id"
   end
@@ -153,6 +171,7 @@ ActiveRecord::Schema.define(version: 20180216134928) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "additional_info"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -174,6 +193,9 @@ ActiveRecord::Schema.define(version: 20180216134928) do
   add_foreign_key "candidates", "egov_utils_users", column: "user_id"
   add_foreign_key "egov_utils_groups_users", "egov_utils_groups", column: "group_id"
   add_foreign_key "egov_utils_groups_users", "egov_utils_users", column: "user_id"
+  add_foreign_key "egov_utils_legal_people", "egov_utils_people", column: "person_id"
+  add_foreign_key "egov_utils_natural_people", "egov_utils_addresses", column: "residence_id"
+  add_foreign_key "egov_utils_natural_people", "egov_utils_people", column: "person_id"
   add_foreign_key "egov_utils_people", "egov_utils_addresses", column: "residence_id"
   add_foreign_key "interviews", "egov_utils_addresses", column: "address_id"
 end

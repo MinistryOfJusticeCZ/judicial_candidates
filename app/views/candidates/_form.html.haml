@@ -1,7 +1,8 @@
 .row
+  .col-12.col-sm-4.col-lg-3= form.text_field(:title)
   = form.fields_for(:user) do |fields|
-    .col-12.col-sm-6= fields.text_field(:fullname, disabled: true)
-    .col-12.col-sm-6= fields.text_field(:mail, disabled: true)
+    .col-12.col-sm-8.col-lg-9= fields.text_field(:fullname, disabled: true)
+    .col-12= fields.text_field(:mail, disabled: true)
 
   .col-12.col-sm-6= form.date_field(:birth_date, min:  Date.new(1920, 1, 1), max: Date.today, data: {'date-view-mode' => 'decades', 'date-use-current' => false, 'date-view-date' => Date.new(1950, 1, 1).to_s })
   .col-12.col-sm-6= form.text_field(:phone)
