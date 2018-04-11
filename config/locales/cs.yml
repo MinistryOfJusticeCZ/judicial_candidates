@@ -87,6 +87,7 @@ cs:
         validation: Čeká na schválení
         rejected: Zamítnutý
         for_entry_test: Čeká na vstupní test
+        invited_to_test: Pozván/a na test
         waiting: Čeká na pohovor
       updated_at: Poslední aktualizace
       university: Vysoká škola
