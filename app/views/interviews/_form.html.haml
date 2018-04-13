@@ -1,5 +1,5 @@
 .interview-attributes{style: 'position: relative;'}
-  = form.datetime_field(:time)
+  = form.datetime_field(:time, min: Time.now+10.days)
   = form.select2(:region_court_id, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, class: 'region-court-select')
   .address
     = check_box_tag('another_address', '1', !!interview.address_id, id: 'another_address_check')
@@ -7,9 +7,17 @@
     .address-attributes.hidden
       = form.fields_for(:address, interview.address || EgovUtils::Address.new) do |fields|
         = render 'egov_utils/addresses/form', form: fields, address: fields.object
-  #boundary
-    = form.number_field(:boundary, class: 'boundary-field')
-    .candidates-count
+  #boundary.boundary
+    = form.check_box(:boundary, class: 'boundary-check', label: t('label_interview_without_test'))
+    .boundary-attributes
+      = form.number_field(:boundary, max: 100, class: 'boundary-field')
+    .candidates
+      .candidates-results
+        %b Bude pozváno uchazečů:
+        %span.candidates-count
+      %em
+        Počet uchazečů se dopočítává automaticky dle vámi zadaných parametrů (Váš soud a nastavení bodové hranice).
+        Pro vytvoření termínu musí být počet uchazečů vyšší než 0.
 
 :javascript
   $(function(){
@@ -27,15 +35,30 @@
       toggle_new_form($address_check_box.is(':checked'))
     });
 
-    function get_candidates_count(points_boundary, region_court) {
+    eGovUtilities.toggableForm($('#boundary .boundary-check'), 'boundary');
+
+    function get_candidates_count(region_court, points_boundary) {
+      var filters = {'state': 'waiting', 'organizations': '@>|'+region_court.toString()};
+      if ( points_boundary ) {
+        $.extend(filters, {'candidate_entry_tests-points': '>=|'+points_boundary.toString()});
+      }
       $.ajax('#{candidates_path('format' => 'json', '_type' => 'count')}', {
           method: 'GET',
-          data: {'f': {'state': 'waiting', 'organizations': '@>|'+region_court.toString(), 'candidate_entry_tests-points': '>=|'+points_boundary.toString()}}
+          data: {'f': filters}
         }).done( function( data ){
           $('#boundary .candidates-count').text(data.count);
+          $('#boundary').closest('form').find('input[type="submit"]').prop('disabled', data.count <= 0)
         });
     }
-    $('#boundary .boundary-field').on('change', function(evt) {
-      get_candidates_count($(this).val(), $('.interview-attributes .region-court-select').val());
+    $('#boundary .boundary-field, #boundary .boundary-check').on('change', function(evt) {
+      var points = null,
+          region_court = $('#boundary').closest('.interview-attributes').find('.region-court-select').val(),
+          $points_field = $('#boundary .boundary-field');
+
+      if( $points_field.is(':enabled') )
+        points = $points_field.val();
+
+      get_candidates_count(region_court, points);
     });
+    get_candidates_count($('#boundary').closest('.interview-attributes').find('.region-court-select').val(), $('#boundary .boundary-field').is('enabled') ? $('#boundary .boundary-field').val() : null);
   });

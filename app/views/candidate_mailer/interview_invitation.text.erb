@@ -1,0 +1,9 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+
+Výběrové řízení se bude konat dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin v budově soudu.
+
+Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
+
+Pro více informací o řízení přejděte do na url: <%= interview_url(@interview) %>.

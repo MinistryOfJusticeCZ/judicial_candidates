@@ -32,9 +32,9 @@ class Candidate < ApplicationRecord
 
   scope :for_entry_test, ->{ where(state: 'for_entry_test').order(:position) }
   scope :for_interview, ->(region_court_id, boundary=nil){
-    # arel_table[:organizations].contains([region_court_id]))
-    res = where(state: 'waiting').where("'#{region_court_id}' = ANY (#{connection.quote_column_name('organizations')})")
-    res = res.joins(:candidate_entry_tests).where(CandidateEntryTest.arel_table[:points].gteq(boundary)) if boundary
+    require 'arel/azahara_postgres_exts'
+    res = where(state: 'waiting').where(arel_table[:organizations].contains([region_court_id]))
+    res = res.joins(:candidate_entry_tests).where(CandidateEntryTest.arel_table[:points].gteq(boundary)) unless boundary.blank?
     res.order(:position)
   }
   scope :alternate_for_entry_test, ->(entry_test){
@@ -47,7 +47,7 @@ class Candidate < ApplicationRecord
     end
   }
 
-  enum state: { incomplete: 0, validation: 1, rejected: 3, blocked: 4, for_entry_test: 10, invited_to_test: 11, waiting: 15 }, _suffix: true
+  enum state: { incomplete: 0, validation: 1, rejected: 3, blocked: 4, for_entry_test: 10, invited_to_test: 11, waiting: 15, invited_to_interview: 16 }, _suffix: true
 
   state_machine do # :initial => :incomplete do - initial is done by default column value
     # before_transition :parked => any - :parked, :do => :put_on_seatbelt
@@ -86,6 +86,10 @@ class Candidate < ApplicationRecord
     event :succeded_entry_test do
       transition invited_to_test: :waiting
     end
+
+    # event :invite_to_interview do
+    #   transition waiting: :invited_to_interview
+    # end
 
     state any - :incomplete do
       validates :university, presence: true

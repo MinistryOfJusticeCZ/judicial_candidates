@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     post :evaluate, on: :member
   end
 
-  resources :interviews
+  resources :interviews do
+    post :evaluate, on: :member
+  end
+
   resources :candidate_entry_tests, only: [:show]
 
   resources :contacts

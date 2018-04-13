@@ -1,0 +1,14 @@
+- candidate_interview = interview.candidate_interviews.find_by(candidate_id: current_candidate.id)
+- if candidate_interview && !interview.passed?
+  - if !%w(apology excused).include?(candidate_interview.arrival)
+    = bootstrap_form_for([interview, candidate_interview]) do |f|
+      = render 'candidate_interviews/form', form: f, candidate_interview: candidate_interview
+      .form-actions
+        = f.submit(t('label_send_apology'))
+  - else
+    %h4= t('label_apology')
+    .apology-text= candidate_interview.apology
+- elsif candidate_interview && interview.passed?
+  .attribute
+    .label= CandidateEntryTest.human_attribute_name('state')
+    .value= candidate_interview.state

@@ -1,5 +1,7 @@
 class InterviewsController < ApplicationController
 
+  layout 'card', except: :index
+
   load_and_authorize_resource
 
   def index
@@ -18,6 +20,9 @@ class InterviewsController < ApplicationController
         format.html { flash[:warning] = t('warning_not_enough_candidates'); render 'new',  layout: !request.xhr? }
         format.json { render json: { errors: [t('warning_not_enough_candidates')] }, status: :unprocessable_entity }
       elsif @interview.save
+        @interview.candidates.each do |candidate|
+          CandidateMailer.interview_invitation(candidate, @interview).deliver_later
+        end
         format.html { redirect_to @interview, notice: t('common_labels.notice_saved', model: @interview.model_name.human) }
         format.json { render json: @interview, status: :created }
       else

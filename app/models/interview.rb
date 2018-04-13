@@ -15,6 +15,14 @@ class Interview < ApplicationRecord
     Candidate.for_interview(region_court_id, boundary)
   end
 
+  def passed?
+    time < Time.now
+  end
+
+  def evaluated?
+    candidate_interviews.all{|ci| !ci.invited? }
+  end
+
   private
     def invite_candidates
       transaction do

@@ -3,6 +3,10 @@ class CandidateInterview < ApplicationRecord
   belongs_to :candidate
   belongs_to :interview
 
+  scope :comming, ->{
+    where( arel_table[:state].in(['invited', 'successful', 'failed']) )
+  }
+
   scope :excuses, ->{
     where( arel_table[:state].eq('excused').or(arel_table[:state].eq('invited').and(arel_table[:apology].not_eq(nil))) )
   }
@@ -12,7 +16,7 @@ class CandidateInterview < ApplicationRecord
       entity.candidate.failed_interview
     end
 
-    after_transition any => :failed do |entity, transition|
+    after_transition any => :absent do |entity, transition|
       entity.candidate.absent_interview
     end
 

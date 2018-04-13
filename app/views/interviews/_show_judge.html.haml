@@ -1,17 +1,37 @@
-%table.table
-  %thead
-    %tr
-      %th= EgovUtils::User.human_attribute_name('fullname')
-  %tbody
-    - interview.candidate_interviews.where(state: 'invited').each do |i_candidate|
-      %tr
-        %td= i_candidate.candidate.user.fullname
+- excuses = interview.candidate_interviews.excuses
+%ul.nav.nav-pills.nav-fill{role: 'tablist'}
+  %li.nav-item
+    %a#candidates_tab.nav-link.active{href: '#candidates', role: 'tab', data: {toggle: 'tab'}}= t('label_invited_candidates')
+  %li.nav-item
+    %a#excuses_tab.nav-link{href: '#excuses', role: 'tab', data: {toggle: 'tab'}}
+      = t('label_excuses')
+      %span.badge.badge-pill.badge-info= excuses.count
 
-%table.table
-  %thead
-    %tr
-      %th= EgovUtils::User.human_attribute_name('fullname')
-  %tbody
-    - interview.candidate_interviews.excuses.each do |i_candidate|
-      %tr
-        %td= i_candidate.candidate.user.fullname
+.tab-content
+  #candidates.tab-pane.fade.show.active{'aria-labelledby' => 'candidates_tab'}
+    = form_tag(evaluate_interview_path(interview)) do
+      %table.table
+        %thead
+          %tr
+            %th= EgovUtils::User.human_attribute_name('fullname')
+            - if interview.passed?
+              %th= CandidateInterview.human_attribute_name('success')
+        %tbody
+          - interview.candidate_interviews.comming.preload(candidate: :user).each do |candidate_interview|
+            %tr
+              %td= candidate_interview.candidate.user.fullname
+              - if interview.passed?
+                %td
+                  = hidden_field_tag("interview[candidate_entry_tests_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
+                  = check_box_tag("interview[candidate_entry_tests_attributes][#{candidate_interview.id}][state]", 'successful', candidate_interview.successful?, class: 'test-absent-checkbox', disabled: interview.evaluated?)
+
+  #excuses.tab-pane{'aria-labelledby' => 'excuses_tab'}
+    %table.table
+      %thead
+        %tr
+          %th= EgovUtils::User.human_attribute_name('fullname')
+      %tbody
+        - excuses.each do |candidate_interview|
+          %tr
+            %td= candidate_interview.candidate.user.fullname
+

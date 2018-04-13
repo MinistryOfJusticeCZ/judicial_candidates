@@ -15,7 +15,7 @@ class AnonymousRole < EgovUtils::UserUtils::Role
   add 'anonymous'
 
   def define_abilities(ability, user)
-    ability.can :index, EntryTest, state: 'unconfirmed'
+    ability.can :index, EntryTest, state: ['unconfirmed', 'listed']
   end
 
 end

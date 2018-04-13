@@ -1,3 +1,13 @@
-= l( @interview.time )
+- content_for(:heading) do
+  %h2= Interview.model_name.human
+
+- formatter = attribute_formatter_for(schema = InterviewSchema.new)
+.attribute
+  .label= Interview.human_attribute_name('time')
+  .value= l( @interview.time )
+.attribute
+  - attribute = schema.attribute('region_court_id')
+  .label= Interview.human_attribute_name('region_court_id')
+  .value= EgovUtils::Organization.where(id: @interview.region_court_id).first.try(:name) #formatter.formatted_value(attribute, @interview)
 
 = role_based_render('interviews/show', interview: @interview)

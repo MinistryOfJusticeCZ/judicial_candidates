@@ -16,6 +16,9 @@
 
   .tab-content
     #candidates.tab-pane.fade.show.active{'aria-labelledby' => 'candidates_tab'}
+      - candidate_tests_schema = CandidateEntryTestSchema.new(columns: ['candidate-user-mail', 'candidate-title', 'candidate-user-firstname', 'candidate-user-lastname', 'candidate-higher_title'].concat(entry_test.passed? ? ['absent', 'points'] : []))
+      - candidate_tests_schema.add_filter('entry_test_id', '=', entry_test.id)
+      - candidate_tests_schema.default_scope = 'comming'
       = form_tag(evaluate_entry_test_path(entry_test)) do
         %table.table
           %thead
@@ -25,7 +28,7 @@
                 %th= CandidateEntryTest.human_attribute_name('absent')
                 %th= CandidateEntryTest.human_attribute_name('points')
           %tbody
-            - entry_test.candidate_entry_tests.comming.preload(candidate: :user).each do |candidate_test|
+            - candidate_tests_schema.entities.each do |candidate_test|
               %tr
                 %td= candidate_test.candidate.user.fullname
                 - if entry_test.passed?
@@ -37,10 +40,14 @@
           = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
           :javascript
             $(function(){
-              $('.test-absent-checkbox').on('change', function(evt){
+              $('#candidates .test-absent-checkbox').on('change', function(evt){
                 $(this).closest('tr').find('.test-points :input').prop('disabled', $(this).is(':checked'))
               });
             });
+      .exports.text-right
+        = link_to entry_test_candidate_entry_tests_path(entry_test, candidate_tests_schema.to_param.merge(format: :csv)) do
+          %i.fa.fa-file-o
+          = t('label_export_as', as: 'CSV')
 
     #excuses.tab-pane{'aria-labelledby' => 'excuses_tab'}
       %table.table

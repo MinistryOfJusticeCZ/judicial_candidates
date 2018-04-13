@@ -33,6 +33,7 @@ cs:
   label_registration_confirmation: potvrzení registrace
   label_file_not_found: Soubor nenalezen
   label_announced_tests: Vyhlášené termíny
+  label_interview_without_test: Termín bez písemného testu
   notice_excuse_sent: Omluvenka zaslána
   success_evaluation: Vyhodnocení uloženo
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.
@@ -62,7 +63,7 @@ cs:
       phone: Telefon
       graduation_year: Rok promoce
       title: Titul
-      higher_title: V případě dosažení vědeckých nebo vědecko-pedagogických hodností zaškrtněte
+      higher_title: V případě dosažení vědeckých nebo vědecko-pedagogických hodností
       diploma: Kopie o dosaženém vysokoškolském právnickém vzdělání
       organizations: Krajské soudy pro přípravnou službu
       suborganizations: Preferované okresní soudy pro přípravnou službu

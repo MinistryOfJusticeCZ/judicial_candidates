@@ -8,14 +8,13 @@ GIT
 PATH
   remote: ../azahara_schema
   specs:
-    azahara_schema (0.3.2)
-      postgres_ext (~> 3.0)
+    azahara_schema (0.3.3)
       rails (~> 5.1)
 
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.3.1)
+    egov_utils (0.3.2)
       activeresource (~> 5.0)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
@@ -100,8 +99,8 @@ GEM
       gyoku (>= 0.4.0)
       nokogiri
     arel (8.0.0)
-    audited (4.7.0)
-      activerecord (>= 4.0, < 5.2)
+    audited (4.7.1)
+      activerecord (>= 4.0, < 5.3)
     autoprefixer-rails (8.2.0)
       execjs
     bcrypt (3.1.11)
@@ -224,13 +223,8 @@ GEM
     paranoia (2.4.0)
       activerecord (>= 4.0, < 5.2)
     pg (0.21.0)
-    pg_array_parser (0.0.9)
-    phonelib (0.6.20)
+    phonelib (0.6.21)
     popper_js (1.12.9)
-    postgres_ext (3.0.0)
-      activerecord (>= 4.0.0)
-      arel (>= 4.0.1)
-      pg_array_parser (~> 0.0.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -362,7 +356,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.8)
+    uglifier (4.1.9)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.0)
       kgio (~> 2.6)

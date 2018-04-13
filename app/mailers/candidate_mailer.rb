@@ -23,4 +23,9 @@ class CandidateMailer < ApplicationMailer
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na vstupní test')
   end
 
+  def interview_invitation(candidate, interview)
+    @candidate, @interview = candidate, interview
+    mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na Výběrové řízení')
+  end
+
 end
