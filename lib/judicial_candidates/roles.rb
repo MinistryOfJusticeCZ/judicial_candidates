@@ -26,12 +26,12 @@ class CandidateRole < EgovUtils::UserUtils::Role
   add 'candidate'
 
   def define_abilities(ability, user)
-
     ability.can :create, Candidate unless Candidate.where(user_id: user.id).exists?
     ability.can :read, Candidate, user_id: user.id
     ability.can :manage, Candidate, user_id: user.id, state: Candidate.states[:incomplete]
     ability.can :read, EntryTest, candidate_entry_tests: { candidate: { user_id: user.id } }
     ability.can :read, CandidateEntryTest, candidate: { user_id: user.id }
+    ability.can :update, CandidateEntryTest, candidate: { user_id: user.id }
     # ability.can :manage, CandidateEntryTest, CandidateEntryTest.comming.joins(:candidate).where(Candidate.arel_table[:user_id].eq(user.id))
     ability.can :read, Interview, candidate_interviews: { candidate: { user_id: user.id } }
   end
@@ -67,7 +67,12 @@ class JudgeRole < EgovUtils::UserUtils::Role
   add 'judge'
 
   def define_abilities(ability, user)
+    # if (org_keys = user.organization_with_suborganizations_keys).any?
+    #   ability.can :create, Interview
+    #   ability.can :manage, Interview, region_court_id: org_keys
+    # else
     ability.can :manage, Interview #TODO: jen jeho okrsek
+    ability.can :reject_apology, CandidateInterview
   end
 
 end
