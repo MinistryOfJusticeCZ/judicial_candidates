@@ -1,0 +1,19 @@
+<% formatter = AzaharaSchema::AttributeFormatter.formatter_for(EntryTest).new((schema = EntryTestSchema.new), self) %>
+<% place_attr = schema.attribute('place') %>
+
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+
+
+dovolujeme si Vám oznámit, že došlo ke změně termínu konání vstupního testu dne <%= l(@audit.audited_changes['time'].to_date) %> v <%= l(@audit.audited_changes['time'].to_time, format: :time) %> hodin, a to na den <%= l(@entry_test.time.to_date) %> v <%= l(@entry_test.time.to_time, format: :time) %> hodin. Původní termín byl z organizačních důvodů zrušen.
+
+Vstupní test se bude konat v budově Justiční akademie, <%= formatter.formatted_value(place_attr, @entry_test) %><%= " (pozn. #{@entry_test.additional_info})" if !@entry_test.additional_info.blank? %>.
+
+<% if @audit.comment %>
+<% @audit.comment %>
+<% end %>
+
+Pro více informací o termínu přejděte na tuto url adresu: <%= entry_test_url(@entry_test) %>.
+
+Za případné komplikace se omlouváme.

@@ -1,0 +1,20 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+
+<div>
+  <p>
+    dovolujeme si Vám oznámit, že termín konání vstupního testu dne <%= l(@audit.audited_changes['time'].to_date) %> v <%= l(@audit.audited_changes['time'].to_time, format: :time) %> hodin byl z organizačních důvodů zrušen.
+  </p>
+  <p>
+    O novém termínu konání vstupního testu budete včas informován.
+  </p>
+  <% if @audit.comment %>
+    <p>
+      <% @audit.comment %>
+    </p>
+  <% end %>
+  <p>
+    Za případné komplikace se omlouváme.
+  </p>
+</div>

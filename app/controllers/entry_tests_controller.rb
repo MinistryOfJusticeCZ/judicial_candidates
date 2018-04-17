@@ -44,6 +44,9 @@ class EntryTestsController < ApplicationController
   def destroy
     @entry_test.destroy
     respond_to do |format|
+      @entry_test.candidates.each do |candidate|
+        CandidateMailer.entry_test_cancel(candidate, @entry_test.audits.last).deliver_later
+      end
       format.html { redirect_to entry_tests_path, notice: t('common_labels.notice_destroyed', model: @entry_test.model_name.human) }
       format.json { head :ok }
     end
