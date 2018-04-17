@@ -55,6 +55,14 @@ class InterviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @interview.destroy
+    respond_to do |format|
+      format.html { redirect_to interviews_path, notice: t('common_labels.notice_destroyed', model: @interview.model_name.human) }
+      format.json { head :ok }
+    end
+  end
+
   def evaluate
     respond_to do |format|
       if @interview.evaluate!(evaluate_params)

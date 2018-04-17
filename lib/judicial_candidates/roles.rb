@@ -67,12 +67,13 @@ class JudgeRole < EgovUtils::UserUtils::Role
   add 'judge'
 
   def define_abilities(ability, user)
-    # if (org_keys = user.organization_with_suborganizations_keys).any?
-    #   ability.can :create, Interview
-    #   ability.can :manage, Interview, region_court_id: org_keys
-    # else
-    ability.can :manage, Interview #TODO: jen jeho okrsek
-    ability.can :reject_apology, CandidateInterview
+    if user.organization_id
+      ability.can :manage, Interview, region_court_id: user.organization_id
+      ability.can :reject_apology, CandidateInterview, {interview: { region_court_id: user.organization_id }}
+    else
+      ability.can :manage, Interview
+      ability.can :reject_apology, CandidateInterview
+    end
   end
 
 end
