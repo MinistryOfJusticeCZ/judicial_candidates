@@ -9,6 +9,8 @@ class Interview < ApplicationRecord
 
   validates :boundary, numericality: true, allow_nil: true
   validates :time, presence: true
+  validates :time, inclusion: {in: ->(t){ (Time.now+14.days..Time.now+5.years) }}, on: :create
+  validates :time, inclusion: {in: ->(t){ (Time.now..Time.now+5.years) }}, on: :update
 
   acts_as_paranoid
   audited

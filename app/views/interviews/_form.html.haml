@@ -1,5 +1,5 @@
 .interview-attributes{style: 'position: relative;'}
-  = form.datetime_field(:time, min: Time.now+10.days)
+  = form.datetime_field(:time, min: Time.now+14.days)
   = form.select2(:region_court_id, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, class: 'region-court-select')
   .address
     .form-check
