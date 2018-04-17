@@ -1,6 +1,6 @@
 class EntryTest < ApplicationRecord
 
-  has_many :candidate_entry_tests
+  has_many :candidate_entry_tests, dependent: :destroy
   has_many :candidates, through: :candidate_entry_tests
 
   validates :time, presence: true

@@ -1,7 +1,7 @@
 class Interview < ApplicationRecord
   # belongs_to :region_court, class_name: 'Organization' #it is love
   belongs_to :address, class_name: 'EgovUtils::Address', optional: true
-  has_many :candidate_interviews
+  has_many :candidate_interviews, dependent: :destroy
   has_many :excused_candidate_interviews, ->{ excuses }, class_name: 'CandidateInterview'
   has_many :candidates, through: :candidate_interviews
 

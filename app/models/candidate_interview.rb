@@ -15,6 +15,8 @@ class CandidateInterview < ApplicationRecord
     all
   }
 
+  audited
+
   state_machine :initial => :invited do
     after_transition any => :failed do |entity, transition|
       entity.candidate.failed_interview!(entity)

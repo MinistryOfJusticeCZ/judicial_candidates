@@ -10,6 +10,8 @@ class CandidateEntryTest < ApplicationRecord
   scope :apologized, ->{ where(arrival: [:apology, :excused]) }
   scope :valid, ->{ all }
 
+  audited
+
   after_save :set_candidate_state, if: :test_evaluated?
 
   def apology=(text)
