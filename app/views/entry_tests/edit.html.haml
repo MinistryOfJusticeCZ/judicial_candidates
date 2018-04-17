@@ -1,0 +1,8 @@
+- content_for(:heading) do
+  %h2= t('label_edit') + ' ' + EntryTest.model_name.human
+
+= bootstrap_form_for(@entry_test) do |f|
+  = render 'entry_tests/form', form: f, entry_test: @entry_test
+  = f.text_area(:audit_comment)
+  .form-actions
+    = f.submit

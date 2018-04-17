@@ -24,6 +24,23 @@ class EntryTestsController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    respond_to do |format|
+      if @entry_test.update(update_params)
+        @entry_test.candidates.each do |candidate|
+          CandidateMailer.entry_test_update(candidate, @entry_test, @entry_test.audits.last).deliver_later
+        end
+        format.html{ redirect_to @entry_test }
+      else
+        format.html{ render 'new' }
+      end
+    end
+  end
+
   def evaluate
     respond_to do |format|
       if @entry_test.evaluate!(evaluate_params)
@@ -43,6 +60,10 @@ class EntryTestsController < ApplicationController
 
     def create_params
       params.require(:entry_test).permit(:time, :place, :capacity, :additional_info)
+    end
+
+    def update_params
+      params.require(:entry_test).permit(:time, :place, :additional_info, :audit_comment)
     end
 
     def evaluate_params

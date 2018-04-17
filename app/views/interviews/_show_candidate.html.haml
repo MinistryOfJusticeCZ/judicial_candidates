@@ -1,14 +1,23 @@
 - candidate_interview = interview.candidate_interviews.find_by(candidate_id: current_candidate.id)
-- if candidate_interview && !interview.passed?
-  - if !%w(apology excused).include?(candidate_interview.arrival)
+- if candidate_interview
+  .attribute
+    .label= CandidateInterview.human_attribute_name('state')
+    .value= azahara_attribute_for(CandidateInterview, 'state').attribute_name.human_list_value(candidate_interview.state)
+
+  - if candidate_interview.apology.blank? && interview.time > Time.now
     = bootstrap_form_for([interview, candidate_interview]) do |f|
       = render 'candidate_interviews/form', form: f, candidate_interview: candidate_interview
       .form-actions
         = f.submit(t('label_send_apology'))
   - else
-    %h4= t('label_apology')
-    .apology-text= candidate_interview.apology
-- elsif candidate_interview && interview.passed?
-  .attribute
-    .label= CandidateEntryTest.human_attribute_name('state')
-    .value= candidate_interview.state
+    - if candidate_interview.compensatory?
+      .attribute
+        .label= Interview.human_attribute_name('compensatory')
+        .value= l(interview.compensatory)
+    - if !candidate_interview.apology.blank?
+      %h4= CandidateInterview.human_attribute_name('apology')
+      .row
+        .col-8.apology-text= candidate_interview.apology
+        - if candidate_interview.absent?
+          .col-4.apology-status.bg-warning
+            %b= t('notice_apology_refused')

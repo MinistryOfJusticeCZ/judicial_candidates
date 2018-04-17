@@ -55,6 +55,7 @@ class CandidateEntryTestsController < ApplicationController
     end
 
     def update_params
+      # WARNING: if more allowed attributes, check candidate role permissions for update
       params.require(:candidate_entry_test).permit(:apology)
     end
 

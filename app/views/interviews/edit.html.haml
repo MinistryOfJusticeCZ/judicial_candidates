@@ -1,0 +1,8 @@
+- content_for(:heading) do
+  %h2= t('label_edit') + ' ' + Interview.model_name.human
+
+= bootstrap_form_for(@interview) do |f|
+  .interview-attributes{style: 'position: relative;'}
+    = f.datetime_field(:time, min: Time.now)
+  .form-actions
+    = f.submit

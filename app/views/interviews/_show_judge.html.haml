@@ -1,15 +1,25 @@
-- excuses = interview.candidate_interviews.excuses
-%ul.nav.nav-pills.nav-fill{role: 'tablist'}
+- unless interview.time < Time.now
+  .entry-test-actions.mb-3.row
+    .col-12
+      = link_to(t('label_edit'), edit_interview_path(interview), class: 'btn btn-secondary')
+      = link_to(t('label_cancel') + ' ' + Interview.model_name.human.downcase, '#delete', class: 'ml-3', role: 'button', 'aria-expanded' => 'false', 'aria-controls' => 'delete', data: {toggle: 'collapse'} )
+    #delete.collapse.col-12
+      = bootstrap_form_for(interview, url: interview_path(interview), method: :delete) do |f|
+        = f.text_area(:audit_comment)
+        .form-actions
+          = f.submit t('label_cancel') + ' ' + Interview.model_name.human.downcase, data: { confirm: t('text_confirmation') }, class: 'btn btn-warning'
+
+%ul.nav.nav-tabs{role: 'tablist'}
   %li.nav-item
     %a#candidates_tab.nav-link.active{href: '#candidates', role: 'tab', data: {toggle: 'tab'}}= t('label_invited_candidates')
   %li.nav-item
     %a#excuses_tab.nav-link{href: '#excuses', role: 'tab', data: {toggle: 'tab'}}
       = t('label_excuses')
-      %span.badge.badge-pill.badge-info= excuses.count
+      %span.badge.badge-pill.badge-info= interview.excused_candidate_interviews.size
 
 .tab-content
   #candidates.tab-pane.fade.show.active{'aria-labelledby' => 'candidates_tab'}
-    = form_tag(evaluate_interview_path(interview)) do
+    = bootstrap_form_tag(url: evaluate_interview_path(interview)) do
       %table.table
         %thead
           %tr
@@ -22,16 +32,28 @@
               %td= candidate_interview.candidate.user.fullname
               - if interview.passed?
                 %td
-                  = hidden_field_tag("interview[candidate_entry_tests_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
-                  = check_box_tag("interview[candidate_entry_tests_attributes][#{candidate_interview.id}][state]", 'successful', candidate_interview.successful?, class: 'test-absent-checkbox', disabled: interview.evaluated?)
+                  = hidden_field_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
+                  = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']]), disabled: interview.evaluated?)
+      - if interview.passed? && !interview.evaluated?
+        = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
 
   #excuses.tab-pane{'aria-labelledby' => 'excuses_tab'}
+    - if interview.time < Time.now && interview.excused_candidate_interviews.size > 0
+      = bootstrap_form_for(interview, layout: :inline, html: {class: 'm-3'}) do |f|
+        = f.datetime_field(:compensatory)
+        .form-actions.ml-2
+          = f.submit('Pozvat uchazeče')
     %table.table
       %thead
         %tr
           %th= EgovUtils::User.human_attribute_name('fullname')
+          %th= CandidateInterview.human_attribute_name('apology')
+          %th= t('label_actions')
       %tbody
-        - excuses.each do |candidate_interview|
+        - interview.excused_candidate_interviews.each do |candidate_interview|
           %tr
             %td= candidate_interview.candidate.user.fullname
-
+            %td= candidate_interview.apology
+            %td
+              - if candidate_interview.invited?
+                = button_to(t('label_reject_apology'), reject_apology_interview_candidate_interview_path(interview, candidate_interview), class: 'btn btn-sm btn-warning', data: { confirm: "Opravdu zamítnout omluvenku kandidáta #{candidate_interview.candidate.user.fullname}?" })

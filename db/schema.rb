@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411113521) do
+ActiveRecord::Schema.define(version: 20180416111938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,8 @@ ActiveRecord::Schema.define(version: 20180411113521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "additional_info"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_entry_tests_on_deleted_at"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -182,7 +184,9 @@ ActiveRecord::Schema.define(version: 20180411113521) do
     t.datetime "compensatory"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["address_id"], name: "index_interviews_on_address_id"
+    t.index ["deleted_at"], name: "index_interviews_on_deleted_at"
     t.index ["region_court_id"], name: "index_interviews_on_region_court_id"
   end
 

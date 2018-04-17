@@ -1,3 +1,6 @@
+- content_for(:heading) do
+  %h2= t('label_create') + ' ' + Interview.model_name.human
+
 = bootstrap_form_for(@interview) do |f|
   = render 'interviews/form', form: f, interview: @interview
   .form-actions

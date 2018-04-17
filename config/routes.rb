@@ -17,10 +17,15 @@ Rails.application.routes.draw do
   end
 
   resources :interviews do
+    resources :candidate_interviews, only: [:index, :update] do
+      post :reject_apology, on: :member
+      post :accept_apology, on: :member
+    end
     post :evaluate, on: :member
   end
 
   resources :candidate_entry_tests, only: [:show]
+  resources :candidate_interviews, only: [:show]
 
   resources :contacts
 

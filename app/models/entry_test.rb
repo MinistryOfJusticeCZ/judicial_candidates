@@ -11,6 +11,9 @@ class EntryTest < ApplicationRecord
 
   accepts_nested_attributes_for :candidate_entry_tests
 
+  acts_as_paranoid
+  audited
+
   state_machine :initial => :unconfirmed do
     # before_transition :parked => any - :parked, :do => :put_on_seatbelt
     # after_transition any => :parked do |vehicle, transition|

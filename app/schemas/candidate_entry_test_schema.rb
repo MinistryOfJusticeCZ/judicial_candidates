@@ -9,7 +9,7 @@ class CandidateEntryTestSchema < AzaharaSchema::ModelSchema
   end
 
   def default_sort
-    {'time' => :desc}
+    {'entry_test-time' => :desc}
   end
 
   def default_outputs

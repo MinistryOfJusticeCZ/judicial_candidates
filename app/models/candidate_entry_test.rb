@@ -8,6 +8,7 @@ class CandidateEntryTest < ApplicationRecord
 
   scope :comming, ->{ where(arel_table[:arrival].eq(nil).or(arel_table[:arrival].lteq(2))) }
   scope :apologized, ->{ where(arrival: [:apology, :excused]) }
+  scope :valid, ->{ all }
 
   after_save :set_candidate_state, if: :test_evaluated?
 

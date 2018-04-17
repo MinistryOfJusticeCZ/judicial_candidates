@@ -81,4 +81,4 @@
         = bootstrap_form_for(@candidate, url: candidate_path(@candidate), method: :delete) do |f|
           = f.text_area(:audit_comment)
           .form-actions
-            = f.submit t('label_delete'), data: { confirm: t('text_confirmation'), class: 'btn btn-warning' }
+            = f.submit t('label_delete'), data: { confirm: t('text_confirmation') }, class: 'btn btn-warning'

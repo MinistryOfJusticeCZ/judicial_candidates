@@ -28,13 +28,17 @@ cs:
   label_edit_candidate: Úprava profilu
   label_excuses: Omluvenky
   label_contacts: Kontakty
+  label_cancel: Zrušit
   label_about: O aplikaci
   label_another_holding_place: Místo konání se liší
   label_registration_confirmation: potvrzení registrace
   label_file_not_found: Soubor nenalezen
   label_announced_tests: Vyhlášené termíny
+  label_interview_with_test: Termín s písemným testem
   label_interview_without_test: Termín bez písemného testu
+  label_reject_apology: Zamítnout
   notice_excuse_sent: Omluvenka zaslána
+  notice_apology_refused: Omluva zamítnuta
   success_evaluation: Vyhodnocení uloženo
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.
   text_confirmation: Opravdu chcete provést tuto akci?
@@ -109,12 +113,23 @@ cs:
         apology: Omlouvá se
         excused: Omluven
         absent: Nedorazil/a
+    candidate_interview:
+      apology: Omluva
+      state: Stav
+      success: Úspěšný kandidát
+      states:
+        invited: Pozván
+        compensatory: Pozván na náhradní
+        absent: Nedostavil/a se
+        successful: Úspěšný
+        failed: Neúspěšný
     entry_test:
       time: Čas konání
       capacity: Kapacita
       place: Místo
       state: Stav
       additional_info: Dodatečné informace
+      audit_comment: Důvod
       places:
         kromerizA: Justiční akademie, Budova A, Masarykovo nám. 183, Kroměříž
         kromerizB: Justiční akademie, Budova B, nám. Míru 517, Kroměříž
@@ -125,6 +140,9 @@ cs:
       time: Čas konání
       boundary: Bodová hranice
       region_court_id: Pořádající soud
+      compensatory: Náhradní termín
+      interview_type: Typ termínu
+      audit_comment: Důvod
 
   model_help_messages: &my_help_messages
     claim:

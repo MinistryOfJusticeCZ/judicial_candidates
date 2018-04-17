@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
       if current_candidate && !current_candidate.incomplete?
         @entry_tests = CandidateEntryTestSchema.new
         @entry_tests.visibility_scope!(current_ability)
-        @interviews = InterviewSchema.new
+        @interviews = CandidateInterviewSchema.new
         @interviews.visibility_scope!(current_ability)
         render('index_candidate')
       else

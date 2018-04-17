@@ -23,9 +23,30 @@ class CandidateMailer < ApplicationMailer
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na vstupní test')
   end
 
+  #TODO
+  def entry_test_update(candidate, entry_test, audit)
+    @candidate, @entry_test, @audit = candidate, entry_test, audit
+    mail(to: candidate.user.mail, subject: t(:app_name) + ' – vstupní test byl změněn')
+  end
+
   def interview_invitation(candidate, interview)
     @candidate, @interview = candidate, interview
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na Výběrové řízení')
+  end
+
+  def interview_not_invited(candidate, interview)
+    @candidate, @interview = candidate, interview
+    mail(to: candidate.user.mail, subject: t(:app_name) + ' – konané Výběrové řízení')
+  end
+
+  def interview_compensatory_invitation(candidate, interview)
+    @candidate, @interview = candidate, interview
+    mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na náhradní Výběrové řízení')
+  end
+
+  def interview_evaluation(candidate_interview)
+    @candidate_interview = candidate_interview
+    mail(to: candidate.user.mail, subject: t(:app_name) + ' – výsledek pohovoru')
   end
 
 end

@@ -1,3 +1,14 @@
+- unless entry_test.passed?
+  .entry-test-actions.mb-3.row
+    .col-12
+      = link_to(t('label_edit'), edit_entry_test_path(entry_test), class: 'btn btn-secondary')
+      = link_to(t('label_cancel') + ' ' + EntryTest.model_name.human.downcase, '#delete', class: 'ml-3', role: 'button', 'aria-expanded' => 'false', 'aria-controls' => 'delete', data: {toggle: 'collapse'} )
+    #delete.collapse.col-12
+      = bootstrap_form_for(entry_test, url: entry_test_path(entry_test), method: :delete) do |f|
+        = f.text_area(:audit_comment)
+        .form-actions
+          = f.submit t('label_cancel') + ' ' + EntryTest.model_name.human.downcase, data: { confirm: t('text_confirmation') }, class: 'btn btn-warning'
+
 - if entry_test.unconfirmed?
   = form_tag(entry_test_candidate_entry_tests_path(entry_test)) do
     .form-group
@@ -6,7 +17,7 @@
     = submit_tag(t('label_publish_and_invite'), class: 'btn btn-primary')
 - else
   - excuses = entry_test.candidate_entry_tests.apologized.preload(candidate: :user)
-  %ul.nav.nav-pills.nav-fill{role: 'tablist'}
+  %ul.nav.nav-tabs{role: 'tablist'}
     %li.nav-item
       %a#candidates_tab.nav-link.active{href: '#candidates', role: 'tab', data: {toggle: 'tab'}}= t('label_invited_candidates')
     %li.nav-item

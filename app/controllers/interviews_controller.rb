@@ -23,6 +23,9 @@ class InterviewsController < ApplicationController
         @interview.candidates.each do |candidate|
           CandidateMailer.interview_invitation(candidate, @interview).deliver_later
         end
+        @interview.not_invited_candidates.each do |candidate|
+          CandidateMailer.interview_not_invited(candidate, @interview).deliver_later
+        end
         format.html { redirect_to @interview, notice: t('common_labels.notice_saved', model: @interview.model_name.human) }
         format.json { render json: @interview, status: :created }
       else
@@ -32,9 +35,50 @@ class InterviewsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @interview.update(update_params)
+        if @interview.compensatory?
+          @interview.candidate_interviews.where(state: 'compensatory').each do |candidate_interview|
+            CandidateMailer.interview_compensatory_invitation(candidate_interview.candidate, @interview).deliver_later
+          end
+        end
+        format.html { redirect_to @interview, notice: t('common_labels.notice_saved', model: @interview.model_name.human) }
+        format.json { render json: @interview }
+      else
+        format.html { redirect_to @interview, warning: @interview.errors.full_messages.join('\n') }
+        format.json { render json: { errors: @interview.errors.full_messages }, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def evaluate
+    respond_to do |format|
+      if @interview.evaluate!(evaluate_params)
+        @interview.candidate_interviews.each do |candidate_interview|
+          CandidateMailer.interview_evaluation(candidate_interview).deliver_later
+        end
+        format.html{ redirect_to @interview, notice: t('success_evaluation') }
+      else
+        format.html{ render 'show' }
+      end
+    end
+  end
+
   private
     def create_params
       params.require(:interview).permit(:time, :region_court_id, :boundary, {address_attributes: [:street, :house_number, :orientation_number, :city, :region, :district, :postcode]})
+    end
+
+    def update_params
+      params.require(:interview).permit(:time, :compensatory)
+    end
+
+    def evaluate_params
+      params.require(:interview).permit(candidate_interviews_attributes: [:id, :state])
     end
 
 end

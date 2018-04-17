@@ -87,6 +87,10 @@ class Candidate < ApplicationRecord
       transition invited_to_test: :waiting
     end
 
+    event :absent_second_interview do
+      transition waiting: :for_entry_test
+    end
+
     # event :invite_to_interview do
     #   transition waiting: :invited_to_interview
     # end
@@ -108,6 +112,17 @@ class Candidate < ApplicationRecord
 
   def invite_to!(entry_test)
     candidate_entry_tests.create(entry_test: entry_test) && invite_to_test
+  end
+
+  def absent_interview!(interview)
+    absent_interviews = candidate_interviews.valid.where(state: 'absent').where.not(interview_id: interview.id)
+    if absent_interviews.count >= 1
+      self.absent_second_interview
+    end
+  end
+
+  def failed_interview!(interview)
+    # TODO: nothing?
   end
 
   private
