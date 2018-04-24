@@ -51,7 +51,8 @@ class CandidateMailer < ApplicationMailer
 
   def interview_evaluation(candidate_interview)
     @candidate_interview = candidate_interview
-    mail(to: candidate.user.mail, subject: t(:app_name) + ' – výsledek pohovoru')
+    @candidate = candidate_interview.candidate
+    mail(to: @candidate.user.mail, subject: t(:app_name) + ' – výsledek pohovoru')
   end
 
 end

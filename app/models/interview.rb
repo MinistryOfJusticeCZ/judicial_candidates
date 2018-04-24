@@ -10,7 +10,7 @@ class Interview < ApplicationRecord
   validates :boundary, numericality: true, allow_nil: true
   validates :time, presence: true
   validates :time, inclusion: {in: ->(t){ (Time.now+14.days..Time.now+5.years) }}, on: :create
-  validates :time, inclusion: {in: ->(t){ (Time.now..Time.now+5.years) }}, on: :update
+  validates :time, inclusion: {in: ->(t){ (Time.now..Time.now+5.years) }}, on: :update, if: :time_changed?
 
   acts_as_paranoid
   audited
@@ -35,7 +35,7 @@ class Interview < ApplicationRecord
   end
 
   def evaluated?
-    candidate_interviews.all?{|ci| !ci.invited? && !ci.compensatory? }
+    @evaluated ||= candidate_interviews.all?{|ci| !ci.invited? && !ci.compensatory? }
   end
 
   def evaluate!(state_params)
