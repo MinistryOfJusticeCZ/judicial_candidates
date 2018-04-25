@@ -65,7 +65,9 @@
         %thead
           %tr
             %th= EgovUtils::User.human_attribute_name('fullname')
+            %th= CandidateEntryTest.human_attribute_name('apology')
         %tbody
           - excuses.each do |candidate_test|
             %tr
               %td= candidate_test.candidate.user.fullname
+              %td= candidate_test.apology

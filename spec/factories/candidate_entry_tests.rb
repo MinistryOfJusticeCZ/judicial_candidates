@@ -5,9 +5,5 @@ FactoryBot.define do
     points nil
     arrival 'arrived'
     apology nil
-
-    before(:create) do |evaluator, model|
-      model.candidate.state = 'invited_to_test'
-    end
   end
 end

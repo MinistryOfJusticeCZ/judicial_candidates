@@ -44,7 +44,7 @@ class CandidateEntryTest < ApplicationRecord
       if absent?
         candidate.absent_on_test
       elsif apology? || excused?
-        candidate.excused_on_entry_test
+        candidate.excuse_on_entry_test!(entry_test)
       elsif test_evaluated?
         candidate.succeded_entry_test
       end

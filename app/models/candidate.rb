@@ -117,8 +117,12 @@ class Candidate < ApplicationRecord
   def absent_interview!(interview)
     absent_interviews = candidate_interviews.valid.where(state: 'absent').where.not(interview_id: interview.id)
     if absent_interviews.count >= 1
-      self.absent_second_interview
+      update(state: 'for_entry_test', position: nil)
     end
+  end
+
+  def excuse_on_entry_test!(entry_test)
+    update(state: 'for_entry_test', position: nil)
   end
 
   def failed_interview!(interview)
