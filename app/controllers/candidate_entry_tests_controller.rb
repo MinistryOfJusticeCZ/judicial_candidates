@@ -39,7 +39,7 @@ class CandidateEntryTestsController < ApplicationController
 
     def invite_alternate?
       @candidate_entry_test.saved_change_to_arrival? &&
-        [nil, 'arrived'].include?(@candidate_entry_test.arrival_before_last_save) &&
+        [nil, 'invited', 'arrived'].include?(@candidate_entry_test.arrival_before_last_save) &&
         (@candidate_entry_test.apology? || @candidate_entry_test.excused?)
     end
 

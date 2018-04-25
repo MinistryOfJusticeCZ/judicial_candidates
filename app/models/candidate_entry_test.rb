@@ -4,7 +4,7 @@ class CandidateEntryTest < ApplicationRecord
 
   validates :candidate_id, uniqueness: { scope: :entry_test_id }
 
-  enum arrival: {arrived: 1, absent: 2, apology: 3, excused: 4}
+  enum arrival: {arrived: 0, invited: 1, absent: 2, apology: 3, excused: 4}
 
   scope :comming, ->{ where(arel_table[:arrival].eq(nil).or(arel_table[:arrival].lteq(2))) }
   scope :apologized, ->{ where(arrival: [:apology, :excused]) }
@@ -12,7 +12,7 @@ class CandidateEntryTest < ApplicationRecord
 
   audited
 
-  after_save :set_candidate_state, if: :test_evaluated?
+  after_save :set_candidate_state
 
   def apology=(text)
     super
@@ -45,7 +45,7 @@ class CandidateEntryTest < ApplicationRecord
         candidate.absent_on_test
       elsif apology? || excused?
         candidate.excused_on_entry_test
-      else
+      elsif test_evaluated?
         candidate.succeded_entry_test
       end
     end
