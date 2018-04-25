@@ -30,7 +30,6 @@
       - candidate_tests_schema = CandidateEntryTestSchema.new(columns: ['candidate-user-mail', 'candidate-title', 'candidate-user-firstname', 'candidate-user-lastname', 'candidate-higher_title'].concat(entry_test.passed? ? ['absent', 'points'] : []))
       - candidate_tests_schema.default_scope = 'comming'
       - candidate_tests_schema.add_filter('entry_test_id', '=', entry_test.id)
-      - binding.pry
       = form_tag(evaluate_entry_test_path(entry_test)) do
         %table.table
           %thead
