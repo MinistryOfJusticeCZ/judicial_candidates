@@ -14,6 +14,10 @@ class EntryTest < ApplicationRecord
   acts_as_paranoid
   audited
 
+  scope :in_future, ->{
+    where( arel_table[:time].gteq(Time.now) )
+  }
+
   state_machine :initial => :unconfirmed do
     # before_transition :parked => any - :parked, :do => :put_on_seatbelt
     # after_transition any => :parked do |vehicle, transition|

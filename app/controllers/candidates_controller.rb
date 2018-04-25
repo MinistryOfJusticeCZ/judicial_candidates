@@ -43,15 +43,29 @@ class CandidatesController < ApplicationController
   end
 
   def destroy
+    et_ids = @candidate.entry_test_ids
+
     @candidate.audit_comment = params[:candidate][:audit_comment]
     @candidate.destroy
     CandidateMailer.deleted_profile(@candidate, @candidate.audits.last).deliver_later
+
+    invite_alternates(et_ids)
+
     respond_to do |format|
       format.html {
         flash[:notice] = t('common_labels.notice_destroyed', model: @candidate.model_name.human)
         redirect_to candidates_path
       }
       format.json { head :ok }
+    end
+  end
+
+  def invite_alternates(entry_test_ids)
+    EntryTest.where(id: entry_test_ids).in_future.each do |entry_test|
+      if ( alternate = Candidate.alternate_for_entry_test(entry_test).first )
+        alternate.invite_to!(entry_test)
+        CandidateMailer.entry_test_invitation(alternate, entry_test).deliver_later
+      end
     end
   end
 

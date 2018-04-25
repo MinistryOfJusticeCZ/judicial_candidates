@@ -1,8 +1,8 @@
 class Candidate < ApplicationRecord
   belongs_to :user, class_name: 'EgovUtils::User'
-  has_many :candidate_entry_tests
+  has_many :candidate_entry_tests, dependent: :destroy
   has_many :entry_tests, through: :candidate_entry_tests
-  has_many :candidate_interviews
+  has_many :candidate_interviews, dependent: :destroy
   has_many :interviews, through: :candidate_interviews
 
   enum university: {cuni: 1, muni: 2, zcu: 3, upol: 4}
@@ -38,9 +38,9 @@ class Candidate < ApplicationRecord
     res.order(:position)
   }
   scope :alternate_for_entry_test, ->(entry_test){
-    if (entry_test.time <= Time.now + 30.days)
+    if (entry_test.time >= Time.now + 30.days)
       for_entry_test
-    elsif (entry_test.time <= Time.now + 7.days)
+    elsif (entry_test.time >= Time.now + 7.days)
       for_entry_test.where(shorter_invitation: true)
     else
       where('1=0')
@@ -111,7 +111,7 @@ class Candidate < ApplicationRecord
   end
 
   def invite_to!(entry_test)
-    candidate_entry_tests.create(entry_test: entry_test) && invite_to_test
+    candidate_entry_tests.create(entry_test: entry_test, arrival: 'arrived') && invite_to_test
   end
 
   def absent_interview!(interview)

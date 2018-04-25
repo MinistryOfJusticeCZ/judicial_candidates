@@ -60,7 +60,7 @@ RSpec.configure do |config|
   config.include EgovUtils::TestUtils::ControllerHelpers, :type => :controller
 
   config.before(logged: true) do
-    sign_in
+    sign_in(default_user(roles: []))
   end
   config.before(logged: :admin) do
     sign_in admin_user

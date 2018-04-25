@@ -38,14 +38,14 @@ class CandidateEntryTestsController < ApplicationController
   private
 
     def invite_alternate?
-      @candidate_entry_test.arrival_changed? &&
-        @candidate_entry_test.arrival_was == 'arrived' &&
+      @candidate_entry_test.saved_change_to_arrival? &&
+        [nil, 'arrived'].include?(@candidate_entry_test.arrival_before_last_save) &&
         (@candidate_entry_test.apology? || @candidate_entry_test.excused?)
     end
 
     def invite_alternate
-      if ( alternate = Candidate.alternate_for_entry_test(entry_test).first )
-        alternate.invite_to!(entry_test)
+      if ( alternate = Candidate.alternate_for_entry_test(@entry_test).first )
+        alternate.invite_to!(@entry_test)
         CandidateMailer.entry_test_invitation(alternate, @candidate_entry_test.entry_test).deliver_later
       end
     end

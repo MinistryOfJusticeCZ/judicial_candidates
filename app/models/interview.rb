@@ -6,6 +6,7 @@ class Interview < ApplicationRecord
   has_many :candidates, through: :candidate_interviews
 
   accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :candidate_interviews
 
   validates :boundary, numericality: true, allow_nil: true
   validates :time, presence: true
@@ -15,7 +16,10 @@ class Interview < ApplicationRecord
   acts_as_paranoid
   audited
 
-  accepts_nested_attributes_for :candidate_interviews
+  scope :in_future, ->{
+    where( arel_table[:time].gteq(Time.now) )
+  }
+
 
   after_create :invite_candidates
   after_save   :invite_compensatory, if: :saved_change_to_compensatory?
