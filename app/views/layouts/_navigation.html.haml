@@ -10,7 +10,7 @@
     %ul.nav.navbar-nav.mr-auto.main-menu
       / %li.nav-item.main-item= link_to t(:app_abbrev), '/', class: 'nav-link'
     %ul.nav.navbar-nav
-      - if current_user.has_role?('ooj')
+      - if can?(:read, Candidate)
         %li.nav-item
           = link_to Candidate.model_name.human(count: :other), main_app.candidates_path, class: 'nav-link'
       - if current_user.has_role?('academy')
