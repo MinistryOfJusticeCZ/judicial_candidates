@@ -36,6 +36,7 @@ cs:
   label_announced_tests: Vyhlášené termíny
   label_interview_with_test: Termín s písemným testem
   label_interview_without_test: Termín bez písemného testu
+  label_invite_additional_candidates: Pozvat další uchazeče
   label_reject_apology: Zamítnout
   notice_excuse_sent: Omluvenka zaslána
   notice_apology_refused: Omluva zamítnuta

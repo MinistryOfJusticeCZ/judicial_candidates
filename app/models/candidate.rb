@@ -37,11 +37,14 @@ class Candidate < ApplicationRecord
     res = res.joins(:candidate_entry_tests).where(CandidateEntryTest.arel_table[:points].gteq(boundary)) unless boundary.blank?
     res.order(:position)
   }
-  scope :alternate_for_entry_test, ->(entry_test){
+  scope :not_on_test, ->(entry_test) {
+    where.not(CandidateEntryTest.where(entry_test_id: entry_test).where(CandidateEntryTest.arel_table[:candidate_id].eq(arel_table[:id])).exists)
+  }
+  scope :for_specific_entry_test, ->(entry_test){
     if (entry_test.time >= Time.now + 30.days)
-      for_entry_test
+      for_entry_test.not_on_test(entry_test)
     elsif (entry_test.time >= Time.now + 7.days)
-      for_entry_test.where(shorter_invitation: true)
+      for_entry_test.not_on_test(entry_test).where(shorter_invitation: true)
     else
       where('1=0')
     end
@@ -111,7 +114,7 @@ class Candidate < ApplicationRecord
   end
 
   def invite_to!(entry_test)
-    candidate_entry_tests.create(entry_test: entry_test, arrival: 'arrived') && invite_to_test
+    candidate_entry_tests.create!(entry_test: entry_test, arrival: 'arrived') && invite_to_test
   end
 
   def absent_interview!(interview)

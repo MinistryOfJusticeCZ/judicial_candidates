@@ -44,14 +44,14 @@ class CandidateEntryTestsController < ApplicationController
     end
 
     def invite_alternate
-      if ( alternate = Candidate.alternate_for_entry_test(@entry_test).first )
+      if ( alternate = Candidate.for_specific_entry_test(@entry_test).first )
         alternate.invite_to!(@entry_test)
         CandidateMailer.entry_test_invitation(alternate, @candidate_entry_test.entry_test).deliver_later
       end
     end
 
     def candidates
-      @candidates ||= Candidate.for_entry_test.limit(@entry_test.capacity)
+      @candidates ||= Candidate.for_specific_entry_test(@entry_test).limit(@entry_test.capacity - @entry_test.candidate_entry_tests.comming.count)
     end
 
     def update_params
