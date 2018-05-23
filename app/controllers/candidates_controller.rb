@@ -62,7 +62,7 @@ class CandidatesController < ApplicationController
 
   def invite_alternates(entry_test_ids)
     EntryTest.where(id: entry_test_ids).in_future.each do |entry_test|
-      if ( alternate = Candidate.alternate_for_entry_test(entry_test).first )
+      if ( alternate = Candidate.for_specific_entry_test(entry_test).first )
         alternate.invite_to!(entry_test)
         CandidateMailer.entry_test_invitation(alternate, entry_test).deliver_later
       end
