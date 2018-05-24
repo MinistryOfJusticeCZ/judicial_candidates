@@ -68,7 +68,7 @@ deploy_lab:
     - gem install capistrano-rails
     - gem install capistrano3-unicorn
     - gem install capistrano-sidekiq
-    - cap lab deploy
+    - bundle exec cap lab deploy
   environment:
     name: lab
   only:
@@ -86,7 +86,7 @@ deploy_staging:
     - gem install capistrano-rails
     - gem install capistrano3-unicorn
     - gem install capistrano-sidekiq
-    - cap staging deploy
+    - bundle exec cap staging deploy
   environment:
     name: staging
   only:
@@ -104,7 +104,7 @@ deploy_production:
     - gem install capistrano-rails
     - gem install capistrano3-unicorn
     - gem install capistrano-sidekiq
-    - cap production deploy
+    - bundle exec cap production deploy
   environment:
     name: production
   only:

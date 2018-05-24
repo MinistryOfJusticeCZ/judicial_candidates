@@ -46,6 +46,7 @@ class JusticeOrganizationRole < EgovUtils::UserUtils::Role
     ability.can :read, Candidate
     ability.can [:approve, :disapprove], Candidate, state: Candidate.states[:validation]
     ability.can :destroy, Candidate
+    ability.can :index, EntryTest
   end
 
 end
