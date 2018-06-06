@@ -1,3 +1,7 @@
+= bootstrap_form_tag({url: audits_path, method: 'get'}) do |f|
+  = f.select(:entry_test_id, EntryTest.all.collect{|et| [et.time, et.id]})
+  = f.submit
+
 %table.table
   %thead
     %tr
