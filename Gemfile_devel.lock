@@ -1,9 +1,10 @@
 GIT
-  remote: https://github.com/ezrondre/bootstrap3-datetimepicker-rails.git
-  revision: 0654ba2607ad8428eb130a5469ad1f5a5b80fe4e
+  remote: https://github.com/bootstrap-ruby/bootstrap_form.git
+  revision: f4d76b516186bdeaf4f5dbef90a29a72fef8d931
+  branch: master
   specs:
-    bootstrap3-datetimepicker-rails (4.17.47)
-      momentjs-rails (>= 2.8.1)
+    bootstrap_form (4.0.0.dev)
+      rails (>= 5.0)
 
 PATH
   remote: ../azahara_schema
@@ -14,13 +15,14 @@ PATH
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.3.10)
+    egov_utils (0.4.0)
       activeresource (~> 5.0)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
       bcrypt (~> 3.1)
-      bootstrap (~> 4.0.0)
-      bootstrap_form (~> 2.7)
+      bootstrap (~> 4.0)
+      bootstrap4-datetime-picker-rails (~> 0.1)
+      bootstrap_form (~> 4.0.0.dev)
       cancancan (~> 2.0)
       clipboard-rails (~> 1.7)
       cookies_eu (~> 1.6)
@@ -91,7 +93,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_list (0.9.11)
+    acts_as_list (0.9.14)
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
@@ -103,19 +105,21 @@ GEM
     arel (8.0.0)
     audited (4.7.1)
       activerecord (>= 4.0, < 5.3)
-    autoprefixer-rails (8.3.0)
+    autoprefixer-rails (8.6.0)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
-    bootstrap (4.0.0)
+    bootstrap (4.1.1)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
-    bootstrap_form (2.7.0)
+    bootstrap4-datetime-picker-rails (0.1.6)
+      jquery-rails (~> 4.2, >= 4.2.0)
+      momentjs-rails (~> 2.10, >= 2.10.5)
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (2.2.0)
-    capistrano (3.10.2)
+    capistrano (3.11.0)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -123,7 +127,7 @@ GEM
     capistrano-bundler (1.3.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
-    capistrano-rails (1.3.1)
+    capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-sidekiq (1.0.2)
@@ -141,16 +145,16 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    connection_pool (2.2.1)
-    cookies_eu (1.6.3)
-      js_cookie_rails
+    connection_pool (2.2.2)
+    cookies_eu (1.7.1)
+      js_cookie_rails (~> 2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
     daemons (1.2.6)
     database_cleaner (1.7.0)
     diff-lcs (1.3)
-    docile (1.3.0)
+    docile (1.3.1)
     dragonfly (1.1.5)
       addressable (~> 2.3)
       multi_json (~> 1.0)
@@ -158,14 +162,14 @@ GEM
     egon_gate (0.1.0)
       savon (~> 2.11.0)
     erubi (1.7.1)
-    eventmachine (1.2.5)
+    eventmachine (1.2.7)
     execjs (2.7.0)
-    factory_bot (4.8.2)
+    factory_bot (4.10.0)
       activesupport (>= 3.0.0)
-    factory_bot_rails (4.8.2)
-      factory_bot (~> 4.8.2)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
-    ffi (1.9.23)
+    ffi (1.9.25)
     font-awesome-sass (4.7.0)
       sass (>= 3.2)
     globalid (0.4.1)
@@ -183,7 +187,7 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-debug (1.1.1)
       i18n (< 2)
-    i18n-js (3.0.5)
+    i18n-js (3.0.8)
       i18n (>= 0.6.6, < 2)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -221,15 +225,15 @@ GEM
     net-ldap (0.16.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (4.2.0)
-    nio4r (2.3.0)
+    net-ssh (5.0.1)
+    nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     nori (2.6.0)
-    paranoia (2.4.0)
-      activerecord (>= 4.0, < 5.2)
+    paranoia (2.4.1)
+      activerecord (>= 4.0, < 5.3)
     pg (0.21.0)
-    phonelib (0.6.21)
+    phonelib (0.6.22)
     popper_js (1.12.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -238,7 +242,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     rack (2.0.5)
-    rack-protection (2.0.1)
+    rack-protection (2.0.2)
       rack
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -340,7 +344,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.16.0)
+    sshkit (1.16.1)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     state_machines (0.5.0)
@@ -366,7 +370,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.10)
+    uglifier (4.1.11)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.0)
       kgio (~> 2.6)
@@ -375,12 +379,12 @@ GEM
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    web-console (3.6.1)
+    web-console (3.6.2)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webmock (3.3.0)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -395,9 +399,7 @@ DEPENDENCIES
   activeresource
   acts_as_list (~> 0.9)
   azahara_schema!
-  bootstrap (~> 4.0)
-  bootstrap3-datetimepicker-rails!
-  bootstrap_form
+  bootstrap_form!
   byebug
   capistrano-rails
   capistrano-sidekiq
@@ -407,11 +409,9 @@ DEPENDENCIES
   dragonfly (~> 1.1)
   egov_utils!
   factory_bot_rails (~> 4.0)
-  font-awesome-sass
   i18n-debug
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
-  momentjs-rails (>= 2.9.0)
   paranoia (~> 2.4)
   pg (~> 0.21)
   phonelib (~> 0.6)

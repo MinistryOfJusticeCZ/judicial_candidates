@@ -72,7 +72,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dragonfly', '~> 1.1'
 gem 'state_machines-activerecord', '~> 0.5'
 
-gem 'egov_utils', '~> 0.3'
+gem 'egov_utils', '~> 0.4'
 gem 'paranoia', '~> 2.4'
 gem 'acts_as_list', '~> 0.9'
 
@@ -84,8 +84,7 @@ gem 'sidekiq', '~> 5.0'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
-gem 'bootstrap', '~> 4.0'
-gem 'font-awesome-sass'
-gem 'bootstrap_form'
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', github: 'ezrondre/bootstrap3-datetimepicker-rails' #, '~> 4.17.47'
+
+gem "bootstrap_form",
+    git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
+    branch: "master"

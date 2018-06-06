@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   mount EgovUtils::Engine => '/internals'
 
+  resources :audits, only: [:index]
+
   require 'sidekiq/web'
   require 'egov_utils/routes/admin_constraint'
   mount Sidekiq::Web => '/sidekiq', constraints: EgovUtils::AdminConstraint.new

@@ -1,0 +1,14 @@
+%table.table
+  %thead
+    %tr
+      %th Zaznam
+      %th Akce
+      %th Zmeny
+      %th Cas
+  %tbody
+    - @audits.each do |audit|
+      %tr
+        %td= audit.auditable_type + "(#{audit.auditable_id})"
+        %td= audit.action
+        %td= audit.audited_changes.to_json
+        %td= l(audit.created_at)
