@@ -30,7 +30,7 @@
             = 'Admin'
           .dropdown-menu.dropdown-menu-right{'aria-labelledby' => 'navbarAdminDropdownLink'}
             = link_to EgovUtils::User.model_name.human, egov_utils.users_path, class: 'dropdown-item'
-            = link_to 'Logs', audits_path, class: 'dropdown-item'
+            = link_to 'Logs', main_app.audits_path, class: 'dropdown-item'
     %ul.nav.navbar-nav
       - if current_user.logged?
         %li.nav-item.dropdown.user-drop
