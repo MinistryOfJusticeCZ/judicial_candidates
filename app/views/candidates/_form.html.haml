@@ -33,6 +33,11 @@
 
 :javascript
   $(function(){
+    $('.custom-file-input').on('change', function() {
+      var fileName = $(this).val().split('\\').pop();
+      $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+    });
+
     function toggle_higher_title(state) {
       $('#candidate_higher_title_field').closest('.form-group').toggle(state);
     }
