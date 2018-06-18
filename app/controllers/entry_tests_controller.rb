@@ -74,7 +74,7 @@ class EntryTestsController < ApplicationController
       attrs = {}
       @entry_test.candidate_entry_tests.preload(candidate: :user).each do |candidate_entry_test|
         mail = candidate_entry_test.candidate.user.mail
-        attrs[candidate_entry_test.id] = {id: candidate_entry_test.id, arrival: (mail_points[mail].nil? ? 'absent' : 'arrived'), points: mail_points[mail]}
+        attrs[candidate_entry_test.id] = {arrival: (mail_points[mail].nil? ? 'absent' : 'arrived'), points: mail_points[mail]}
       end
       redirect_to entry_test_path(@entry_test, entry_tests: attrs)
     else
