@@ -71,7 +71,11 @@ class CandidatesController < ApplicationController
 
   def finalize
     authorize!(:manage, @candidate)
-    @candidate.finalize
+    if @candidate.finalize
+      flash[:notice] = t('notice_candidate_finalized')
+    else
+      flash[:warining] = t('warning_profile_not_complete')
+    end
     redirect_to @candidate
   end
 
