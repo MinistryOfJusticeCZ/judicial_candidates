@@ -53,9 +53,9 @@
           %tbody
             - candidate_tests_schema.entities.each do |candidate_test|
               = f.fields_for(:candidate_entry_tests_attributes) do |fil|
-                - if @evaluate_params && @evaluate_params[:entry_tests][candidate_test.id]
-                  - candidate_test.attributes = @evaluate_params[:entry_tests][candidate_test.id].except(:id)
-                - elsif @evaluate_params
+                - if @evaluate_params[:entry_tests] && @evaluate_params[:entry_tests][candidate_test.id]
+                  - candidate_test.attributes = @evaluate_params[:entry_tests][candidate_test.id]
+                - elsif @evaluate_params[:entry_tests]
                   - candidate_test.arrival = 'absent'
                 = fil.fields_for(candidate_test.id.to_s.to_sym, candidate_test) do |fields|
                   %tr
