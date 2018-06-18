@@ -74,7 +74,7 @@ class CandidatesController < ApplicationController
     if @candidate.finalize
       flash[:notice] = t('notice_candidate_finalized')
     else
-      flash[:warining] = t('warning_profile_not_complete')
+      flash[:warning] = t('warning_profile_not_complete')
     end
     redirect_to @candidate
   end
