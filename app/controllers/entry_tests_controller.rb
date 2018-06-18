@@ -9,7 +9,7 @@ class EntryTestsController < ApplicationController
   end
 
   def show
-    @evaluate_params = optional_evaluate_params
+    @evaluate_params = params.permit(entry_tests: [:id, :arrival, :points])
   end
 
   def new
@@ -76,7 +76,7 @@ class EntryTestsController < ApplicationController
         mail = candidate_entry_test.candidate.user.mail
         attrs[candidate_entry_test.id] = {id: candidate_entry_test.id, arrival: (mail_points[mail].nil? ? 'absent' : 'arrived'), points: mail_points[mail]}
       end
-      redirect_to entry_test_path(@entry_test, entry_test: { candidate_entry_tests_attributes: attrs })
+      redirect_to entry_test_path(@entry_test, entry_tests: attrs)
     else
       flash[:warning] = 'missing file'
       redirect_to @entry_test
@@ -100,10 +100,6 @@ class EntryTestsController < ApplicationController
 
     def evaluate_params
       params.require(:entry_test).permit(candidate_entry_tests_attributes: [:id, :arrival, :points])
-    end
-
-    def optional_evaluate_params
-      evaluate_params if params[:entry_test]
     end
 
 end
