@@ -9,6 +9,7 @@ class EntryTestsController < ApplicationController
   end
 
   def show
+    @evaluate_params = optional_evaluate_params
   end
 
   def new
@@ -62,6 +63,26 @@ class EntryTestsController < ApplicationController
     end
   end
 
+  def import_results
+    require 'csv'
+    if params[:csv_results]
+      results = CSV.read(params[:csv_results].path, col_sep: ';', skip_blanks: true)
+      mail_points = {}
+      results[1..-1].each do |row|
+        mail_points[row[0].to_s.downcase] = row[1].to_i
+      end
+      attrs = {}
+      @entry_test.candidate_entry_tests.preload(candidate: :user).each do |candidate_entry_test|
+        mail = candidate_entry_test.candidate.user.mail
+        attrs[candidate_entry_test.id] = {id: candidate_entry_test.id, arrival: (mail_points[mail].nil? ? 'absent' : 'arrived'), points: mail_points[mail]}
+      end
+      redirect_to entry_test_path(@entry_test, entry_test: { candidate_entry_tests_attributes: attrs })
+    else
+      flash[:warning] = 'missing file'
+      redirect_to @entry_test
+    end
+  end
+
   protected
     def require_login?
       super && params[:action] != 'index'
@@ -79,6 +100,10 @@ class EntryTestsController < ApplicationController
 
     def evaluate_params
       params.require(:entry_test).permit(candidate_entry_tests_attributes: [:id, :arrival, :points])
+    end
+
+    def optional_evaluate_params
+      evaluate_params if params[:entry_test]
     end
 
 end

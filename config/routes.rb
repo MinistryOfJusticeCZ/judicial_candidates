@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :entry_tests do
     resources :candidate_entry_tests
     post :evaluate, on: :member
+    post :import_results, on: :member
   end
 
   resources :interviews do
