@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :entry_tests do
     resources :candidate_entry_tests
-    post :evaluate, on: :member
+    match :evaluate, on: :member, via: [:patch, :post]
     post :import_results, on: :member
   end
 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       post :reject_apology, on: :member
       post :accept_apology, on: :member
     end
-    post :evaluate, on: :member
+    match :evaluate, on: :member, via: [:patch, :post]
   end
 
   resources :candidate_entry_tests, only: [:show]

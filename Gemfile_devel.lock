@@ -9,20 +9,20 @@ GIT
 PATH
   remote: ../azahara_schema
   specs:
-    azahara_schema (0.3.7)
+    azahara_schema (0.3.9)
       rails (~> 5.1)
 
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.4.3)
+    egov_utils (0.4.4)
       activeresource (~> 5.0)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
       bcrypt (~> 3.1)
       bootstrap (~> 4.0)
       bootstrap4-datetime-picker-rails (~> 0.1)
-      bootstrap_form (~> 4.0.0.dev)
+      bootstrap_form (~> 4.0.0.alpha)
       cancancan (~> 2.0)
       clipboard-rails (~> 1.7)
       cookies_eu (~> 1.6)
@@ -33,7 +33,7 @@ PATH
       jquery-rails (~> 4.3)
       jquery-ui-rails (~> 6.0)
       modernizr-rails (~> 2.7)
-      momentjs-rails (~> 2.17)
+      momentjs-rails (~> 2.20)
       money (~> 6.11)
       net-ldap (~> 0.16)
       paranoia (~> 2.4)
@@ -105,7 +105,7 @@ GEM
     arel (8.0.0)
     audited (4.7.1)
       activerecord (>= 4.0, < 5.3)
-    autoprefixer-rails (8.6.1)
+    autoprefixer-rails (8.6.3)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
@@ -113,7 +113,7 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
-    bootstrap4-datetime-picker-rails (0.1.6)
+    bootstrap4-datetime-picker-rails (0.1.7)
       jquery-rails (~> 4.2, >= 4.2.0)
       momentjs-rails (~> 2.10, >= 2.10.5)
     builder (3.2.3)
@@ -146,7 +146,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.2)
-    cookies_eu (1.7.1)
+    cookies_eu (1.7.3)
       js_cookie_rails (~> 2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
