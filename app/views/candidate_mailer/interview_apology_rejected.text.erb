@@ -1,0 +1,10 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+<% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
+  dovolujeme si Vám oznámit, že Vaše omluva z výběrového řízení na obsazení míst justičních čekatelů v obvodu působnosti <%= court.name %> byla zamítnuta, a to z následujících důvodů:
+
+  <%= @audit.comment %>
+
+  Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
+

@@ -33,7 +33,6 @@ class CandidateMailer < ApplicationMailer
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – oznámení o zrušení termínu konání vstupního testu')
   end
 
-  #TODO
   def interview_invitation(candidate, interview)
     @candidate, @interview = candidate, interview
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na Výběrové řízení')
@@ -51,8 +50,15 @@ class CandidateMailer < ApplicationMailer
 
   def interview_evaluation(candidate_interview)
     @candidate_interview = candidate_interview
-    @candidate = candidate_interview.candidate
-    mail(to: @candidate.user.mail, subject: t(:app_name) + ' – výsledek pohovoru')
+    @interview, @candidate = candidate_interview.interview, candidate_interview.candidate
+    mail(to: @candidate.user.mail, subject: t(:app_name) + ' – výsledek Výběrového řízení')
+  end
+
+  def interview_apology_rejected(candidate_interview)
+    @candidate_interview = candidate_interview
+    @interview, @candidate = candidate_interview.interview, candidate_interview.candidate
+    @audit = candidate_interview.audits.last
+    mail(to: @candidate.user.mail, subject: t(:app_name) + ' – zamítnutí omluvy na Výběrové řízení')
   end
 
 end

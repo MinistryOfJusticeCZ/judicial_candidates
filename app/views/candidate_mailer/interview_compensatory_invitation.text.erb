@@ -1,0 +1,14 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+
+<% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
+
+v návaznosti na Vaši omluvu z výběrového řízení na obsazení míst justičních čekatelů v obvodu působnosti <%= court.name %> Vám stanovujeme náhradní termín výběrového řízení na <%= l(@interview.compensatory.to_date) %> v <%= l(@interview.compensatory.to_time, format: :time) %>.
+
+Výběrové řízení se bude konat dne  hodin v budově soudu <%= court.name %>.
+
+Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
+
+Pro více informací o řízení přejděte na url <%= interview_url(@interview) %>.
+

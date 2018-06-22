@@ -1,8 +1,11 @@
 <% content_for(:greeting) do %>
   Vážený uchazeči,
 <% end %>
+<% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
 
-Výběrové řízení se bude konat dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin v budově soudu.
+na základě Vaší registrace do evidence zájemců o přijetí do přípravné služby justičních čekatelů a vykonání vstupního testu si Vás dovolujeme pozvat na výběrové řízení na obsazení míst justičních čekatelů v obvodu působnosti <%= court.name %>.
+
+Výběrové řízení se bude konat dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin v budově soudu <%= court.name %>.
 
 Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
 

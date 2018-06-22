@@ -1,0 +1,15 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,<br />
+<% end %>
+<% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
+<div>
+  <p>
+    dovolujeme si Vám oznámit, že v obvodu působnosti <%= court.name %> je dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin konáno výběrové řízení, na které jste bohužel nebyl/a pozván/a z důvodu nesplnění bodové hranice určené pořádajícím soudem.
+  </p>
+  <p>
+    Bodová hranice byla <%= @interview.boundary %> bodů.
+  </p>
+  <p>
+    Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
+  </p>
+</div>

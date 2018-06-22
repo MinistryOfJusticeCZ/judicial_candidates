@@ -4,13 +4,14 @@
 <% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
 <div>
   <p>
-    na základě Vaší registrace do evidence zájemců o přijetí do přípravné služby justičních čekatelů a vykonání vstupního testu si Vás dovolujeme pozvat na výběrové řízení na obsazení míst justičních čekatelů v obvodu působnosti <%= court.name %>.
+    v návaznosti na Vaši omluvu z výběrového řízení na obsazení míst justičních čekatelů v obvodu působnosti <%= court.name %> Vám stanovujeme náhradní termín výběrového řízení na <%= l(@interview.compensatory.to_date) %> v <%= l(@interview.compensatory.to_time, format: :time) %>.
   </p>
   <p>
-    Výběrové řízení se bude konat dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin v budově soudu <%= court.name %>.
+    Výběrové řízení se bude konat dne  hodin v budově soudu <%= court.name %>.
   </p>
   <p>
     Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
   </p>
   <p>Pro více informací o řízení přejděte do <%= link_to 'aplikace', interview_url(@interview) %>.</p>
 </div>
+

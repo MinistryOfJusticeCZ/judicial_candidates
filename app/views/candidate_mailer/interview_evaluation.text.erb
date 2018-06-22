@@ -1,0 +1,8 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+<% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
+  dovolujeme si Vám oznámit, že jste <%= @candidate_interview.state == 'successful' ? 'uspěl' : 'neuspěl' %> ve výběrovém řízení na obsazení míst justičních čekatelů v obvodu působnosti <%= court.name %>.
+
+  Pro více informací o výběrovém řízení přejděte do <%= link_to 'aplikace', interview_url(@interview) %>.
+
