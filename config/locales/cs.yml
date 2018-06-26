@@ -96,9 +96,11 @@ cs:
         incomplete: Nevyplněný
         validation: Čeká na schválení
         rejected: Zamítnutý
+        blocked: Zablokovaný
         for_entry_test: Čeká na vstupní test
         invited_to_test: Pozván/a na test
         waiting: Čeká na pohovor
+        invited_to_interview: Pozván na pohovor
       updated_at: Poslední aktualizace
       university: Vysoká škola
       universities:
