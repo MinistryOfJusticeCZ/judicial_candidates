@@ -114,7 +114,7 @@ class Candidate < ApplicationRecord
   end
 
   def invite_to!(entry_test)
-    candidate_entry_tests.create!(entry_test: entry_test, arrival: 'arrived') && invite_to_test
+    invite_to_test && candidate_entry_tests.create!(entry_test: entry_test, arrival: 'arrived')
   end
 
   def absent_interview!(interview)

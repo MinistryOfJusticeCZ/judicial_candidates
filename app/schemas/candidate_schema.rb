@@ -13,7 +13,7 @@ class CandidateSchema < AzaharaSchema::ModelSchema
   end
 
   def enabled_filter_names
-    ['state']
+    ['state', 'user-fullname']
   end
 
 end
