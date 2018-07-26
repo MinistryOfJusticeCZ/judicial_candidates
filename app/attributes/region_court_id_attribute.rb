@@ -7,7 +7,4 @@ class RegionCourtIdAttribute < AzaharaSchema::Attribute
     EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }
   end
 
-  def value(record)
-    EgovUtils::Organization.where(id: super).first.try(:name)
-  end
 end

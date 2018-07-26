@@ -15,8 +15,13 @@ class CandidateEntryTest < ApplicationRecord
   after_save :set_candidate_state
 
   def apology=(text)
+    return unless can_appologize?
     super
     self.arrival = 'apology' if text
+  end
+
+  def can_appologize?
+    Time.now < (entry_test.time.end_of_day + 3.days)
   end
 
   def test_passed?

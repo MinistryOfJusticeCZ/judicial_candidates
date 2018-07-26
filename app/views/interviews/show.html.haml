@@ -5,10 +5,7 @@
 .attribute
   .label= Interview.human_attribute_name('time')
   .value= l( @interview.time )
-.attribute
-  - attribute = schema.attribute('region_court_id')
-  .label= Interview.human_attribute_name('region_court_id')
-  .value= EgovUtils::Organization.where(id: @interview.region_court_id).first.try(:name) #formatter.formatted_value(attribute, @interview)
+= formatter.labeled_html_attribute_value(schema.attribute('region_court_id'), @interview)
 .attribute
   .label= Interview.human_attribute_name('interview_type')
   .value= @interview.boundary.present? ? t('label_interview_with_test') : t('label_interview_without_test')

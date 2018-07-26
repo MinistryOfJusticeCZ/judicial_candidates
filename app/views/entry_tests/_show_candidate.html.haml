@@ -1,5 +1,5 @@
 - candidate_entry_test = entry_test.candidate_entry_tests.find_by(candidate_id: current_candidate.id)
-- if candidate_entry_test && !entry_test.passed?
+- if candidate_entry_test && candidate_entry_test.can_appologize?
   - if !%w(apology excused).include?(candidate_entry_test.arrival)
     = bootstrap_form_for([entry_test, candidate_entry_test]) do |f|
       = render 'candidate_entry_tests/form', form: f, candidate_entry_test: candidate_entry_test
