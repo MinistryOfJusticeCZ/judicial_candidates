@@ -33,7 +33,7 @@
               - if interview.passed?
                 %td
                   = hidden_field_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
-                  = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']]), disabled: interview.evaluated?)
+                  = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']], candidate_interview.state), disabled: interview.evaluated?)
       - if interview.passed? && !interview.evaluated?
         = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
 

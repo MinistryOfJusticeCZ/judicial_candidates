@@ -5,7 +5,10 @@ class CandidateSchema < AzaharaSchema::ModelSchema
   end
 
   def default_columns
-    ['user-fullname', 'user-mail', 'updated_at', 'state']
+    cols = ['user-fullname']
+    cols << 'user-mail' if User.current.has_role?('ooj') || User.current.has_role?('admin')
+    cols.concat(['updated_at', 'state'])
+    cols
   end
 
   def default_outputs
