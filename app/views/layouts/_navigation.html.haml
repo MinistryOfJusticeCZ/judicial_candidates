@@ -10,13 +10,13 @@
     %ul.nav.navbar-nav.mr-auto.main-menu
       / %li.nav-item.main-item= link_to t(:app_abbrev), '/', class: 'nav-link'
     %ul.nav.navbar-nav
-      - if can?(:read, Candidate)
+      - if can?(:index, Candidate)
         %li.nav-item
           = link_to Candidate.model_name.human(count: :other), main_app.candidates_path, class: 'nav-link'
       - if current_user.has_role?('academy')
         %li.nav-item
           = link_to EntryTest.model_name.human(count: :other), main_app.entry_tests_path, class: 'nav-link'
-      - else
+      - elsif can?(:index, EntryTest)
         %li.nav-item
           = link_to t('label_announced_tests'), main_app.entry_tests_path, class: 'nav-link'
 

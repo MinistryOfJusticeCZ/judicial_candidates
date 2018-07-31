@@ -29,6 +29,7 @@ class CandidateRole < EgovUtils::UserUtils::Role
     ability.can :create, Candidate unless Candidate.where(user_id: user.id).exists?
     ability.can :read, Candidate, user_id: user.id
     ability.can :manage, Candidate, user_id: user.id, state: Candidate.states[:incomplete]
+    ability.cannot :index, Candidate
     ability.can :read, EntryTest, candidate_entry_tests: { candidate: { user_id: user.id } }
     ability.can :read, CandidateEntryTest, candidate: { user_id: user.id }
     ability.can :update, CandidateEntryTest, candidate: { user_id: user.id }
