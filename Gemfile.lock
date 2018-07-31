@@ -194,7 +194,7 @@ GEM
       railties (>= 3.1)
     json (2.1.0)
     kgio (2.11.2)
-    libv8 (3.16.14.19)
+    libv8 (6.7.288.46.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -207,6 +207,8 @@ GEM
     method_source (0.9.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
+    mini_racer (0.2.0)
+      libv8 (>= 6.3)
     minitest (5.11.3)
     modernizr-rails (2.7.1)
     momentjs-rails (2.20.1)
@@ -271,7 +273,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.1)
-    ref (2.0.0)
     request_store_rails (1.0.3)
       concurrent-ruby (~> 1.0)
     rspec-core (3.7.1)
@@ -357,9 +358,6 @@ GEM
       activerecord (>= 4.1, < 6.0)
       state_machines-activemodel (>= 0.5.0)
     temple (0.8.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -413,6 +411,7 @@ DEPENDENCIES
   i18n-debug
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  mini_racer
   paranoia (~> 2.4)
   pg (~> 0.21)
   phonelib (~> 0.6)
@@ -426,7 +425,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   state_machines-activerecord (~> 0.5)
-  therubyracer
   thin
   turbolinks (~> 5)
   tzinfo-data
