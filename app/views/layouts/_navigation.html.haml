@@ -24,6 +24,8 @@
         = link_to t('label_contacts'), main_app.contacts_path, class: 'nav-link'
       %li.nav-item
         = link_to t('label_about'), main_app.about_path, class: 'nav-link'
+      %li.nav-item
+        = link_to t('label_faq'), '/data/Cekatele-faq.pdf', class: 'nav-link'
       - if can?(:manage, EgovUtils::User)
         %li.nav-item.dropdown
           = link_to 'javascript:void(0)', id: 'navbarAdminDropdownLink', class: 'nav-link dropdown-toggle', aria: {haspopup: true}, data: {toggle: 'dropdown'} do
