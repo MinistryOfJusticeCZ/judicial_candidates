@@ -6,7 +6,7 @@ class CandidateSchema < AzaharaSchema::ModelSchema
 
   def default_columns
     cols = ['user-fullname']
-    cols << 'user-mail' if User.current.has_role?('ooj') || User.current.has_role?('admin')
+    cols << 'user-mail' if EgovUtils::User.current.has_role?('ooj') || EgovUtils::User.current.has_role?('admin')
     cols.concat(['updated_at', 'state'])
     cols
   end
