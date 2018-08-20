@@ -56,8 +56,13 @@ class InterviewsController < ApplicationController
   end
 
   def destroy
+    candidates = @interview.candidates.to_a
+    @interview.attributes = params.require(:interview).permit(:audit_comment)
     @interview.destroy
     respond_to do |format|
+      candidates.each do |candidate|
+        CandidateMailer.interview_canceled(candidate, @interview.audits.last).deliver_later
+      end
       format.html { redirect_to interviews_path, notice: t('common_labels.notice_destroyed', model: @interview.model_name.human) }
       format.json { head :ok }
     end

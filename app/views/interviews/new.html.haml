@@ -4,4 +4,4 @@
 = bootstrap_form_for(@interview) do |f|
   = render 'interviews/form', form: f, interview: @interview
   .form-actions
-    = f.submit
+    = f.submit(class: 'btn btn-secondary', data: {confirm: "Opravdu chcete vypsat výběrové řízení? Tato akce rozešle pozvánky uchazečům."})

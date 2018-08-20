@@ -69,6 +69,7 @@ class JudgeRole < EgovUtils::UserUtils::Role
   add 'judge'
 
   def define_abilities(ability, user)
+    ability.can :index, Candidate
     if user.organization_id
       ability.can :manage, Interview, region_court_id: user.organization_id
       ability.can :reject_apology, CandidateInterview, {interview: { region_court_id: user.organization_id }}

@@ -9,13 +9,13 @@ GIT
 PATH
   remote: ../azahara_schema
   specs:
-    azahara_schema (0.3.13)
+    azahara_schema (0.3.15)
       rails (~> 5.1)
 
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.4.6)
+    egov_utils (0.4.10)
       activeresource (~> 5.0)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
@@ -27,7 +27,7 @@ PATH
       clipboard-rails (~> 1.7)
       cookies_eu (~> 1.6)
       egon_gate (~> 0.1)
-      font-awesome-sass (~> 5.0)
+      font-awesome-sass (~> 5.2)
       haml (~> 5.0)
       i18n-js (~> 3.0)
       jquery-rails (~> 4.3)
@@ -105,7 +105,7 @@ GEM
     arel (8.0.0)
     audited (4.7.1)
       activerecord (>= 4.0, < 5.3)
-    autoprefixer-rails (9.0.2)
+    autoprefixer-rails (9.1.1)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)

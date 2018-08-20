@@ -39,10 +39,10 @@ class EntryTest < ApplicationRecord
 
   def confirm_and_invite!(candidates)
     transaction do
-      confirm
       candidates.each do |candidate|
         candidate.invite_to!(self)
       end
+      confirm unless listed?
     end
   end
 
