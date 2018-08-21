@@ -8,5 +8,6 @@ na základě Vaší registrace do evidence zájemců o přijetí do přípravné
 Výběrové řízení se bude konat dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin v budově soudu <%= court.name %>.
 
 Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
+Kritéria výběru pro výběrovou komisi jsou obsažena v <%= link_to 'Metodice Justiční akademie ČR', 'https://www.jacz.cz/images/stories/vyberova_rizeni_cekatele/metodika_a_hodnoceni_pohovoru.doc' %>, dostupné na adrese <%= link_to('https://www.jacz.cz/o-nas/vyberova-rizeni#justicni-cekatele', 'https://www.jacz.cz/o-nas/vyberova-rizeni#justicni-cekatele') %>.
 
 Pro více informací o řízení přejděte do na url: <%= interview_url(@interview) %>.
