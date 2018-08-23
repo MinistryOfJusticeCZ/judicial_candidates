@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416111938) do
+ActiveRecord::Schema.define(version: 20180823122939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180416111938) do
     t.text "apology"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.time "assigned_hour"
     t.index ["candidate_id"], name: "index_candidate_interviews_on_candidate_id"
     t.index ["interview_id"], name: "index_candidate_interviews_on_interview_id"
   end
@@ -135,6 +136,8 @@ ActiveRecord::Schema.define(version: 20180416111938) do
     t.string "birth_place"
     t.bigint "residence_id"
     t.bigint "person_id"
+    t.string "title"
+    t.string "higher_title"
     t.index ["person_id"], name: "index_egov_utils_natural_people_on_person_id"
     t.index ["residence_id"], name: "index_egov_utils_natural_people_on_residence_id"
   end

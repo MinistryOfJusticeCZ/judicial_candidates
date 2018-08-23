@@ -13,8 +13,15 @@ class CandidateInterviewsController < ApplicationController
   def update
     respond_to do |format|
       if @candidate_interview.update(update_params)
-        JudgeMailer.interview_apology_received(@candidate_interview).deliver_later unless @candidate_interview.apology.blank?
-        format.html{ redirect_to @interview, notice: t('notice_excuse_sent') }
+        if !@candidate_interview.apology.blank? && @candidate_interview.apology_previously_changed?
+          JudgeMailer.interview_apology_received(@candidate_interview).deliver_later
+          flash[:notice] = t('notice_excuse_sent')
+        end
+        if @candidate_interview.assigned_hour_previously_changed?
+          CandidateMailer.interview_hour_assigned(@candidate_interview).deliver_later
+          flash[:notice] = t('notice_interview_hour_assigned')
+        end
+        format.html{ redirect_to @interview }
       else
         format.html{ render 'edit' }
       end
@@ -33,7 +40,11 @@ class CandidateInterviewsController < ApplicationController
   private
 
     def update_params
-      params.require(:candidate_interview).permit(:apology)
+      if current_candidate.id == @candidate_interview.candidate_id
+        params.require(:candidate_interview).permit(:apology)
+      elsif current_user.has_role?('judge')
+        params.require(:candidate_interview).permit(:assigned_hour)
+      end
     end
 
 end

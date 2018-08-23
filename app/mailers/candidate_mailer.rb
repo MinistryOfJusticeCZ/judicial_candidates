@@ -38,6 +38,12 @@ class CandidateMailer < ApplicationMailer
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – pozvánka na Výběrové řízení')
   end
 
+  def interview_hour_assigned(candidate_interview)
+    @candidate_interview = candidate_interview
+    @interview = candidate_interview.interview
+    mail(to: @candidate_interview.candidate.user.mail, subject: t(:app_name) + ' – Výběrové řízení dodatek k pozvánce')
+  end
+
   def interview_canceled(candidate, audit)
     @candidate, @audit = candidate, audit
     mail(to: candidate.user.mail, subject: t(:app_name) + ' – oznámení o zrušení konání Výběrového řízení')

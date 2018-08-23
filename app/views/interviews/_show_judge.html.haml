@@ -19,23 +19,40 @@
 
 .tab-content
   #candidates.tab-pane.fade.show.active{'aria-labelledby' => 'candidates_tab'}
-    = bootstrap_form_tag(url: evaluate_interview_path(interview)) do
-      %table.table
-        %thead
-          %tr
-            %th= EgovUtils::User.human_attribute_name('fullname')
-            - if interview.passed?
+    - if interview.passed?
+      = bootstrap_form_tag(url: evaluate_interview_path(interview)) do
+        %table.table
+          %thead
+            %tr
+              %th= EgovUtils::User.human_attribute_name('fullname')
+              %th= EgovUtils::User.human_attribute_name('mail')
               %th= CandidateInterview.human_attribute_name('success')
         %tbody
           - interview.candidate_interviews.comming.preload(candidate: :user).each do |candidate_interview|
             %tr
               %td= candidate_interview.candidate.user.fullname
-              - if interview.passed?
-                %td
-                  = hidden_field_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
-                  = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']], candidate_interview.state), disabled: interview.evaluated?)
-      - if interview.passed? && !interview.evaluated?
+              %td= candidate_interview.candidate.user.mail
+              %td
+                = hidden_field_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
+                = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']], candidate_interview.state), disabled: interview.evaluated?)
+      - if !interview.evaluated?
         = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
+    - else
+      %table.table
+        %thead
+          %tr
+            %th= EgovUtils::User.human_attribute_name('fullname')
+            %th= EgovUtils::User.human_attribute_name('mail')
+            %th= CandidateInterview.human_attribute_name('assigned_hour')
+        %tbody
+          - interview.candidate_interviews.comming.preload(candidate: :user).each do |candidate_interview|
+            %tr
+              %td= candidate_interview.candidate.user.fullname
+              %td= candidate_interview.candidate.user.mail
+              %td
+                = bootstrap_form_for([interview, candidate_interview], layout: :inline) do |f|
+                  = f.time_field(:assigned_hour, skip_label: true)
+                  = f.submit(t('button_assign_hour'))
 
   #excuses.tab-pane{'aria-labelledby' => 'excuses_tab'}
     - if interview.time < Time.now && interview.excused_candidate_interviews.size > 0

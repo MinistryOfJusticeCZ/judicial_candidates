@@ -1,0 +1,16 @@
+<% content_for(:greeting) do %>
+  Vážený uchazeči,
+<% end %>
+<% court = EgovUtils::Organization.region_courts.detect{|ks| ks.id == @interview.region_court_id } %>
+
+Dodatek k výběrovému řízení, konajímu se dne <%= l(@interview.time.to_date) %> v <%= l(@interview.time.to_time, format: :time) %> hodin v budově soudu <%= court.name %>.
+
+Byla Vám přiřazena hodina. Přijdete na řadu v <%= l(@candidate_interview.assigned_hour.to_time, format: :time) %>.
+Tato hodina je pouze orientační a záleží na kandidátech v řadě před Vámi, proto přijďte prosím s předstihem.
+
+Podrobnosti k výběrovému řízení naleznete ve vyhlášce č. 382/2017 Sb., o výběru, přijímání a přípravné službě justičních čekatelů a o odborné justiční zkoušce.
+Kritéria výběru pro výběrovou komisi jsou obsažena v Metodice Justiční akademie ČR (https://www.jacz.cz/images/stories/vyberova_rizeni_cekatele/metodika_a_hodnoceni_pohovoru.doc), dostupné na adrese https://www.jacz.cz/o-nas/vyberova-rizeni#justicni-cekatele.
+
+K výběrovému řízení přineste: kopii vysokoškolského diplomu,  motivační dopis psaný vlastní rukou a stručný profesní životopis. Máte-li hodnocení předchozího zaměstnavatele, předložte jej rovněž. Uvedené přílohy Vám budou bezprostředně po výběrovém řízení vráceny.
+
+Pro více informací o řízení přejděte do na url: <%= interview_url(@interview) %>.

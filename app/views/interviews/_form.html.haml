@@ -1,4 +1,4 @@
-.interview-attributes{style: 'position: relative;'}
+#interview-form-fields.interview-attributes{style: 'position: relative;'}
   = form.datetime_field(:time, min: Time.now+14.days)
   = form.select2(:region_court_id, EgovUtils::Organization.region_courts.collect{|o| [o.name, o.id] }, {}, class: 'region-court-select')
   .address
@@ -10,7 +10,7 @@
       = form.fields_for(:address, interview.address || EgovUtils::Address.new) do |fields|
         = render 'egov_utils/addresses/form', form: fields, address: fields.object
   #boundary.boundary
-    = form.check_box(:boundary, class: 'boundary-check', label: t('label_interview_without_test'))
+    = form.check_box(:boundary?, class: 'boundary-check', label: t('label_interview_without_test'))
     .boundary-attributes
       = form.number_field(:boundary, max: 100, class: 'boundary-field')
     .candidates
@@ -39,7 +39,7 @@
           $('#boundary').closest('form').find('input[type="submit"]').prop('disabled', data.count <= 0)
         });
     }
-    $('#boundary .boundary-field, #boundary .boundary-check').on('change', function(evt) {
+    $('#interview-form-fields').on('change', '.boundary-field, .boundary-check, .region-court-select', function(evt) {
       var points = null,
           region_court = $('#boundary').closest('.interview-attributes').find('.region-court-select').val(),
           $points_field = $('#boundary .boundary-field');
