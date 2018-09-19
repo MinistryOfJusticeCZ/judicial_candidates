@@ -79,12 +79,3 @@ gem 'acts_as_list', '~> 0.9'
 gem 'phonelib', '~> 0.6'
 
 gem 'sidekiq', '~> 5.0'
-
-#UI gems
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.3.3'
-end
-
-gem "bootstrap_form",
-    git: "https://github.com/bootstrap-ruby/bootstrap_form.git",
-    branch: "master"

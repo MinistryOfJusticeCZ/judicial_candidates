@@ -42,6 +42,7 @@ cs:
   label_interview_without_test: Termín bez písemného testu
   label_invite_additional_candidates: Pozvat další uchazeče
   label_reject_apology: Zamítnout
+  label_candidate_order: "%{order}. v pořadí"
   notice_excuse_sent: Omluvenka zaslána
   notice_apology_refused: Omluva zamítnuta
   notice_candidate_finalized: Profil byl dokončen a odeslán ke schválení
