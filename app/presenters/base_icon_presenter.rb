@@ -1,4 +1,4 @@
-class BaseIconFormatter < AzaharaSchema::Presenter
+class BaseIconPresenter < AzaharaSchema::Presenter
 
   def labeled_html_attribute_value(attribute, entity, **options)
     template.content_tag('div', class: 'inline-attribute') do
