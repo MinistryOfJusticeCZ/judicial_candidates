@@ -74,6 +74,7 @@ deploy_lab:
     name: lab
   only:
     - master
+  allow_failure: true
 
 deploy_staging:
   stage: deploy
