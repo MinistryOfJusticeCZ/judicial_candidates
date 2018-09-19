@@ -1,21 +1,13 @@
-GIT
-  remote: https://github.com/bootstrap-ruby/bootstrap_form.git
-  revision: 78fd6f9904a97e0cb395f5ddfd056667fd47fcba
-  branch: master
-  specs:
-    bootstrap_form (4.0.0.alpha1)
-      rails (>= 5.0)
-
 PATH
   remote: ../azahara_schema
   specs:
-    azahara_schema (0.3.15)
+    azahara_schema (0.3.18)
       rails (~> 5.1)
 
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.4.13)
+    egov_utils (0.4.14)
       activeresource (~> 5.0)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
@@ -42,11 +34,11 @@ PATH
       request_store_rails (~> 1.0)
       sassc-rails (~> 1.3)
       settingslogic (~> 2.0)
+      simple-navigation (~> 4.0)
       vuejs-rails (~> 2.5)
 
 GEM
   remote: https://rubygems.org/
-  remote: https://rails-assets.org/
   specs:
     actioncable (5.1.6)
       actionpack (= 5.1.6)
@@ -93,7 +85,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_list (0.9.15)
+    acts_as_list (0.9.16)
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
@@ -105,7 +97,7 @@ GEM
     arel (8.0.0)
     audited (4.8.0)
       activerecord (>= 4.0, < 5.3)
-    autoprefixer-rails (9.1.3)
+    autoprefixer-rails (9.1.4)
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
@@ -116,9 +108,11 @@ GEM
     bootstrap4-datetime-picker-rails (0.1.8)
       jquery-rails (~> 4.2, >= 4.2.0)
       momentjs-rails (~> 2.10, >= 2.10.5)
+    bootstrap_form (4.0.0.alpha1)
+      rails (>= 5.0)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.2.0)
+    cancancan (2.3.0)
     capistrano (3.11.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -164,13 +158,13 @@ GEM
     erubi (1.7.1)
     eventmachine (1.2.7)
     execjs (2.7.0)
-    factory_bot (4.10.0)
+    factory_bot (4.11.1)
       activesupport (>= 3.0.0)
-    factory_bot_rails (4.10.0)
-      factory_bot (~> 4.10.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
     ffi (1.9.25)
-    font-awesome-sass (5.2.0)
+    font-awesome-sass (5.3.1)
       sassc (>= 1.11)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -180,7 +174,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashdiff (0.3.7)
-    httpi (2.4.3)
+    httpi (2.4.4)
       rack
       socksify
     i18n (1.0.1)
@@ -213,7 +207,7 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     mini_racer (0.2.0)
       libv8 (>= 6.3)
@@ -235,16 +229,16 @@ GEM
     paranoia (2.4.1)
       activerecord (>= 4.0, < 5.3)
     pg (0.21.0)
-    phonelib (0.6.24)
+    phonelib (0.6.25)
     popper_js (1.14.3)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    public_suffix (3.0.2)
+    public_suffix (3.0.3)
     rack (2.0.5)
-    rack-protection (2.0.3)
+    rack-protection (2.0.4)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -260,7 +254,6 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.1.6)
       sprockets-rails (>= 2.0.0)
-    rails-assets-tether (1.4.3)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -280,26 +273,26 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redis (4.0.1)
+    redis (4.0.2)
     request_store_rails (1.0.3)
       concurrent-ruby (~> 1.0)
-    rspec-core (3.7.1)
-      rspec-support (~> 3.7.0)
-    rspec-expectations (3.7.0)
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.7.0)
-    rspec-mocks (3.7.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.7.0)
-    rspec-rails (3.7.2)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 3.7.0)
-      rspec-expectations (~> 3.7.0)
-      rspec-mocks (~> 3.7.0)
-      rspec-support (~> 3.7.0)
-    rspec-support (3.7.1)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
     sass (3.5.7)
@@ -326,11 +319,12 @@ GEM
       nori (~> 2.4)
       wasabi (~> 3.4)
     settingslogic (2.0.9)
-    sidekiq (5.1.3)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
+    sidekiq (5.2.2)
+      connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    simple-navigation (4.0.5)
+      activesupport (>= 2.3.2)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -367,12 +361,12 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    turbolinks (5.1.1)
-      turbolinks-source (~> 5.1)
-    turbolinks-source (5.1.0)
+    turbolinks (5.2.0)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.17)
+    uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.1)
       kgio (~> 2.6)
@@ -381,7 +375,7 @@ GEM
     wasabi (3.5.0)
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    web-console (3.6.2)
+    web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
@@ -401,7 +395,6 @@ DEPENDENCIES
   activeresource
   acts_as_list (~> 0.9)
   azahara_schema!
-  bootstrap_form!
   byebug
   capistrano-rails
   capistrano-sidekiq
@@ -420,7 +413,6 @@ DEPENDENCIES
   phonelib (~> 0.6)
   pry-rails
   rails (~> 5.1.4)
-  rails-assets-tether (>= 1.3.3)!
   rspec-rails
   sassc-rails (~> 1.3)
   sidekiq (~> 5.0)
@@ -437,4 +429,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.3
+   1.16.4
