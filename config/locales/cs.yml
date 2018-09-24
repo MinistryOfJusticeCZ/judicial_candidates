@@ -148,6 +148,11 @@ cs:
         kromerizC: Justiční akademie, Budova C, Smetanova 3921, Kroměříž
         praha_micanky: Justiční areál Na Míčánkách, ul. 28. pluku 1533/29b, Praha 10
         praha_hybernska: Justiční akademie, Hybernská 18, Praha 1
+        olomouc_ks_ostrava: |
+          Justiční akademie, regionální učebna Olomouc,
+          KS v Ostravě, pobočka v Olomouci,
+          Studentská 7,
+          Olomouc
     interview:
       time: Čas konání
       boundary: Bodová hranice

@@ -7,7 +7,7 @@ class EntryTest < ApplicationRecord
   validates :time, inclusion: {in: ->(t){ (Time.now+2.months..Time.now+5.years) }}, on: :create
   validates :capacity, numericality: true
 
-  enum place: {kromerizA: 1, kromerizB: 2, kromerizC: 3, praha_micanky: 10, praha_hybernska: 11}
+  enum place: {kromerizA: 1, kromerizB: 2, kromerizC: 3, praha_micanky: 10, praha_hybernska: 11, olomouc_ks_ostrava: 16}
 
   accepts_nested_attributes_for :candidate_entry_tests
 
