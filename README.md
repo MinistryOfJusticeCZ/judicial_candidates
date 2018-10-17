@@ -1,24 +1,8 @@
-# README
+Judicial candidates
+=========================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The intention behind this repository is to make source code of the Czech
+judicial candidates system available for public review.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The repository is not used for active development, but will be kept up to date,
+so the code that can be found here is the code that is used for selecting and testing juditial candidates.
