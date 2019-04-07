@@ -1,0 +1,12 @@
+[[candidat]]
+== Část pro kandidáta
+
+=== Registrace
+
+Nejprve se uživatel musí zaregistrovat.
+
+image::register-candidate.png[Registrační formulář]
+
+=== Vyplnění profilu
+
+=== Čekání na schválení

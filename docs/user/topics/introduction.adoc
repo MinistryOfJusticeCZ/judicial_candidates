@@ -1,0 +1,8 @@
+[[uvod]]
+== Úvod
+
+Aplikace {app-name} byla vytvořena Ministerstvem spravedlnosti dle vyhlášky a slouží pro podporu životní situace.
+
+== Režim kompatibility
+
+V případě, že po načtení stránky aplikace vidíte něco podobného obrázku níže, je třeba vypnout režim kompatibility v prohlížeči Internet Explorer.

@@ -1,0 +1,3 @@
+ifdef::lang[include::locale/attributes-{lang}.adoc[]]
+
+:app-name: Evidence zájemců o přijetí do přípravné služby justičních čekatelů

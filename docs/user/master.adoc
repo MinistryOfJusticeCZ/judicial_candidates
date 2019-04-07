@@ -1,0 +1,20 @@
+= Evidence zájemců o přijetí do přípravné služby justičních čekatelů - Uživatelská příručka
+Ministerstvo spravedlnosti ČR
+:lang: cs
+:imagesdir: images
+:doctype: book
+:toc: left
+:toclevels: 3
+:experimental:
+:linkattrs:
+
+include::../shared/attributes.adoc[]
+
+:numbered:
+include::topics/introduction.adoc[]
+
+include::topics/candidate.adoc[]
+
+include::topics/court.adoc[]
+
+include::topics/ooj.adoc[]
