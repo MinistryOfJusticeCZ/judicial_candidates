@@ -7,7 +7,7 @@ PATH
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.4.16)
+    egov_utils (0.4.17)
       activeresource (~> 5.1)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
