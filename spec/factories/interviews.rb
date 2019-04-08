@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :interview do
-    time "2017-11-22 13:20:41"
-    region_court nil
-    address nil
-    boundary 1
+    time { Time.now + 2.months }
+    region_court { 1 }
+    address { nil }
+    boundary { 10 }
   end
 end

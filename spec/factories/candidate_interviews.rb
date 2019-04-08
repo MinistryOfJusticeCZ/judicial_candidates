@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :candidate_interview do
-    state "MyString"
+    interview
+    state { 'invited' }
   end
 end
