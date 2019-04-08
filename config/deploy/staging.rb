@@ -1,9 +1,23 @@
 after 'deploy:publishing', 'deploy:restart'
+after 'deploy:restart', 'deploy:load_staging_data'
+
 namespace :deploy do
   task :restart do
     invoke 'unicorn:restart'
   end
+
+  desc 'Runs rake egov_utils:load_staging_data if migrations are set'
+  task :load_staging_data => [:set_rails_env] do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "egov_utils:load_staging_data"
+        end
+      end
+    end
+  end
 end
+
 
 # server-based syntax
 # ======================
