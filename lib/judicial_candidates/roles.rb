@@ -35,6 +35,7 @@ class CandidateRole < EgovUtils::UserUtils::Role
     ability.can :update, CandidateEntryTest, candidate: { user_id: user.id }
     # ability.can :manage, CandidateEntryTest, CandidateEntryTest.comming.joins(:candidate).where(Candidate.arel_table[:user_id].eq(user.id))
     ability.can :read, Interview, candidate_interviews: { candidate: { user_id: user.id } }
+    ability.can :update, CandidateInterview, candidate: { user_id: user.id }
   end
 
 end
@@ -72,10 +73,10 @@ class JudgeRole < EgovUtils::UserUtils::Role
     ability.can :index, Candidate
     if user.organization_id
       ability.can :manage, Interview, region_court_id: user.organization_id
-      ability.can :reject_apology, CandidateInterview, {interview: { region_court_id: user.organization_id }}
+      ability.can [:update, :reject_apology], CandidateInterview, {interview: { region_court_id: user.organization_id }}
     else
       ability.can :manage, Interview
-      ability.can :reject_apology, CandidateInterview
+      ability.can [:update, :reject_apology], CandidateInterview
     end
   end
 

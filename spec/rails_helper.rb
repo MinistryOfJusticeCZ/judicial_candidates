@@ -71,6 +71,9 @@ RSpec.configure do |config|
   config.before(logged: :academy) do
     sign_in(default_user(roles: ['academy']))
   end
+  config.before(logged: :judge) do
+    sign_in(default_user(roles: ['judge']))
+  end
   config.before(logged: :admin) do
     sign_in admin_user
   end

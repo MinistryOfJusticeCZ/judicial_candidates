@@ -40,7 +40,7 @@ class CandidateInterviewsController < ApplicationController
   private
 
     def update_params
-      if current_candidate.id == @candidate_interview.candidate_id
+      if current_candidate && current_candidate.id == @candidate_interview.candidate_id
         params.require(:candidate_interview).permit(:apology)
       elsif current_user.has_role?('judge')
         params.require(:candidate_interview).permit(:assigned_hour)
