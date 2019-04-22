@@ -65,6 +65,12 @@ RSpec.configure do |config|
   config.before(logged: true) do
     sign_in(default_user(roles: []))
   end
+  config.before(logged: :ooj) do
+    sign_in(default_user(roles: ['ooj']))
+  end
+  config.before(logged: :academy) do
+    sign_in(default_user(roles: ['academy']))
+  end
   config.before(logged: :admin) do
     sign_in admin_user
   end

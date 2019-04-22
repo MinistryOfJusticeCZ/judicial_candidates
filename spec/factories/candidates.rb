@@ -29,8 +29,10 @@ FactoryBot.define do
       state { 'waiting' }
       test_points { Random.rand(100) }
       entry_test { FactoryBot.create(:entry_test, :evaluated) }
+    end
 
-      after(:create) do |candidate, evaluator|
+    after(:create) do |candidate, evaluator|
+      if evaluator.entry_test
         candidate.candidate_entry_tests.create(entry_test_id: evaluator.entry_test.id, points: evaluator.test_points)
       end
     end

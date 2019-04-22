@@ -1,4 +1,4 @@
-<% formatter = AzaharaSchema::AttributeFormatter.formatter_for(EntryTest).new((schema = EntryTestSchema.new), self) %>
+<% formatter = attribute_formatter_for(schema = EntryTestSchema.new) %>
 <% place_attr = schema.attribute('place') %>
 
 <% content_for(:greeting) do %>
