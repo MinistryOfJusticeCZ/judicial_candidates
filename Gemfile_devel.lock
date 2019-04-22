@@ -7,7 +7,7 @@ PATH
 PATH
   remote: ../egov_utils
   specs:
-    egov_utils (0.4.17)
+    egov_utils (0.4.18)
       activeresource (~> 5.1)
       audited (~> 4.4)
       azahara_schema (~> 0.3)
@@ -328,7 +328,7 @@ GEM
       nori (~> 2.4)
       wasabi (~> 3.4)
     settingslogic (2.0.9)
-    sidekiq (5.2.6)
+    sidekiq (5.2.7)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
