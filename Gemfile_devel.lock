@@ -1,7 +1,7 @@
 PATH
   remote: ../azahara_schema
   specs:
-    azahara_schema (0.3.18)
+    azahara_schema (0.3.19)
       rails (~> 5.1)
 
 PATH
