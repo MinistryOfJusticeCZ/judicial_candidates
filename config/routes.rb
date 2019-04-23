@@ -38,5 +38,5 @@ Rails.application.routes.draw do
 
   require 'sidekiq/web'
   require 'egov_utils/routes/admin_constraint'
-  mount Sidekiq::Web => '/sidekiq', constraints: EgovUtils::AdminConstraint.new
+  mount Sidekiq::Web => '/sidekiq' #, constraints: EgovUtils::AdminConstraint.new
 end
