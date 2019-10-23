@@ -27,16 +27,16 @@
               %th= EgovUtils::User.human_attribute_name('fullname')
               %th= EgovUtils::User.human_attribute_name('mail')
               %th= CandidateInterview.human_attribute_name('success')
-        %tbody
-          - interview.candidate_interviews.comming.preload(candidate: :user).each do |candidate_interview|
-            %tr
-              %td= candidate_interview.candidate.user.fullname
-              %td= candidate_interview.candidate.user.mail
-              %td
-                = hidden_field_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
-                = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']], candidate_interview.state), disabled: interview.evaluated?)
-      - if !interview.evaluated?
-        = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
+          %tbody
+            - interview.candidate_interviews.comming.preload(candidate: :user).each do |candidate_interview|
+              %tr
+                %td= candidate_interview.candidate.user.fullname
+                %td= candidate_interview.candidate.user.mail
+                %td
+                  = hidden_field_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][id]", candidate_interview.id)
+                  = select_tag("interview[candidate_interviews_attributes][#{candidate_interview.id}][state]", options_for_select([['Ano', 'successful'],['Ne', 'failed'], ['Nedostavil se', 'absent']], candidate_interview.state), disabled: interview.evaluated?)
+        - if !interview.evaluated?
+          = submit_tag(t('label_evaluate'), class: 'btn btn-primary')
     - else
       %table.table
         %thead
