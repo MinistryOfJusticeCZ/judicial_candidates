@@ -38,7 +38,7 @@ class CandidateEntryTestsController < ApplicationController
   private
 
     def invite_alternate?
-      @candidate_entry_test.saved_change_to_arrival? &&
+      !@candidate_entry_test.entry_test.passed? && @candidate_entry_test.saved_change_to_arrival? &&
         [nil, 'invited', 'arrived'].include?(@candidate_entry_test.arrival_before_last_save) &&
         (@candidate_entry_test.apology? || @candidate_entry_test.excused?)
     end
@@ -56,7 +56,9 @@ class CandidateEntryTestsController < ApplicationController
 
     def update_params
       # WARNING: if more allowed attributes, check candidate role permissions for update
-      params.require(:candidate_entry_test).permit(:apology)
+      attrs = %i[apology]
+      attrs << :arrival if @candidate_entry_test.can_be_invalidated? && can?(:invalidate, @candidate_entry_test)
+      params.require(:candidate_entry_test).permit(*attrs)
     end
 
 end

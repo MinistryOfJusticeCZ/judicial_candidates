@@ -12,6 +12,8 @@ class CandidateEntryTestPresenter < BaseIconPresenter
     case attribute.name
     when 'arrival'
       'fa fa-graduation-cap'
+    when 'points'
+      'fa fa-trophy'
     else
       super
     end

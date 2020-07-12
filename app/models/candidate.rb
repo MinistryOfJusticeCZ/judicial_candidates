@@ -94,6 +94,10 @@ class Candidate < ApplicationRecord
       transition waiting: :for_entry_test
     end
 
+    event :queue_to_repeat_test do
+      transition waiting: :for_entry_test
+    end
+
     # event :invite_to_interview do
     #   transition waiting: :invited_to_interview
     # end

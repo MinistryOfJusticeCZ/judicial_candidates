@@ -10,6 +10,8 @@ class CandidatesController < ApplicationController
   end
 
   def show
+    @candidate_entry_tests = CandidateEntryTestSchema.new(columns: ['entry_test-time', 'arrival', 'points'], outputs: ['tiles'])
+    @candidate_entry_tests.add_filter('candidate_id', '=', @candidate.id)
   end
 
   def new

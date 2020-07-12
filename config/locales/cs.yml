@@ -43,6 +43,7 @@ cs:
   label_invite_additional_candidates: Pozvat další uchazeče
   label_reject_apology: Zamítnout
   label_candidate_order: "%{order}. v pořadí"
+  label_invalidate: Anulovat
   notice_excuse_sent: Omluvenka zaslána
   notice_apology_refused: Omluva zamítnuta
   notice_candidate_finalized: Profil byl dokončen a odeslán ke schválení
@@ -50,6 +51,7 @@ cs:
   success_evaluation: Vyhodnocení uloženo
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.
   text_confirmation: Opravdu chcete provést tuto akci?
+  text_invalidate_test_confirm: Opravdu chcete anulovat výsledek tohoto testu?
   warning_profile_not_complete: Profil nemohl být dokončen. Máte nahraný diplom a vyplněné všechny údaje?
   warning_not_enough_candidates: Nedostatek kandidátů
 
@@ -57,6 +59,9 @@ cs:
     candidate:
       one: Kandidát
       other: Kandidáti
+    candidate_entry_test:
+      one: Účast na testu
+      other: Účasti na testech
     entry_test:
       one: Vstupní test
       other: Vstupní testy
@@ -120,10 +125,11 @@ cs:
       apology: Omluvenka
       arrivals:
         invited: Pozvaný/á
-        arrived: Dorazí
+        arrived: Dorazil
         apology: Omlouvá se
         excused: Omluven
         absent: Nedorazil/a
+        invalidated: Výsledek anulován
     candidate_interview:
       apology: Omluva
       state: Stav

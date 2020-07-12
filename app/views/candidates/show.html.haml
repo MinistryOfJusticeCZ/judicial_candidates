@@ -54,7 +54,7 @@
   .attribute
     .value= @candidate.agreed_limitations ? raw(Candidate.human_attribute_name('agreed_limitations')) : nil
 
-  - if @candidate.incomplete? && can?(:edit, @candidate)
+  - if can?(:edit, @candidate)
     .row.buttons
       .col-6
         = link_to(t('label_edit'), edit_candidate_path(@candidate), class: 'btn btn-secondary' )
@@ -82,3 +82,7 @@
           = f.text_area(:audit_comment)
           .form-actions
             = f.submit t('label_delete'), data: { confirm: t('text_confirmation') }, class: 'btn btn-warning'
+
+.candidate-entry-tests
+  %h4= CandidateEntryTest.model_name.human(count: :other)
+  = render @candidate_entry_tests, filters: false, show_toolbar: false, allow_delete: false, allow_edit: false

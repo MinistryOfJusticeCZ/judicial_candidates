@@ -33,6 +33,9 @@ class CandidateRole < EgovUtils::UserUtils::Role
     ability.can :read, EntryTest, candidate_entry_tests: { candidate: { user_id: user.id } }
     ability.can :read, CandidateEntryTest, candidate: { user_id: user.id }
     ability.can :update, CandidateEntryTest, candidate: { user_id: user.id }
+    ability.can :invalidate, CandidateEntryTest, candidate: { user_id: user.id } do |candidate_entry_test|
+      candidate_entry_test.can_be_invalidated?
+    end
     # ability.can :manage, CandidateEntryTest, CandidateEntryTest.comming.joins(:candidate).where(Candidate.arel_table[:user_id].eq(user.id))
     ability.can :read, Interview, candidate_interviews: { candidate: { user_id: user.id } }
     ability.can :update, CandidateInterview, candidate: { user_id: user.id }
