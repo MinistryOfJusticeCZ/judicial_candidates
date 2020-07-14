@@ -7,7 +7,7 @@ module ApplicationHelper
   def additional_tile_actions_for(entity)
     case entity
     when CandidateEntryTest
-      if can?(:edit, entity) && can?(:invalidate, entity) && entity.can_be_invalidated?
+      if can?(:edit, entity) && can?(:invalidate, entity) && entity.arrival == 'arrived' && entity.can_be_invalidated?
         button_to(
           t('label_invalidate'),
           [entity.entry_test, entity],
