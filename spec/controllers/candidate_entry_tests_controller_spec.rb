@@ -42,6 +42,7 @@ RSpec.describe CandidateEntryTestsController, type: :controller do
         expect( controller ).not_to receive(:invite_alternate)
         expect( candidate.state ).to eq('for_interview')
         patch :update, params: { entry_test_id: entry_test.id, id: candidate_entry_test.id, candidate_entry_test: { arrival: 'invalidated' } }
+        expect(response).to have_http_status(:success)
         expect( candidate_entry_test.reload.arrival ).to eq('invalidated')
         expect( candidate.reload.state ).to eq('for_interview')
       end
