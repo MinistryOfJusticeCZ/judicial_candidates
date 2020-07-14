@@ -34,17 +34,18 @@ RSpec.describe CandidateEntryTestsController, type: :controller do
     end
 
     context 'invalidation', logged: true do
-      let(:entry_test) { FactoryBot.create(:entry_test, :listed, capacity: 2, time: 1.year.ago - 1.month) }
+      let(:entry_test) { FactoryBot.create(:entry_test, :evaluated, capacity: 2, time: 1.year.ago - 1.month) }
       let(:candidate){ FactoryBot.create(:candidate, :for_interview, entry_test: entry_test, user: signed_user) }
 
       it 'invalidate test and puts candidate to for_entry_test state' do
-        candidate_entry_test = candidate.candidate_entry_tests.first
+        candidate_entry_test = candidate.reload.candidate_entry_tests.first
         expect( controller ).not_to receive(:invite_alternate)
-        expect( candidate.state ).to eq('for_interview')
+        expect( candidate.state ).to eq('waiting')
+        expect( candidate_entry_test.arrival ).to eq('arrived')
         patch :update, params: { entry_test_id: entry_test.id, id: candidate_entry_test.id, candidate_entry_test: { arrival: 'invalidated' } }
-        expect(response).to have_http_status(:success)
+        expect(response).to redirect_to(candidate_path(candidate))
         expect( candidate_entry_test.reload.arrival ).to eq('invalidated')
-        expect( candidate.reload.state ).to eq('for_interview')
+        expect( candidate.reload.state ).to eq('for_entry_test')
       end
     end
   end

@@ -28,7 +28,7 @@ class CandidateEntryTestsController < ApplicationController
     respond_to do |format|
       if @candidate_entry_test.update(update_params)
         invite_alternate if invite_alternate?
-        format.html{ redirect_to root_path, notice: t('notice_excuse_sent') }
+        format.html{ redirect_to @candidate_entry_test.candidate, notice: t('notice_excuse_sent') }
       else
         format.html{ render 'edit' }
       end
