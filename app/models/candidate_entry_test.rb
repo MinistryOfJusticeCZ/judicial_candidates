@@ -34,7 +34,7 @@ class CandidateEntryTest < ApplicationRecord
   end
 
   def can_be_invalidated?
-    arrived? && entry_test.time + 1.year < Time.now
+    (arrived? || (arrival_changed? && arrival_was == 'arrived')) && entry_test.time + 1.year < Time.now
   end
 
   def arrival
