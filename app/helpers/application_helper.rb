@@ -9,7 +9,7 @@ module ApplicationHelper
     when CandidateEntryTest
       res = ''.html_safe
       if can?(:edit, entity)
-        if can?(:invalidate, entity) && entity.can_be_invalidated?
+        if can?(:invalidate, entity) && entity.arrival == 'arrived' && entity.can_be_invalidated?
           res << button_to(
             t('label_invalidate'),
             [entity.entry_test, entity],
