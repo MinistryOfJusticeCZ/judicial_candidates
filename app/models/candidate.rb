@@ -95,7 +95,7 @@ class Candidate < ApplicationRecord
     end
 
     event :queue_to_repeat_test do
-      transition waiting: :for_entry_test
+      transition [:blocked, :waiting] => :for_entry_test
     end
 
     # event :invite_to_interview do
@@ -129,7 +129,9 @@ class Candidate < ApplicationRecord
   end
 
   def excuse_on_entry_test!(entry_test)
-    update(state: 'for_entry_test', position: nil)
+    if !candidate_entry_tests.joins(:entry_test).where.not(entry_test_id: entry_test).where(arrival: 'absent').where(EntryTest.arel_table[:time].gt(Time.now - 1.year)).exists?
+      update(state: 'for_entry_test', position: nil)
+    end
   end
 
   def failed_interview!(interview)

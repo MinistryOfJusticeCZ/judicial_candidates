@@ -57,7 +57,7 @@ class CandidateEntryTestsController < ApplicationController
     def update_params
       # WARNING: if more allowed attributes, check candidate role permissions for update
       attrs = %i[apology]
-      attrs << :arrival if can?(:invalidate, @candidate_entry_test)
+      attrs << :arrival if can?(:invalidate, @candidate_entry_test) || can?(:excuse, @candidate_entry_test)
       params.require(:candidate_entry_test).permit(*attrs)
     end
 

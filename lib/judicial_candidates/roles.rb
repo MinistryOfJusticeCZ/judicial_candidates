@@ -52,6 +52,7 @@ class JusticeOrganizationRole < EgovUtils::UserUtils::Role
     ability.can [:approve, :disapprove], Candidate, state: Candidate.states[:validation]
     ability.can :destroy, Candidate
     ability.can :index, EntryTest
+    ability.can :excuse, CandidateEntryTest, arrival: 'absent'
   end
 
 end
@@ -64,6 +65,7 @@ class JusticeAcademyRole < EgovUtils::UserUtils::Role
     ability.can :read, Candidate
     ability.can :manage, EntryTest
     ability.can :manage, CandidateEntryTest
+    ability.can :excuse, CandidateEntryTest
   end
 
 end

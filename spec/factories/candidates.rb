@@ -31,6 +31,12 @@ FactoryBot.define do
       entry_test { FactoryBot.create(:entry_test, :evaluated) }
     end
 
+    trait :blocked do
+      state { 'blocked' }
+      test_points { nil }
+      entry_test { FactoryBot.create(:entry_test, :evaluated) }
+    end
+
     after(:create) do |candidate, evaluator|
       if evaluator.entry_test
         candidate.candidate_entry_tests.create(entry_test_id: evaluator.entry_test.id, arrival: 'arrived', points: evaluator.test_points)

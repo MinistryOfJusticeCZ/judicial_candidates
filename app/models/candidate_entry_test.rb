@@ -58,6 +58,9 @@ class CandidateEntryTest < ApplicationRecord
       if saved_change_to_attribute?('arrival', to: 'invalidated')
         candidate.queue_to_repeat_test
         return true
+      elsif saved_change_to_attribute?('arrival', to: 'excused')
+        candidate.excuse_on_entry_test!(entry_test)
+        return true
       end
       return unless candidate.invited_to_test?
       if absent?

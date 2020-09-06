@@ -44,6 +44,7 @@ cs:
   label_reject_apology: Zamítnout
   label_candidate_order: "%{order}. v pořadí"
   label_invalidate: Anulovat
+  label_excuse: Omluvit
   notice_excuse_sent: Omluvenka zaslána
   notice_apology_refused: Omluva zamítnuta
   notice_candidate_finalized: Profil byl dokončen a odeslán ke schválení
@@ -52,6 +53,7 @@ cs:
   text_finalize_candidate_confirm: Před schválením a odesláním registračního formuláře prosím důkladně zkontrolujte veškeré vyplněné údaje. Po odeslání registračního formuláře již nebude možno údaje změnit.
   text_confirmation: Opravdu chcete provést tuto akci?
   text_invalidate_test_confirm: Opravdu chcete anulovat výsledek tohoto testu?
+  text_excuse_test_confirm: Opravdu chcete omluvit absenci u tohoto testu?
   warning_profile_not_complete: Profil nemohl být dokončen. Máte nahraný diplom a vyplněné všechny údaje?
   warning_not_enough_candidates: Nedostatek kandidátů
 
