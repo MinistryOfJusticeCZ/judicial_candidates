@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'activeresource'
 
-gem 'dragonfly', '~> 1.1'
+gem 'dragonfly', '~> 1.4'
 gem 'state_machines-activerecord', '~> 0.5'
 
 gem 'egov_utils', '~> 0.4'
