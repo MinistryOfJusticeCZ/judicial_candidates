@@ -42,7 +42,7 @@ gem 'acts_as_list', '~> 0.9'
 
 gem 'phonelib', '~> 0.6'
 
-gem 'sidekiq', '~> 5.0'
+gem 'sidekiq', '~> 6.4'
 
 # Use Capistrano for deployment
 group :development do
